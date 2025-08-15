@@ -27,7 +27,7 @@ def _parse_entries(uncompressed_bytes: bytes) -> list[tuple[bytes, bytes]]:
     min_offset = None
     while True:
         if i + 24 > len(uncompressed_bytes):
-            raise ValueError(f"Partial entry encountered at position {i}")
+            raise ValueError(f'Partial entry encountered at position {i}')
         offset = int.from_bytes(uncompressed_bytes[i:i+2], 'little')
         entry_header = uncompressed_bytes[i:i+24]
         if any(entry_header):
