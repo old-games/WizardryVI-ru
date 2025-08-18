@@ -7,6 +7,9 @@ import cv2
 import numpy as np
 
 import controller
+from definition import CharacterClass, get_level_by_experience, get_level_experience
+
+experience_by_time = []
 
 
 def review(pictures_dir="pictures", precision=0.95):
@@ -108,6 +111,44 @@ def review(pictures_dir="pictures", precision=0.95):
                 exp_number += best_digit
 
     print("Scanned EXP number:", exp_number)
+    try:
+        exp_number = int(exp_number)
+        experience_by_time.append((time.monotonic(), exp_number))
+        if len(experience_by_time) >= 2:
+            t0, exp0 = experience_by_time[0]
+            t1, exp1 = experience_by_time[-1]
+            dt = t1 - t0
+            dexp = exp1 - exp0
+            if dt > 0:
+                avg_speed = dexp / dt  # EXP/sec
+                print(f"Average EXP gain speed: {avg_speed*3600:.2f} EXP/hour")
+                for cls in [CharacterClass.PRIEST, CharacterClass.THIEF]:
+                    current_level = get_level_by_experience(cls, exp_number)
+                    next_level_exp = get_level_experience(cls, current_level + 1)
+                    exp_to_next = next_level_exp - exp_number
+                    eta = exp_to_next / avg_speed if avg_speed > 0 else float('inf')
+                    if eta == float('inf'):
+                        eta_str = "∞"
+                    else:
+                        eta_int = int(eta)
+                        days = eta_int // 86400
+                        hours = (eta_int % 86400) // 3600
+                        minutes = (eta_int % 3600) // 60
+                        eta_parts = []
+                        if days:
+                            eta_parts.append(f"{days}d")
+                        if hours:
+                            eta_parts.append(f"{hours}h")
+                        if minutes or not eta_parts:
+                            eta_parts.append(f"{minutes}m")
+                        eta_str = " ".join(eta_parts)
+                    print(f"{cls.name.title()}: {exp_to_next} EXP to next level ({current_level+1}), ETA: {eta_str}")
+
+            else:
+                print("Not enough time difference to compute speed.")
+
+    except ValueError:
+        print("Failed to parse EXP number:", exp_number)
 
     # Click exit.png at the end
     exit_path = os.path.join(pictures_dir, "exit.png")
