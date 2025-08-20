@@ -168,13 +168,36 @@ def main():
     print("Resting until enemy appears...")
     try:
         for outer in range(10000):  # Outer loop, adjust as needed
+            """
+            await options
+            await encounter
+
+            options:
+              while ...
+                check options
+                await sleep(0)
+
+            also, caching layer for screenshots
+
+            also, can we cancel the other coroutine when first started?
+            create_task(save() + review() + rest())
+            create_task(process_encounter())
+
+            wait_first
+            cancel others
+            we can even not cancel then, just run in loop, but that requires strict filters
+            we can cancel them manually also
+            """
             # FIXME activate window does not work here.
             left, top, right, bottom = controller.window_region()
             poisoned_pos = python_imagesearch.imagesearch.imagesearcharea(os.path.join(pictures_dir, "poisoned.png"), left, top, right, bottom)
             rip_pos = python_imagesearch.imagesearch.imagesearcharea(os.path.join(pictures_dir, "rip.png"), left, top, right, bottom)
             if rip_pos[0] != -1 or poisoned_pos[0] != -1:
                 print("RIP or poisoned detected, going to main menu and resuming...")
-                handle_rip_or_poisoned(pictures_dir, options_img, disk_img, safe_img)
+                try:
+                    handle_rip_or_poisoned(pictures_dir, options_img, disk_img, safe_img)
+                except Exception as e:
+                    print(f"Error handling RIP or poisoned: {e}")
                 continue  # Continue main outer loop
 
             game_over_pos = python_imagesearch.imagesearch.imagesearcharea(os.path.join(pictures_dir, "gameover.png"), left, top, right, bottom)
@@ -189,16 +212,23 @@ def main():
             except Exception as e:
                 print(f"Save via images failed: {e}; falling back to Ctrl+S")
 
-            # Open options and click review, then run review.review
-            find_and_click_in_window(os.path.join(pictures_dir, options_img), safe_img_path=os.path.join(pictures_dir, safe_img))
-            time.sleep(0.1)
-            find_and_click_in_window(os.path.join(pictures_dir, "review.png"), safe_img_path=os.path.join(pictures_dir, safe_img))
-            time.sleep(0.2)
-            review.review(pictures_dir=pictures_dir)
+            # Open options and click review
+            try:
+                # Open options and click review, then run review.review
+                find_and_click_in_window(os.path.join(pictures_dir, options_img), safe_img_path=os.path.join(pictures_dir, safe_img))
+                time.sleep(0.1)
+                find_and_click_in_window(os.path.join(pictures_dir, "review.png"), safe_img_path=os.path.join(pictures_dir, safe_img))
+                time.sleep(0.2)
+                review.review(pictures_dir=pictures_dir)
+            except Exception as e:
+                print(f"Open options and click review failed: {e}; falling back to Ctrl+S")
 
             for attempt in range(3):
                 # Open options menu and click rest
-                find_and_click_in_window(os.path.join(pictures_dir, options_img), safe_img_path=os.path.join(pictures_dir, safe_img))
+                try:
+                    find_and_click_in_window(os.path.join(pictures_dir, options_img), safe_img_path=os.path.join(pictures_dir, safe_img))
+                except Exception as e:
+                    print(f"Open options and click rest failed: {e}; falling back to Ctrl+S")
 
                 # Wait for either encounter or rest to appear, click rest if found
                 wait_timeout = 5  # seconds
@@ -246,21 +276,15 @@ def main():
 
                 # Check for encounter
                 left, top, right, bottom = controller.window_region()
-                pos = python_imagesearch.imagesearch.imagesearcharea(os.path.join(pictures_dir, encounter_img), left, top, right, bottom)
-                if pos[0] != -1:
-                    print(f"Encounter found at {pos} after {attempt+1} rest(s)")
+                encounter_pos = python_imagesearch.imagesearch.imagesearcharea(os.path.join(pictures_dir, encounter_img), left, top, right, bottom)
+                monsters_pos = python_imagesearch.imagesearch.imagesearcharea(os.path.join(pictures_dir, "monsters.png"), left, top, right, bottom)
+                if encounter_pos[0] != -1 or monsters_pos[0] != -1:
                     print("Waiting for monsters.png to appear...")
                     if not wait_for_monsters(pictures_dir, timeout=10):
                         print("Timeout waiting for monsters.png after encounter.")
                         break
 
-                    # Check number of groups
-                    num_groups = fight.get_number_of_groups(pictures_dir=pictures_dir)
-                    print(f"Number of groups: {num_groups}")
-                    if num_groups == 1:
-                        fight.fight_one_group()
-                    else:
-                        fight.fight_many_groups()
+                    fight.fight()
 
                     # Wait for options menu to reappear for up to 300s, then continue outer loop
                     print("Waiting for options menu to reappear (up to 300s)...")
