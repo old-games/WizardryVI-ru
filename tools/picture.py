@@ -1,7 +1,7 @@
 import PIL.Image
 
 
-PALETTE = list((([
+ALPHA_PALETTE = [
     (0x00, 0x00, 0x00, 0xff), # 0: Black
     (0xff, 0xff, 0xff, 0xff), # 1: White
     (0x4e, 0x4b, 0xf7, 0xff), # 2: Blue
@@ -9,16 +9,16 @@ PALETTE = list((([
     (0xef, 0x59, 0x50, 0xff), # 4: Rose
     (0xfe, 0xff, 0x62, 0xff), # 5: Yellow
     (0x70, 0xfb, 0x5e, 0xff), # 6: Lime
-    (0x73, 0xfb, 0xfd, 0xff), # 7: Aqua
+    (0x74, 0xfb, 0xfd, 0xff), # 7: Aqua
     (0x4b, 0x4b, 0x4b, 0xff), # 8: Gray
     (0xa0, 0xa0, 0xa0, 0xff), # 9: Silver
-    (0x0e, 0x03, 0x9b, 0xff), # 10: Navy
+    (0x0e, 0x01, 0x9b, 0xff), # 10: Navy
     (0x96, 0x1e, 0x9b, 0xff), # 11: Violet
     (0x96, 0x1e, 0x11, 0xff), # 12: Red
     (0x98, 0x50, 0x19, 0xff), # 13: Brown
     (0x38, 0x9d, 0x26, 0xff), # 14: Green
     (0x00, 0x00, 0x00, 0x00), # 15: Transparent
-])))
+]
 
 
 def _parse_entries(uncompressed_bytes: bytes) -> list[tuple[bytes, bytes]]:
@@ -81,7 +81,7 @@ def _entry_to_image(entry_header, data):
                 for bit in range(4):
                     plane_byte = block[bit * 8 + y]
                     color |= ((plane_byte >> (7 - x)) & 1) << bit
-                img[by*8 + y][bx*8 + x] = PALETTE[color]
+                img[by*8 + y][bx*8 + x] = ALPHA_PALETTE[color]
     from PIL import Image
     flat_img = b''.join(bytes(px) for row in img for px in row)
     pil_img = Image.frombytes('RGBA', (width, height), flat_img)
