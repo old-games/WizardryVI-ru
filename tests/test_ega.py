@@ -1,6 +1,8 @@
 import os
 import unittest
 
+from PIL import Image, ImageChops
+
 import tools.ega
 
 
@@ -13,6 +15,10 @@ class TestEGA(unittest.TestCase):
                 with open(os.path.join(path, 'unpacked', fname), 'rb') as f:
                     data = f.read()
                 picture = tools.ega.decode(data, 320, 200)
-                #picture = picture.resize((picture.width*10, picture.height*10), resample=0)
-                #picture.save(os.path.join(path, 'ega', fname + '.png'))
-                # FIXME
+                expected_path = os.path.join(path, 'ega', fname + '.png')
+                self.assertTrue(os.path.exists(expected_path), f"Expected image {expected_path} does not exist")
+                expected = Image.open(expected_path)
+                expected = expected.resize((expected.width//10, expected.height//10), resample=0)
+                diff = ImageChops.difference(picture, expected)
+                bbox = diff.getbbox()
+                self.assertIsNone(bbox, f"Decoded image for {fname} does not match expected image")
