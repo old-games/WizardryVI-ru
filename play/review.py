@@ -7,12 +7,16 @@ import cv2
 import numpy as np
 
 import controller
-from definition import CharacterClass, get_level_by_experience, get_level_experience
+import definition
+import maze
 
 experience_by_time = []
 
 
 def review(pictures_dir="pictures", precision=0.95):
+    characters = maze.get_number_of_characters(pictures_dir=pictures_dir, precision=precision)
+    print(f"Number of characters: {characters}")
+
     # Step 1: Find reviewwho.png and click below it (height/4)
     reviewwho_path = os.path.join(pictures_dir, "reviewwho.png")
     pos = controller.find_image(reviewwho_path, precision=precision)
@@ -121,31 +125,30 @@ def review(pictures_dir="pictures", precision=0.95):
             dexp = exp1 - exp0
             if dt > 0:
                 avg_speed = dexp / dt  # EXP/sec
-                print(f"Average EXP gain speed: {avg_speed*3600:.2f} EXP/hour")
-                for cls in [CharacterClass.PRIEST, CharacterClass.THIEF]:
-                    current_level = get_level_by_experience(cls, exp_number)
-                    next_level_exp = get_level_experience(cls, current_level + 1)
-                    exp_to_next = next_level_exp - exp_number
-                    eta = exp_to_next / avg_speed if avg_speed > 0 else float('inf')
-                    if eta == float('inf'):
-                        eta_str = "∞"
-                    else:
-                        eta_int = int(eta)
-                        days = eta_int // 86400
-                        hours = (eta_int % 86400) // 3600
-                        minutes = (eta_int % 3600) // 60
-                        eta_parts = []
-                        if days:
-                            eta_parts.append(f"{days}d")
-                        if hours:
-                            eta_parts.append(f"{hours}h")
-                        if minutes or not eta_parts:
-                            eta_parts.append(f"{minutes}m")
-                        eta_str = " ".join(eta_parts)
-                    print(f"{cls.name.title()}: {exp_to_next} EXP to next level ({current_level+1}), ETA: {eta_str}")
-
+        else:
+            avg_speed = 0.0
+        print(f"Average EXP gain speed: {avg_speed*3600:.2f} EXP/hour")
+        for cls in [definition.Class.PRIEST, definition.Class.THIEF, definition.Class.PSIONIC]:
+            current_level = definition.get_level_by_experience(cls, exp_number)
+            next_level_exp = definition.get_level_experience(cls, current_level + 1)
+            exp_to_next = next_level_exp - exp_number
+            eta = exp_to_next / avg_speed if avg_speed > 0 else float('inf')
+            if eta == float('inf'):
+                eta_str = "∞"
             else:
-                print("Not enough time difference to compute speed.")
+                eta_int = int(eta)
+                days = eta_int // 86400
+                hours = (eta_int % 86400) // 3600
+                minutes = (eta_int % 3600) // 60
+                eta_parts = []
+                if days:
+                    eta_parts.append(f"{days}d")
+                if hours:
+                    eta_parts.append(f"{hours}h")
+                if minutes or not eta_parts:
+                    eta_parts.append(f"{minutes}m")
+                eta_str = " ".join(eta_parts)
+            print(f"{cls.name.title()}: {exp_to_next} EXP to next level ({current_level+1}), ETA: {eta_str}")
 
     except ValueError:
         print("Failed to parse EXP number:", exp_number)

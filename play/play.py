@@ -98,7 +98,7 @@ def handle_game_over(pictures_dir, safe_img):
 
 def handle_rip_or_poisoned(pictures_dir, options_img, disk_img, safe_img):
     find_and_click_in_window(os.path.join(pictures_dir, options_img), safe_img_path=os.path.join(pictures_dir, safe_img))
-    time.sleep(0.1)
+    time.sleep(0.2)
     find_and_click_in_window(os.path.join(pictures_dir, disk_img), safe_img_path=os.path.join(pictures_dir, safe_img))
     time.sleep(0.1)
     find_and_click_in_window(os.path.join(pictures_dir, "mainmenu.png"), safe_img_path=os.path.join(pictures_dir, safe_img))
@@ -187,41 +187,17 @@ def main():
             cancel others
             we can even not cancel then, just run in loop, but that requires strict filters
             we can cancel them manually also
+
+            also,
+            get_screenshot must buffer all different screenshots and provide them
+            to all waiting couroutines, and if nobody is waiting, wait.
+            how to ensure all waits will be there at the same time?
+            we need to make getting screenshot most low priority task
+            once everything is waiting for screenshot, we can take it
+            kinda barrier
+
+            also, make if click does not pass, it would automatically repeated
             """
-            # FIXME activate window does not work here.
-            left, top, right, bottom = controller.window_region()
-            poisoned_pos = python_imagesearch.imagesearch.imagesearcharea(os.path.join(pictures_dir, "poisoned.png"), left, top, right, bottom)
-            rip_pos = python_imagesearch.imagesearch.imagesearcharea(os.path.join(pictures_dir, "rip.png"), left, top, right, bottom)
-            if rip_pos[0] != -1 or poisoned_pos[0] != -1:
-                print("RIP or poisoned detected, going to main menu and resuming...")
-                try:
-                    handle_rip_or_poisoned(pictures_dir, options_img, disk_img, safe_img)
-                except Exception as e:
-                    print(f"Error handling RIP or poisoned: {e}")
-                continue  # Continue main outer loop
-
-            game_over_pos = python_imagesearch.imagesearch.imagesearcharea(os.path.join(pictures_dir, "gameover.png"), left, top, right, bottom)
-            if game_over_pos[0] != -1:
-                print("Game over image found, handling game over...")
-                handle_game_over(pictures_dir, safe_img)
-                continue  # Continue main outer loop
-
-            # Save before each rest attempt
-            try:
-                save_via_options(pictures_dir, options_img, disk_img, save_img, safe_img)
-            except Exception as e:
-                print(f"Save via images failed: {e}; falling back to Ctrl+S")
-
-            # Open options and click review
-            try:
-                # Open options and click review, then run review.review
-                find_and_click_in_window(os.path.join(pictures_dir, options_img), safe_img_path=os.path.join(pictures_dir, safe_img))
-                time.sleep(0.1)
-                find_and_click_in_window(os.path.join(pictures_dir, "review.png"), safe_img_path=os.path.join(pictures_dir, safe_img))
-                time.sleep(0.2)
-                review.review(pictures_dir=pictures_dir)
-            except Exception as e:
-                print(f"Open options and click review failed: {e}; falling back to Ctrl+S")
 
             for attempt in range(3):
                 # Open options menu and click rest
@@ -293,6 +269,42 @@ def main():
                 time.sleep(0.1)
             else:
                 print("Max rest attempts reached without finding an encounter.")
+
+            # FIXME activate window does not work here.
+            left, top, right, bottom = controller.window_region()
+            poisoned_pos = python_imagesearch.imagesearch.imagesearcharea(os.path.join(pictures_dir, "poisoned.png"), left, top, right, bottom)
+            rip_pos = python_imagesearch.imagesearch.imagesearcharea(os.path.join(pictures_dir, "rip.png"), left, top, right, bottom)
+            if rip_pos[0] != -1 or poisoned_pos[0] != -1:
+                print("RIP or poisoned detected, going to main menu and resuming...")
+                try:
+                    handle_rip_or_poisoned(pictures_dir, options_img, disk_img, safe_img)
+                except Exception as e:
+                    print(f"Error handling RIP or poisoned: {e}")
+                continue  # Continue main outer loop
+
+            game_over_pos = python_imagesearch.imagesearch.imagesearcharea(os.path.join(pictures_dir, "gameover.png"), left, top, right, bottom)
+            if game_over_pos[0] != -1:
+                print("Game over image found, handling game over...")
+                handle_game_over(pictures_dir, safe_img)
+                continue  # Continue main outer loop
+
+            # Save after each attempt
+            try:
+                save_via_options(pictures_dir, options_img, disk_img, save_img, safe_img)
+            except Exception as e:
+                print(f"Save via images failed: {e}; falling back to Ctrl+S")
+
+            # Open options and click review
+            try:
+                # Open options and click review, then run review.review
+                find_and_click_in_window(os.path.join(pictures_dir, options_img), safe_img_path=os.path.join(pictures_dir, safe_img))
+                time.sleep(0.1)
+                find_and_click_in_window(os.path.join(pictures_dir, "review.png"), safe_img_path=os.path.join(pictures_dir, safe_img))
+                time.sleep(0.2)
+                review.review(pictures_dir=pictures_dir)
+            except Exception as e:
+                print(f"Open options and click review failed: {e}; falling back to Ctrl+S")
+
     except Exception as e:
         print(f"Error during rest/save loop: {e}")
         sys.exit(1)

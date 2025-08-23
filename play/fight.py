@@ -60,10 +60,9 @@ def run_away(pictures_dir="pictures", precision=0.95):
 
 
 def fight(pictures_dir="pictures", precision=0.95):
-    button_imgs = ["run.png", "startfighting.png", "bash.png", "fight.png"]
+    button_imgs = ["run.png", "startfighting.png", "thrust.png", "bash.png", "fight.png"]
     text_imgs = ["rip.png", "gameover.png", "victory.png", "options.png", "fightgroup.png"]
     safe_img = "safe.png"
-    max_blades = 2
     while True:
         # Find all available buttons and texts
         available_buttons = []
@@ -105,7 +104,7 @@ def fight(pictures_dir="pictures", precision=0.95):
             time.sleep(0.1)
             controller.move_mouse_to_safe(pictures_dir, safe_img, precision=precision)
 
-        for action_img in ["startfighting.png", "bash.png", "fight.png"]:
+        for action_img in ["startfighting.png", "thrust.png", "bash.png", "fight.png"]:
             if action_img in available_buttons:
                 controller.click_image(os.path.join(pictures_dir, action_img), precision=precision, move_to_safe=True, pictures_dir=pictures_dir, safe_img=safe_img)
                 break
