@@ -64,7 +64,9 @@ Please feel free to e-mail me with corrections or suggestions.
    D. Using my party in Wizardry VII
 7. Combat tips for certain monsters
 
-## SECTION 1A - What this FAQ covers
+## Preliminary metagaming stuff
+
+### SECTION 1A - What this FAQ covers
 
 There already exist excellent walkthroughs that will help you get through the
 game.  This FAQ aims to provide more in-depth coverage of game mechanics and
@@ -80,7 +82,7 @@ http://www.the-spoiler.com/RPG/Sir-Tech/wizardry.6.1/WIZ6.HTM
 
 The latest version of this FAQ is always first uploaded to www.gamefaqs.com.
 
-## SECTION 1B - Finding and playing a copy of Wizardry VI
+### SECTION 1B - Finding and playing a copy of Wizardry VI
 
 Wizardry VI has been released as freeware on computer gaming CDs, although it
 is in principle still copyrighted.  If you want a printed manual, or just want
@@ -101,7 +103,7 @@ bugs, should still be blazing fast, and allows you to play the game on any
 modern computer platform.  The Web site for this excellent emulator is:
 http://www.dosbox.com/
 
-## SECTION 1C - Other sources of information
+### SECTION 1C - Other sources of information
 
 The best available utility to go with Wizardry VI is undoubtedly Mad God's
 Cosmic Forge editor, which is a game editor and statistics viewer for Wizardry
@@ -116,19 +118,19 @@ Cosmic Forge includes exhaustive detail on every monster and item in the game
 that no other source provides; this FAQ therefore will only describe monsters
 and items of particular note.
 
-## SECTION 1D - Wizardry VI bugs
+### SECTION 1D - Wizardry VI bugs
 
 Apart from the copy protection, here are several bugs that you should know
 about.
 
-### (1) Carrying Capacity Bug
+#### (1) Carrying Capacity Bug
 The Carrying Capacity Bug is arguably not really a bug, but most people believe
 it is.  The carrying capacity of your characters is set at game start, and does
 not change with increases in strength or class changes, as it does in Wizardry
 VII.  If you want a fix for this, Mike Marcelais has made one available at:
 http://www.the-spoiler.com/RPG/Sir-Tech/wizardry.6.1/FIXCC.ZIP
 
-### (2) Level 7 Spell Bug
+#### (2) Level 7 Spell Bug
 The Level 7 Spell Bug will haphazardly render monsters immune to the four level
 7 spells which damage all monsters: Nuclear Blast, Word of Death, Mind Flay,
 and Deadly Air.  A patch for this bug may be downloaded here:
@@ -137,7 +139,7 @@ http://www.zimlab.com/wizardry/zip/w6wmexe.zip
 Warning: this patch will cause Mad God's editor to not be able to properly read
 the spell list or edit spells.
 
-### (3) Cannot Leave Loot Bug
+#### (3) Cannot Leave Loot Bug
 Some items are flagged by the game as essential, and the game will not let you
 refuse them or drop them (even you no longer have any use for them!)  If your
 party's inventory is completely full and you are confronted with one of these
@@ -151,7 +153,7 @@ and you will accumulate a few dozen items you are not allowed to drop.
 This bug can be exploited to gain extra copies of certain items.  See section
 6C for details.
 
-### (4) Cannot Leave Skill Screen Bug
+#### (4) Cannot Leave Skill Screen Bug
 If a character gets a level, and has all skills maxed out, you will be unable
 to distribute any skill points and be stuck in the skill point screen unless
 you reboot.  This is similar to the bug in the original Wizardry VII before it
@@ -161,12 +163,12 @@ training, class switching, and level grinding.  If you are particularly afraid
 of this bug, you can just avoid actively training less useful skills like Axe,
 Sling, Throwing, and Shield.
 
-### (5) Cursed Items Bug
+#### (5) Cursed Items Bug
 Items which identify as Cursed may be bad, but they don't stick to your body as
 they are supposed to.  This makes the Remove Curse spell useless, other than as
 a way to gain some more Magic spell points.
 
-### (6) Maximum Level Bug
+#### (6) Maximum Level Bug
 Wizardry VI does keep track of the highest level each character has ever
 achieved, which it does to control level-up hit point gains, magic point gains,
 and miss chance reduction (see section 2E and 2F for details).  However, it
@@ -174,13 +176,13 @@ sometimes doesn't do this properly; how and when this happens isn't clear.  It
 may be as simple as the game only keeping track of the most recent level
 change, but I have not fully tested this.
 
-### (7) Mass Status Condition Bug
+#### (7) Mass Status Condition Bug
 Occasionally while in combat, the first character in your party will suddenly
 lose a lot of hit points and stamina, and also get hit with a wide variety of
 status conditions that typically do not include Stoned or Dead, but often does
 include Hypnotized.  I'm not sure what causes this.
 
-### (8) Things which appear to be bugs, but are not
+#### (8) Things which appear to be bugs, but are not
 
 * If you cannot ever hit any monster in melee at all, you didn't crack the
   game's copy protection correctly.  (See section 1B.)
@@ -201,7 +203,7 @@ include Hypnotized.  I'm not sure what causes this.
   complain that Wizardry VI includes an action game element.  If you don't want
   that in Wizardry VI, then don't add it to the game!
 
-## SECTION 1E - Game difficulty
+### SECTION 1E - Game difficulty
 
 You can change the game difficulty any time you can access the Disk option
 screen.  Difficulty levels are Easy, Normal, and Expert.  Difficulty level only
@@ -215,7 +217,7 @@ monster.  At Expert, each monster group has one more monster, to a maximum
 monster group size of nine monsters.  This includes boss monsters; you will be
 fighting two of each boss at Expert level!
 
-## SECTION 1F - Early, middle and late game
+### SECTION 1F - Early, middle and late game
 
 Here's a rough definition of "early", "middle", and "late" game, and what they
 entail.
@@ -261,21 +263,23 @@ entail.
   at first, not to mention that the game deliberately doesn't make clear who is
   evil anyway, you should give the implications of this some thought.
 
-## SECTION 2A - Things set in stone at party creation
+## Character creation and development
+
+### SECTION 2A - Things set in stone at party creation
 
 Regardless of what your long-term plans for your party are, there are many
 things which are impossible or very hard to change after you create your party.
 Statistics (other than karma), hit points, spell points, skill points, and
 spells can always be gained, and the same goes for many items.
 
-### (1) Race
+#### (1) Race
 
 There is no way to change race in this game; you can only change race in later
 games by outright replacing a character.  An overview of races, including
 considerations of transferring characters to later games, may be found in
 Section 3.
 
-### (2) Sex
+#### (2) Sex
 
 There are no girdles of opposite gender or equivalent anywhere in Wizardry VI
 or its two sequels.  A female character will get -2 Strength, +1 Personality,
@@ -300,7 +304,7 @@ characters. The single male-only item is potent and transfers to Wizardry VII
 freely, but you can only ever get one.  The only other reason to include male
 characters in your party is ...
 
-### (3) Carrying Capacity
+#### (3) Carrying Capacity
 
 Starting carrying capacity (CC) is determined by your starting Strength and
 Vitality.  Each point of Strength allows 9.0 pounds of CC; each point of
@@ -321,7 +325,7 @@ You will generally want as many non-faeries possible in your party to have a CC
 of at least 200 pounds (equivalent to 15 Strength and 15 Vitality) on average.
 Section 5B describes my recommended way of achieving this.
 
-### (4) Mana regeneration
+#### (4) Mana regeneration
 
 The rate of mana regeneration is VERY low in this game; even a complete
 uninterrupted rest will not restore very many magic points!  Fountains that
@@ -357,7 +361,7 @@ Thus, in order for all characters to have a decent mana regeneration rate, all
 characters need to start as either faeries, as one of the pure spellcasting
 classes, or have high starting Vitality.
 
-### (5) Equipment
+#### (5) Equipment
 
 Your starting class also grants you equipment.  Most of this equipment is very
 rapidly superseded by more powerful weaponry and armor; if you know where to
@@ -395,7 +399,7 @@ equipment that are not so superseded:
   to start out with at least one Bard for this reason.  The Lute also transfers
   to Wizardry VII and VIII.
 
-## SECTION 2B - The power of class changing
+### SECTION 2B - The power of class changing
 
 Class changing is a powerful way of enormously empowering your characters in
 Wizardry VI and VII.  If you don't do it at all, you will probably find the
@@ -499,7 +503,7 @@ not to make more than a few class changes.  In particular, once everyone is
 guaranteed access to Ninjutsu, Kirijutsu, and the best spells listed in section
 2D, the practical benefit of further class changing drops dramatically.
 
-## SECTION 2C - Training and allocating skill points
+### SECTION 2C - Training and allocating skill points
 
 The maximum number of total starting skill points is 18; this includes points
 that are automatically distributed to primary skills.
@@ -629,7 +633,7 @@ Other notes on training skills:
   automatic redirection of level-up skill points to Primary Skills.  The only
   drawback is that it can be very tedious and time-consuming.
 
-## SECTION 2D - Important spells to learn
+### SECTION 2D - Important spells to learn
 
 Here is my opinion on which spells are best to learn.  Any spell may be learned
 with an appropriate level-up and sufficient magical skill.  It is best not to
@@ -660,7 +664,7 @@ also being of considerable use.  In the long run, the other two realms of Earth
 (green) and Mental (light blue) are the ones you are most likely to have a
 surplus of spell points in.
 
-### BEST SPELLS (as many characters as possible should get these):
+#### BEST SPELLS (as many characters as possible should get these):
 * Heal Wounds - duh.  Any character that can learn this should take it as soon
   as possible, as there isn't a spellbook that can teach it, and you want to
   get growth in Magic spell points going as soon as you can.
@@ -712,7 +716,7 @@ surplus of spell points in.
   cast before major fights.  Once you hit the late game, you will want this
   active all of the time.
 
-### GOOD SPELLS (not as high priority as above, but still nice):
+#### GOOD SPELLS (not as high priority as above, but still nice):
 * Level 7 damaging spells (Nuclear Blast, Word of Death, Mind Flay, Deadly Air)
   — should be self-explanatory, but a few notes.  First note the Level 7 Spell
   Bug in Section 1D(2); this can randomly prevent these spells from working at
@@ -796,7 +800,7 @@ surplus of spell points in.
 * Detect Secret - nice to have if you're playing unspoiled and don't want to
   invest a lot in Scouting.  Pointless if you're playing with a walkthrough.
 
-### NOT SO GOOD SPELLS (at least they aren't useless)
+#### NOT SO GOOD SPELLS (at least they aren't useless)
 * Prismic Missile - its randomness can be fun, but is also unreliable.  This is
   resisted by Light resistance and not Fire resistance, however; perhaps that
   could give it a good use somewhere?
@@ -848,7 +852,7 @@ surplus of spell points in.
   to clues and NPCs.  It's most useful in the end game, if you can't figure out
   where to go next; cast it on the Queen of Faeries to get on the right track.
 
-### USELESS SPELLS (well, at least learning them increases max MP)
+#### USELESS SPELLS (well, at least learning them increases max MP)
 * Resurrection - raising a dead character reduces Vitalty by 1 permanently.
   Even if you choose to resurrect rather than restore a saved game, items that
   cast Resurrection aren't hard to come by.
@@ -856,7 +860,7 @@ surplus of spell points in.
 * Locate Object - if this does anything useful at all, it completely eludes me!
 * Remove Curse - useless owing to the bug described in section 1D(5).
 
-## SECTION 2E - Miss Chance
+### SECTION 2E - Miss Chance
 
 Miss chance is an influential statistic, but it is neither documented nor ever
 shown in the game.  You will need to use Mad God's utility to see this.  It is
@@ -917,7 +921,7 @@ It is also not obvious that Samurai and Ninja have superior accuracy compared
 to the other warrior classes, nor that Bishops are worse fighters than pure
 Priests (another strike against the Bishop).
 
-## SECTION 2F - Other things that rise with level
+### SECTION 2F - Other things that rise with level
 
 * Hit points: at every level up, if you are a higher level than you have ever
   been before, you gain the number of hit points indicated in section 4, with a
@@ -943,17 +947,15 @@ Priests (another strike against the Bishop).
   repeats for a different statistic.  You cannot gain more than 1 point per
   statistic per level-up.  The upshot is that the chance of stat gains are:
 
-  ```
-  Stat boosts | Probability
-  ------------+------------
-  1           | 1 in 2
-  2           | 1 in 4
-  3           | 1 in 8
-  4           | 1 in 16
-  5           | 1 in 32
-  6           | 1 in 64
-  7           | 1 in 64
-  ```
+  | Stat boosts | Probability |
+  | ----------- | ----------- |
+  | 1           | 1 in 2      |
+  | 2           | 1 in 4      |
+  | 3           | 1 in 8      |
+  | 4           | 1 in 16     |
+  | 5           | 1 in 32     |
+  | 6           | 1 in 64     |
+  | 7           | 1 in 64     |
 
   Other than meeting minimum stat requirements for a class change, stats will
   do the following when increased:
@@ -1023,7 +1025,7 @@ Priests (another strike against the Bishop).
   for Rocks of Reflection.  Many monsters, including most midgame and all
   endgame bosses, have good Death resistance themselves.
 
-## SECTION 2G - Places of note for developing characters
+### SECTION 2G - Places of note for developing characters
 
 Unless you want to make a class change before reaching level 2 (section 5B has
 an explanation for why), you should at least solve all the early-game puzzles
@@ -1079,7 +1081,7 @@ regenerate if you leave the Temple and return.  This is of use if you want to
 level grind in the late game, particularly if you want to increase everyone's
 level to 20 for transferring to Wizardry VII.
 
-## SECTION 2H - Notable NPC's that sell gear
+### SECTION 2H - Notable NPC's that sell gear
 
 You can always freely regenerate a NPC's inventory by leaving and returning.
 
@@ -1135,7 +1137,7 @@ You can always freely regenerate a NPC's inventory by leaving and returning.
   Cookies that can restore spell points.  Spend all of your money here, as you
   will soon lose it all anyway.
 
-## SECTION 2I - Notable gear that cannot be purchased
+### SECTION 2I - Notable gear that cannot be purchased
 
 * Tier 2 armor cannot be purchased; this includes most chain and plate armor,
   along with ninja garb, the Round Shield, and the Heater Shield.  All of this
@@ -1347,7 +1349,9 @@ You can always freely regenerate a NPC's inventory by leaving and returning.
   treasure, some of these are hard to find; the better spells are still worth
   considering using a spell pick on.
 
-## SECTION 3A - Character race: Human
+## Character races
+
+### SECTION 3A - Character race: Human
 
 Statistics:
 ```
@@ -1370,7 +1374,7 @@ have much less control over where bonus stat points go during the transfer
 process, which is the sole but significant liability transferred characters
 have in Wizardry VIII.
 
-## SECTION 3B - Character race: Elf
+### SECTION 3B - Character race: Elf
 
 Statistics:
 ```
@@ -1397,7 +1401,7 @@ good in Wizardry VI, but gets considerably better with each successive sequel.
 The only very large weapon in Wizardry VI is the Giant Sledge, which isn't a
 noteworthy weapon.
 
-## SECTION 3C - Character race: Dwarf
+### SECTION 3C - Character race: Dwarf
 
 Statistics:
 ```
@@ -1421,7 +1425,7 @@ Wizardry VIII   Physical damage resistance
 Dwarves have good stats and resistances in all three games, and are the ideal
 choice for a frontline melee tank.
 
-## SECTION 3D - Character race: Gnome
+### SECTION 3D - Character race: Gnome
 
 Statistics:
 ```
@@ -1446,7 +1450,7 @@ Gnomes in Wizardry VIII have a very different stat distribution compared to the
 earlier games.  They still have good enough resistances and stats overall to
 make them good spellcasters in any of the three games, and reasonable hybrids.
 
-## SECTION 3E - Character race: Hobbit
+### SECTION 3E - Character race: Hobbit
 
 Statistics:
 ```
@@ -1471,7 +1475,7 @@ The weighting of stats towards Personality makes Hobbits less than optimal in
 Wizardry VI and VII, though their relatively high stat total and good
 resistances make them a solid choice if Wizardry VIII enters the picture.
 
-## SECTION 3F - Character race: Faerie
+### SECTION 3F - Character race: Faerie
 
 Statistics:
 ```
@@ -1511,7 +1515,7 @@ reloads upon gaining a level.  There is no other race or pair of classes
 capable of this.  However, their inability to equip most equipment available to
 those classes make this best as a step in transitioning to another class.
 
-## SECTION 3G - Character race: Lizardman
+### SECTION 3G - Character race: Lizardman
 
 Statistics:
 ```
@@ -1537,7 +1541,7 @@ unsuitable as anything other than a pure fighter, which is only reasonable in
 Wizardry VIII.  Even there, his newfound vulnerability to mental conditions
 makes him a dubious choice for a frontline tank.
 
-## SECTION 3H - Character race: Dracon
+### SECTION 3H - Character race: Dracon
 
 Statistics:
 ```
@@ -1565,7 +1569,7 @@ lackluster stats and resistances make them not very useful overall, and once
 you reach Wizardry VIII there is a spell that grants the ability to breathe
 like a dracon anyway.
 
-## SECTION 3I - Character race: Felpurr
+### SECTION 3I - Character race: Felpurr
 
 Statistics:
 ```
@@ -1586,7 +1590,7 @@ highest number of status inflicting spells in that game), but if you are
 starting a party in one of the earlier games it isn't so bad that it can't be
 overcome.
 
-## SECTION 3J - Character race: Rawulf
+### SECTION 3J - Character race: Rawulf
 
 Statistics:
 ```
@@ -1603,7 +1607,7 @@ Wizardry VIII   +10 Water, +5 Earth, +15 Divine
 The Rawulf is a strong choice for a hybrid fighter-priest in all three games,
 with good stats and resistances for the role.
 
-## SECTION 3K - Character race: Mook
+### SECTION 3K - Character race: Mook
 
 Statistics:
 ```
@@ -1629,7 +1633,9 @@ and some unique abilities down the road in Wizardry VIII.  Mooks are
 particularly suitable for being Rangers or Psionics in all three games, but are
 good in any hybrid fighter-caster role.
 
-## SECTION 4A - Character class: Fighter
+## Character classes
+
+### SECTION 4A - Character class: Fighter
 
 ```
 Starting Equipment : Longsword, Buckler Shield, Leather Cuirass, Fur Legging,
@@ -1665,7 +1671,7 @@ cheap late-game experience requirements, which isn't enough to offset the lack
 of spellcasting growth; the Fighter doesn't even advance all that much faster
 than the Valkyrie.
 
-## SECTION 4B - Character class: Mage
+### SECTION 4B - Character class: Mage
 
 ```
 Starting Equipment : Staff, Robes (U), Robes (L), Sandals, Scroll of Magic
@@ -1705,7 +1711,7 @@ Thaumaturgy and thus almost catch up to the Mage in spellcasting ability.
 These together argue for not including a Mage in your party after the early
 game.
 
-## SECTION 4C - Character class: Priest
+### SECTION 4C - Character class: Priest
 
 ```
 Starting Equipment : Quarterstaff, Robes (U), Robes (L), Sandals, Potion of Lt.
@@ -1739,7 +1745,7 @@ caster, and their resistances are also pretty good.  This is a good class to
 have on hand in the early game.  The Priest also can use all the items that a
 Bishop can; there are many items only usable by a Priest or a Bishop.
 
-## SECTION 4D - Character class: Thief
+### SECTION 4D - Character class: Thief
 
 ```
 Starting Equipment : Cutlass, Cloth Shirt, Cloth Pants, Buskins, Dirk
@@ -1776,7 +1782,7 @@ superior to the Thief; the Thief's other advantage is the marginally higher hit
 point total.  Of special note is the Faerie's ability to switch freely between
 Thief and Bard, described in section 3F.
 
-## SECTION 4E - Character class: Ranger
+### SECTION 4E - Character class: Ranger
 
 ```
 Starting Equipment : Short Bow, Elm Arrow, Suede Doublet, Suede Pants, Buskins
@@ -1819,7 +1825,7 @@ by then to prevent diversion of skill points there.  Rangers do not have the
 special ability to critically hit often with Bows that they have in Wizardry
 VII and VIII.
 
-## SECTION 4F - Character class: Alchemist
+### SECTION 4F - Character class: Alchemist
 
 ```
 Starting Equipment : Staff, Robes (U), Robes (L), Sandals, Stink Bomb
@@ -1855,7 +1861,7 @@ class that can equip the Medicine Bag, should you find one in the late game.
 Alchemists are still not good enough to be optimal in the endgame compared to a
 hybrid fighter-caster.
 
-## SECTION 4G - Character class: Bard
+### SECTION 4G - Character class: Bard
 
 ```
 Starting Equipment : Sling, Bullet Stone, Cloth Shirt, Cloth Pants, Lute
@@ -1907,7 +1913,7 @@ While this isn't too restricting since you can freely change class before
 Wizardry VIII, if you are building characters thematically this is still good
 to keep in mind.
 
-## SECTION 4H - Character class: Psionic
+### SECTION 4H - Character class: Psionic
 
 ```
 Starting Equipment : Dagger, Robes (U), Robes (L), Sandals, Shadow Cloak
@@ -1939,7 +1945,7 @@ Crystal, which is a reasonably likely random drop in the late game.  They make
 a good mid-game temporary class as well.  They otherwise have many of the same
 weaknesses as Mages, and thus are a poor choice for the late game.
 
-## SECTION 4I - Character class: Valkyrie
+### SECTION 4I - Character class: Valkyrie
 
 ```
 Starting Equipment : Spear, Fur Halter, Chamois Skirt, Leather Helm, Sandals
@@ -1977,7 +1983,7 @@ potent fighter in the late game.  One or more Valkyries are an excellent
 addition to the party in all stages in the game.  The only way in which
 Valkyries are inferior to Lords is the lower hit point growth.
 
-## SECTION 4J - Character class: Bishop
+### SECTION 4J - Character class: Bishop
 
 ```
 Starting Equipment : Quarterstaff, Robes (U), Robes (L), Mitre, Sandals
@@ -2016,7 +2022,7 @@ with the same amount of experience.  All of this adds up to Bishops only being
 useful as an intermediate step in class changing; a Bishop is a poor choice for
 both the early game and the late game.
 
-## SECTION 4K - Character class: Lord
+### SECTION 4K - Character class: Lord
 
 ```
 Starting Equipment : Broadsword, Quilt Tunic, Quilt Legging, Steel Helm,
@@ -2060,7 +2066,7 @@ millions of experience, which you won't get unless you level grind in the late
 game.  There is also a lot of equipment usable only by Fighters, Valkyries, and
 Lords.
 
-## SECTION 4L - Character class: Samurai
+### SECTION 4L - Character class: Samurai
 
 ```
 Starting Equipment : Katana, Wakizashi, Robes (U), Robes (L), Sandals
@@ -2106,7 +2112,7 @@ to put most skill points into Thaumaturgy; this makes the Samurai a strong
 spellcaster by the late game.  The Samurai advances rather slowly, but is
 powerful enough to be worth the trouble.
 
-## SECTION 4M - Character class: Monk
+### SECTION 4M - Character class: Monk
 
 ```
 Starting Equipment : Bo, Robes (U), Robes (L), Sandals, Shuriken
@@ -2149,7 +2155,7 @@ good hit point growth, but is still a good choice as a transition class while
 class changing to pick up Psionics, Ninjutsu, and Kirijutsu, and is also a
 strong candidate for a late-game hybrid in the back ranks.
 
-## SECTION 4N - Character class: Ninja
+### SECTION 4N - Character class: Ninja
 
 ```
 Starting Equipment : Ninja Garb (U), Ninja Garb (L), Ninja Cowl, Tabi Boots,
@@ -2193,7 +2199,9 @@ Ninja has poor Lifeforce resistance and will want to look for a way to cover
 that.  The extra resistances Faeries receive thus make them particularly good
 Ninja, even without the Cane of Corpus available.
 
-## SECTION 5A - Preplanned party for the entire game
+## Suggested ways to build a party
+
+### SECTION 5A - Preplanned party for the entire game
 
 If you don't want to bother with a ton of class changes, or spend much time
 planning party development, the following canned plan will help you get a lot
@@ -2336,7 +2344,7 @@ latest).
   from this point is much the same.
 
 
-## SECTION 5B - General optimal party construction
+### SECTION 5B - General optimal party construction
 
 This section describes in general what to do if you don't mind spending more
 time developing your characters.
@@ -2415,7 +2423,9 @@ Advance everyone to at least level 10 before triggering the end of the midgame
 (the second meeting with the Vampire King); this shouldn't take too long
 spinning in place near the magic restoration fountain in the Hall of the Dead.
 
-## SECTION 6A - Statistics and skills that transfer to Wizardry VII
+## Transferring to Wizardry VII
+
+### SECTION 6A - Statistics and skills that transfer to Wizardry VII
 
 Race, class, and sex all remain the same.
 
@@ -2462,7 +2472,7 @@ class changes and adjust to statistics when you level up, so while your current
 class does affect mana regeneration upon transfer, it is not a major long-term
 consideration.
 
-## SECTION 6B - Items that transfer to Wizardry VII
+### SECTION 6B - Items that transfer to Wizardry VII
 
 There are two classes of items that transfer to Wizardry VII: those that
 transfer freely, and those that transfer in a special way.
@@ -2578,7 +2588,7 @@ Even after you do this, the transfer is random enough that you may want to run
 the routine several times to get a better start.  Mad God's utility will allow
 you to disable the Wizardry VII introduction to greatly speed up this process.
 
-## SECTION 6C - Acquiring extra Diamond Rings and a bonus Cameo Locket
+### SECTION 6C - Acquiring extra Diamond Rings and a bonus Cameo Locket
 
 This trick comes from the FAQs at: http://www.softwarespecialties.com/
 
@@ -2610,7 +2620,7 @@ middle of combat to free at least three inventory slots so they can pick up the
 three items dropped at the end of the combat.  This obviously also precludes
 you from getting the special ending where you journey with Bela to Guardia.
 
-## SECTION 6D - Using my party in Wizardry VII
+### SECTION 6D - Using my party in Wizardry VII
 
 I have made available my own Wizardry VI endgame save at the following URL:
 http://www.rawbw.com/~ssjlee/games/WIZ6-D35.RAR
@@ -2633,7 +2643,7 @@ including a rather awkward Faerie Samurai; once you get your feet wet and gain
 a few levels you will want to switch everyone's classes to something more
 suitable to your tastes.
 
-## SECTION 7 - Combat tips for certain monsters
+## Combat tips for certain monsters
 
 This is a list of notable monsters, sorted primarily by when in the game they
 can appear.
