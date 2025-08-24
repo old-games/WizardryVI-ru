@@ -44,7 +44,6 @@ def decode(data: bytes, width: int, height: int) -> PIL.Image.Image:
     assert len(data) & 3 == 0
     assert len(data) >= width*height//2
     planes = [data[:len(data)//4], data[len(data)//4:len(data)//4*2], data[len(data)//4*2:len(data)//4*3], data[len(data)//4*3:]]
-    from PIL import Image
     flat_img = bytearray()
     its = list(map(iter, planes))
     if width & 7:
@@ -54,5 +53,5 @@ def decode(data: bytes, width: int, height: int) -> PIL.Image.Image:
             ww = list(map(_byte_to_bits, map(next, its)))
             for i in reversed(range(8)):
                 flat_img.extend(PALETTE[_bits_to_int([ww[0][i], ww[1][i], ww[2][i], ww[3][i]])][:3])
-    pil_img = Image.frombytes('RGB', (width, height), flat_img)
+    pil_img = PIL.Image.frombytes('RGB', (width, height), flat_img)
     return pil_img

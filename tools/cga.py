@@ -11,9 +11,7 @@ PALETTE = [
 def decode(data: bytes, width: int, height: int) -> PIL.Image.Image:
     assert len(data) & 1 == 0
     assert len(data) >= width*height//4
-    from PIL import Image
     flat_img = bytearray()
-    it = iter(data)
     if width & 3:
         width += 4 - width & 3
     even, odd = iter(data[:len(data)//2]), iter(data[len(data)//2:])
@@ -25,5 +23,5 @@ def decode(data: bytes, width: int, height: int) -> PIL.Image.Image:
             flat_img.extend(PALETTE[(w >> 2) & 3][:3])
             flat_img.extend(PALETTE[w & 3][:3])
         odd, even = even, odd
-    pil_img = Image.frombytes('RGB', (width, height), flat_img)
+    pil_img = PIL.Image.frombytes('RGB', (width, height), flat_img)
     return pil_img
