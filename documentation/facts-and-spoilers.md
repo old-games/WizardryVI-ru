@@ -1,72 +1,70 @@
-WIZARDRY VI: BANE OF THE COSMIC FORGE
-Miscellaneous Facts and Spoilers
-Version 1.41 - December 21, 2013
+# Miscellaneous Facts and Spoilers
+
+Version 1.41 - December 21, 2013<br>
 by Stephen S. Lee (ssjlee@rawbw.com)
 
-You may distribute this file freely, so long as you give proper credit to me.
+You may distribute this file freely, so long as you give proper credit to me.<br>
 This was derived from the PC version; I make no guarantees about applicability
-  to other platforms.
+  to other platforms.<br>
 Please feel free to e-mail me with corrections or suggestions.
 
-TABLE OF CONTENTS
------------------
+## TABLE OF CONTENTS
 
-1. Preliminary metagaming stuff
-   A. What this FAQ covers
-   B. Finding and playing a copy of Wizardry VI
-   C. Other sources of information
-   D. Wizardry VI bugs
-   E. Game difficulty
+1. Preliminary metagaming stuff<br>
+   A. What this FAQ covers<br>
+   B. Finding and playing a copy of Wizardry VI<br>
+   C. Other sources of information<br>
+   D. Wizardry VI bugs<br>
+   E. Game difficulty<br>
    F. Early, middle, and late game
-2. Character creation and development
-   A. Things set in stone at party creation
-   B. The power of class changing
-   C. Training and allocating skill points
-   D. Important spells to learn
-   E. Miss chance
-   F. Other things that rise with level
-   G. Places of note for developing characters
-   H. Notable NPCs that sell gear
+2. Character creation and development<br>
+   A. Things set in stone at party creation<br>
+   B. The power of class changing<br>
+   C. Training and allocating skill points<br>
+   D. Important spells to learn<br>
+   E. Miss chance<br>
+   F. Other things that rise with level<br>
+   G. Places of note for developing characters<br>
+   H. Notable NPCs that sell gear<br>
    I. Notable items that cannot be purchased
-3. Character races
-   A. Human
-   B. Elf
-   C. Dwarf
-   D. Gnome
-   E. Hobbit
-   F. Faerie
-   G. Lizardman
-   H. Dracon
-   I. Felpurr
-   J. Rawulf
+3. Character races<br>
+   A. Human<br>
+   B. Elf<br>
+   C. Dwarf<br>
+   D. Gnome<br>
+   E. Hobbit<br>
+   F. Faerie<br>
+   G. Lizardman<br>
+   H. Dracon<br>
+   I. Felpurr<br>
+   J. Rawulf<br>
    K. Mook
-4. Character classes
-   A. Fighter
-   B. Mage
-   C. Priest
-   D. Thief
-   E. Ranger
-   F. Alchemist
-   G. Bard
-   H. Psionic
-   I. Valkyrie
-   J. Bishop
-   K. Lord
-   L. Samurai
-   M. Monk
+4. Character classes<br>
+   A. Fighter<br>
+   B. Mage<br>
+   C. Priest<br>
+   D. Thief<br>
+   E. Ranger<br>
+   F. Alchemist<br>
+   G. Bard<br>
+   H. Psionic<br>
+   I. Valkyrie<br>
+   J. Bishop<br>
+   K. Lord<br>
+   L. Samurai<br>
+   M. Monk<br>
    N. Ninja
-5. Suggested ways to build a party
-   A. Preplanned party for the entire game
+5. Suggested ways to build a party<br>
+   A. Preplanned party for the entire game<br>
    B. General optimal party construction
-6. Transferring to Wizardry VII
-   A. Statistics and skills that transfer to Wizardry VII
-   B. Items that transfer to Wizardry VII
-   C. Acquiring extra Diamond Rings and a bonus Cameo Locket
+6. Transferring to Wizardry VII<br>
+   A. Statistics and skills that transfer to Wizardry VII<br>
+   B. Items that transfer to Wizardry VII<br>
+   C. Acquiring extra Diamond Rings and a bonus Cameo Locket<br>
    D. Using my party in Wizardry VII
 7. Combat tips for certain monsters
 
-SECTION 1A - What this FAQ covers
----------------------------------
+## SECTION 1A - What this FAQ covers
 
 There already exist excellent walkthroughs that will help you get through the
 game.  This FAQ aims to provide more in-depth coverage of game mechanics and
@@ -76,14 +74,13 @@ beat the game kept on Expert level throughout.  Combat in this game can be very
 difficult, and here you can also find advice on how to prepare your characters
 for Wizardry VII and VIII.
 
-The main two walkthroughs out there may be found at:
-http://www.gamefaqs.com/pc/564807-wizardry-vi/faqs/2008
+The main two walkthroughs out there may be found at:<br>
+http://www.gamefaqs.com/pc/564807-wizardry-vi/faqs/2008<br>
 http://www.the-spoiler.com/RPG/Sir-Tech/wizardry.6.1/WIZ6.HTM
 
 The latest version of this FAQ is always first uploaded to www.gamefaqs.com.
 
-SECTION 1B - Finding and playing a copy of Wizardry VI
-------------------------------------------------------
+## SECTION 1B - Finding and playing a copy of Wizardry VI
 
 Wizardry VI has been released as freeware on computer gaming CDs, although it
 is in principle still copyrighted.  If you want a printed manual, or just want
@@ -104,8 +101,7 @@ bugs, should still be blazing fast, and allows you to play the game on any
 modern computer platform.  The Web site for this excellent emulator is:
 http://www.dosbox.com/
 
-SECTION 1C - Other sources of information
------------------------------------------
+## SECTION 1C - Other sources of information
 
 The best available utility to go with Wizardry VI is undoubtedly Mad God's
 Cosmic Forge editor, which is a game editor and statistics viewer for Wizardry
@@ -120,20 +116,19 @@ Cosmic Forge includes exhaustive detail on every monster and item in the game
 that no other source provides; this FAQ therefore will only describe monsters
 and items of particular note.
 
-SECTION 1D - Wizardry VI bugs
------------------------------
+## SECTION 1D - Wizardry VI bugs
 
 Apart from the copy protection, here are several bugs that you should know
 about.
 
-(1) Carrying Capacity Bug
+### (1) Carrying Capacity Bug
 The Carrying Capacity Bug is arguably not really a bug, but most people believe
 it is.  The carrying capacity of your characters is set at game start, and does
 not change with increases in strength or class changes, as it does in Wizardry
 VII.  If you want a fix for this, Mike Marcelais has made one available at:
 http://www.the-spoiler.com/RPG/Sir-Tech/wizardry.6.1/FIXCC.ZIP
 
-(2) Level 7 Spell Bug
+### (2) Level 7 Spell Bug
 The Level 7 Spell Bug will haphazardly render monsters immune to the four level
 7 spells which damage all monsters: Nuclear Blast, Word of Death, Mind Flay,
 and Deadly Air.  A patch for this bug may be downloaded here:
@@ -142,7 +137,7 @@ http://www.zimlab.com/wizardry/zip/w6wmexe.zip
 Warning: this patch will cause Mad God's editor to not be able to properly read
 the spell list or edit spells.
 
-(3) Cannot Leave Loot Bug
+### (3) Cannot Leave Loot Bug
 Some items are flagged by the game as essential, and the game will not let you
 refuse them or drop them (even you no longer have any use for them!)  If your
 party's inventory is completely full and you are confronted with one of these
@@ -156,7 +151,7 @@ and you will accumulate a few dozen items you are not allowed to drop.
 This bug can be exploited to gain extra copies of certain items.  See section
 6C for details.
 
-(4) Cannot Leave Skill Screen Bug
+### (4) Cannot Leave Skill Screen Bug
 If a character gets a level, and has all skills maxed out, you will be unable
 to distribute any skill points and be stuck in the skill point screen unless
 you reboot.  This is similar to the bug in the original Wizardry VII before it
@@ -166,12 +161,12 @@ training, class switching, and level grinding.  If you are particularly afraid
 of this bug, you can just avoid actively training less useful skills like Axe,
 Sling, Throwing, and Shield.
 
-(5) Cursed Items Bug
+### (5) Cursed Items Bug
 Items which identify as Cursed may be bad, but they don't stick to your body as
 they are supposed to.  This makes the Remove Curse spell useless, other than as
 a way to gain some more Magic spell points.
 
-(6) Maximum Level Bug
+### (6) Maximum Level Bug
 Wizardry VI does keep track of the highest level each character has ever
 achieved, which it does to control level-up hit point gains, magic point gains,
 and miss chance reduction (see section 2E and 2F for details).  However, it
@@ -179,13 +174,13 @@ sometimes doesn't do this properly; how and when this happens isn't clear.  It
 may be as simple as the game only keeping track of the most recent level
 change, but I have not fully tested this.
 
-(7) Mass Status Condition Bug
+### (7) Mass Status Condition Bug
 Occasionally while in combat, the first character in your party will suddenly
 lose a lot of hit points and stamina, and also get hit with a wide variety of
 status conditions that typically do not include Stoned or Dead, but often does
 include Hypnotized.  I'm not sure what causes this.
 
-(8) Things which appear to be bugs, but are not
+### (8) Things which appear to be bugs, but are not
 
 * If you cannot ever hit any monster in melee at all, you didn't crack the
   game's copy protection correctly.  (See section 1B.)
@@ -206,8 +201,7 @@ include Hypnotized.  I'm not sure what causes this.
   complain that Wizardry VI includes an action game element.  If you don't want
   that in Wizardry VI, then don't add it to the game!
 
-SECTION 1E - Game difficulty
-----------------------------
+## SECTION 1E - Game difficulty
 
 You can change the game difficulty any time you can access the Disk option
 screen.  Difficulty levels are Easy, Normal, and Expert.  Difficulty level only
@@ -221,8 +215,7 @@ monster.  At Expert, each monster group has one more monster, to a maximum
 monster group size of nine monsters.  This includes boss monsters; you will be
 fighting two of each boss at Expert level!
 
-SECTION 1F - Early, middle and late game
-----------------------------------------
+## SECTION 1F - Early, middle and late game
 
 Here's a rough definition of "early", "middle", and "late" game, and what they
 entail.
@@ -268,22 +261,21 @@ entail.
   at first, not to mention that the game deliberately doesn't make clear who is
   evil anyway, you should give the implications of this some thought.
 
-SECTION 2A - Things set in stone at party creation
---------------------------------------------------
+## SECTION 2A - Things set in stone at party creation
 
 Regardless of what your long-term plans for your party are, there are many
 things which are impossible or very hard to change after you create your party.
 Statistics (other than karma), hit points, spell points, skill points, and
 spells can always be gained, and the same goes for many items.
 
-(1) Race
+### (1) Race
 
 There is no way to change race in this game; you can only change race in later
 games by outright replacing a character.  An overview of races, including
 considerations of transferring characters to later games, may be found in
 Section 3.
 
-(2) Sex
+### (2) Sex
 
 There are no girdles of opposite gender or equivalent anywhere in Wizardry VI
 or its two sequels.  A female character will get -2 Strength, +1 Personality,
@@ -308,7 +300,7 @@ characters. The single male-only item is potent and transfers to Wizardry VII
 freely, but you can only ever get one.  The only other reason to include male
 characters in your party is ...
 
-(3) Carrying Capacity
+### (3) Carrying Capacity
 
 Starting carrying capacity (CC) is determined by your starting Strength and
 Vitality.  Each point of Strength allows 9.0 pounds of CC; each point of
@@ -329,7 +321,7 @@ You will generally want as many non-faeries possible in your party to have a CC
 of at least 200 pounds (equivalent to 15 Strength and 15 Vitality) on average.
 Section 5B describes my recommended way of achieving this.
 
-(4) Mana regeneration
+### (4) Mana regeneration
 
 The rate of mana regeneration is VERY low in this game; even a complete
 uninterrupted rest will not restore very many magic points!  Fountains that
@@ -344,19 +336,20 @@ generation rates are set in stone at game start.  Each of the six magic realms
 has its own regeneration rate.  In the order Fire, Water, Air, Earth, Mental,
 and Magic, they are as follows for the class that a character starts as:
 
-           Fi Wa Ai Ea Me Ma
-Mage        3, 3, 2, 2, 2, 3
-Priest      2, 2, 3, 3, 2, 3
-Alchemist   3, 2, 3, 3, 2, 2
-Psionic     2, 2, 2, 2, 4, 2
-Bishop      1, 1, 1, 1, 3, 3
-All others  1, 1, 1, 1, 1, 1
+|            | Fi | Wa | Ai | Ea | Me | Ma |
+| ---------- | -- | -- | -- | -- | -- | -- |
+| Mage       |  3 |  3 |  2 |  2 |  2 |  3 |
+| Priest     |  2 |  2 |  3 |  3 |  2 |  3 |
+| Alchemist  |  3 |  2 |  3 |  3 |  2 |  2 |
+| Psionic    |  2 |  2 |  2 |  2 |  4 |  2 |
+| Bishop     |  1 |  1 |  1 |  1 |  3 |  3 |
+| All others |  1 |  1 |  1 |  1 |  1 |  1 |
 
-Faeries get a +1 bonus to each of the six realms.
-Lizardmen get a -1 penalty to each of the six realms.  This cannot cause
+- Faeries get a +1 bonus to each of the six realms.
+- Lizardmen get a -1 penalty to each of the six realms.  This cannot cause
   regeneration to drop below 1, but it is still a reason not to have a
   Lizardman in your party!
-A high starting Vitality (requires at least 16) grants a +1 bonus to each of
+- A high starting Vitality (requires at least 16) grants a +1 bonus to each of
   the six realms.
 Note that regeneration rates are different in Wizardry VII.
 
@@ -364,7 +357,7 @@ Thus, in order for all characters to have a decent mana regeneration rate, all
 characters need to start as either faeries, as one of the pure spellcasting
 classes, or have high starting Vitality.
 
-(5) Equipment
+### (5) Equipment
 
 Your starting class also grants you equipment.  Most of this equipment is very
 rapidly superseded by more powerful weaponry and armor; if you know where to
@@ -402,8 +395,7 @@ equipment that are not so superseded:
   to start out with at least one Bard for this reason.  The Lute also transfers
   to Wizardry VII and VIII.
 
-SECTION 2B - The power of class changing
-----------------------------------------
+## SECTION 2B - The power of class changing
 
 Class changing is a powerful way of enormously empowering your characters in
 Wizardry VI and VII.  If you don't do it at all, you will probably find the
@@ -507,8 +499,7 @@ not to make more than a few class changes.  In particular, once everyone is
 guaranteed access to Ninjutsu, Kirijutsu, and the best spells listed in section
 2D, the practical benefit of further class changing drops dramatically.
 
-SECTION 2C - Training and allocating skill points
--------------------------------------------------
+## SECTION 2C - Training and allocating skill points
 
 The maximum number of total starting skill points is 18; this includes points
 that are automatically distributed to primary skills.
@@ -638,8 +629,7 @@ Other notes on training skills:
   automatic redirection of level-up skill points to Primary Skills.  The only
   drawback is that it can be very tedious and time-consuming.
 
-SECTION 2D - Important spells to learn
---------------------------------------
+## SECTION 2D - Important spells to learn
 
 Here is my opinion on which spells are best to learn.  Any spell may be learned
 with an appropriate level-up and sufficient magical skill.  It is best not to
@@ -670,7 +660,7 @@ also being of considerable use.  In the long run, the other two realms of Earth
 (green) and Mental (light blue) are the ones you are most likely to have a
 surplus of spell points in.
 
-BEST SPELLS (as many characters as possible should get these):
+### BEST SPELLS (as many characters as possible should get these):
 * Heal Wounds - duh.  Any character that can learn this should take it as soon
   as possible, as there isn't a spellbook that can teach it, and you want to
   get growth in Magic spell points going as soon as you can.
@@ -722,9 +712,9 @@ BEST SPELLS (as many characters as possible should get these):
   cast before major fights.  Once you hit the late game, you will want this
   active all of the time.
 
-GOOD SPELLS (not as high priority as above, but still nice):
+### GOOD SPELLS (not as high priority as above, but still nice):
 * Level 7 damaging spells (Nuclear Blast, Word of Death, Mind Flay, Deadly Air)
-  - should be self-explanatory, but a few notes.  First note the Level 7 Spell
+  — should be self-explanatory, but a few notes.  First note the Level 7 Spell
   Bug in Section 1D(2); this can randomly prevent these spells from working at
   all if you don't patch it.  These spells also don't work completely reliably
   at power level 6, even at high levels with maxed out skills and stats; having
@@ -806,7 +796,7 @@ GOOD SPELLS (not as high priority as above, but still nice):
 * Detect Secret - nice to have if you're playing unspoiled and don't want to
   invest a lot in Scouting.  Pointless if you're playing with a walkthrough.
 
-NOT SO GOOD SPELLS (at least they aren't useless)
+### NOT SO GOOD SPELLS (at least they aren't useless)
 * Prismic Missile - its randomness can be fun, but is also unreliable.  This is
   resisted by Light resistance and not Fire resistance, however; perhaps that
   could give it a good use somewhere?
@@ -858,7 +848,7 @@ NOT SO GOOD SPELLS (at least they aren't useless)
   to clues and NPCs.  It's most useful in the end game, if you can't figure out
   where to go next; cast it on the Queen of Faeries to get on the right track.
 
-USELESS SPELLS (well, at least learning them increases max MP)
+### USELESS SPELLS (well, at least learning them increases max MP)
 * Resurrection - raising a dead character reduces Vitalty by 1 permanently.
   Even if you choose to resurrect rather than restore a saved game, items that
   cast Resurrection aren't hard to come by.
@@ -866,8 +856,7 @@ USELESS SPELLS (well, at least learning them increases max MP)
 * Locate Object - if this does anything useful at all, it completely eludes me!
 * Remove Curse - useless owing to the bug described in section 1D(5).
 
-SECTION 2E - Miss Chance
-------------------------
+## SECTION 2E - Miss Chance
 
 Miss chance is an influential statistic, but it is neither documented nor ever
 shown in the game.  You will need to use Mad God's utility to see this.  It is
@@ -912,12 +901,12 @@ section 1D(6)).
 
 Miss chance reduction by class is given in section 4, but to summarize here:
 
-Class                                   | Miss chance reduction at level-up
-----------------------------------------+----------------------------------
-Mage, Alchemist, Psionic, Bishop        | 1d3 (1 to 3)
-Priest, Thief, Bard                     | 1d4 (1 to 4)
-Fighter, Ranger, Valkyrie, Lord, Monk   | 1d4+1 (2 to 5)
-Samurai, Ninja                          | 1d4+2 (3 to 6)
+| Class                                   | Miss chance reduction at level-up |
+| --------------------------------------- | --------------------------------- |
+| Mage, Alchemist, Psionic, Bishop        | 1d3 (1 to 3)                      |
+| Priest, Thief, Bard                     | 1d4 (1 to 4)                      |
+| Fighter, Ranger, Valkyrie, Lord, Monk   | 1d4+1 (2 to 5)                    |
+| Samurai, Ninja                          | 1d4+2 (3 to 6)                    |
 
 Note that all of this means that a pure spellcaster suddenly class-changed to a
 front-line fighter will not be all that great at it even after catching up in
@@ -928,8 +917,7 @@ It is also not obvious that Samurai and Ninja have superior accuracy compared
 to the other warrior classes, nor that Bishops are worse fighters than pure
 Priests (another strike against the Bishop).
 
-SECTION 2F - Other things that rise with level
-----------------------------------------------
+## SECTION 2F - Other things that rise with level
 
 * Hit points: at every level up, if you are a higher level than you have ever
   been before, you gain the number of hit points indicated in section 4, with a
@@ -955,6 +943,7 @@ SECTION 2F - Other things that rise with level
   repeats for a different statistic.  You cannot gain more than 1 point per
   statistic per level-up.  The upshot is that the chance of stat gains are:
 
+  ```
   Stat boosts | Probability
   ------------+------------
   1           | 1 in 2
@@ -964,25 +953,26 @@ SECTION 2F - Other things that rise with level
   5           | 1 in 32
   6           | 1 in 64
   7           | 1 in 64
+  ```
 
   Other than meeting minimum stat requirements for a class change, stats will
   do the following when increased:
 
-  Strength: Increases melee damage, especially with the Bash attack mode.
+  - Strength: Increases melee damage, especially with the Bash attack mode.
     Increases CC if you use the fix in section 1D(1).  Increases chance to
     force open doors.
-  Intelligence: Does NOT appear to affect accrual of skill points, as it does
+  - Intelligence: Does NOT appear to affect accrual of skill points, as it does
     in later games!  Does appear to increase effectiveness of spellcasting.
-  Piety: Increases the number of spell points gained with level-ups if at 15+.
+  - Piety: Increases the number of spell points gained with level-ups if at 15+.
     Does NOT enhance spell point regeneration, contrary to what the manual
     states and contrary to what happens in later games.
-  Vitality: Increases the number of hit points gained with level-ups if at 15+.
+  - Vitality: Increases the number of hit points gained with level-ups if at 15+.
     Increases CC if you use the fix in section 1D(1).
-  Dexterity: Lowers AC starting at 15.  Increases the number of swings you get
+  - Dexterity: Lowers AC starting at 15.  Increases the number of swings you get
     in a single attack.
-  Speed: Lowers AC starting at 15.  Improves initiative in combat.  Increases
+  - Speed: Lowers AC starting at 15.  Improves initiative in combat.  Increases
     number of attacks per round.
-  Personality: as you may have guessed, this is worthless other than for class
+  - Personality: as you may have guessed, this is worthless other than for class
     changing.
 
 * Melee attacks: the numbers of melee attacks you get increases with character
@@ -997,30 +987,30 @@ SECTION 2F - Other things that rise with level
   class; they are Fire, Cold, Missile, and Acid resistance.  The maximum for
   any resistance is 125%, both for your characters and the monsters.
 
-  Acid resistance applies against acid breath, and the Acid Splash, Acid Bomb,
+  - Acid resistance applies against acid breath, and the Acid Splash, Acid Bomb,
     and Itching Skin spells.  This is both the hardest resistance to increase
     (apart from the special case of Death resistance), and the resistance that
     monsters generally have the lowest resistance to outside of Death.
-  Air resistance applies to the noxious vomit attack of monsters such as
+  - Air resistance applies to the noxious vomit attack of monsters such as
     zombies; sonic attacks that deliver damage, such as that used by Giant
     Wyrms; and the Stink Bomb, Whirlwind, Toxic Vapors, Noxious Fumes,
     Asphyxiation, and Deadly Air (but see section 1D(2)) spells.
-  Cold resistance is used to resist Slow and Weaken spells, in addition to cold
+  - Cold resistance is used to resist Slow and Weaken spells, in addition to cold
     breath and the Chilling Touch, Iceball, and Deep Freeze spells.
-  Lifeforce resistance is used to resist instant death spells, such as the
+  - Lifeforce resistance is used to resist instant death spells, such as the
     Death spell itself, that do not have a clear-cut other resistance that
     would apply against it.  Such spells also check Death resistance (see
     below).  Lifeforce resistance also applies against the Word of Death spell.
     For monsters, Dispel Undead and Astral Gate similarly check both Lifeforce
     and Death resistance.
-  Light resistance is used to resist Blinding Flash and Prismic Missile spells,
+  - Light resistance is used to resist Blinding Flash and Prismic Missile spells,
     but does not apply against anything else, making it the least useful
     resistance in Wizardry VI.  (It's much more useful in Wizardry VII.)
-  Magic resistance is the primary resistance against only a few spells, notably
+  - Magic resistance is the primary resistance against only a few spells, notably
     the Silence spell, but it also has a minor impact on resistance to all
     magic.  (A Fireball gets resisted primarily by Fire resistance, but Magic
     resistance also has some effect.)
-  Missile resistance applies primarily to physical missiles, notably boulders,
+  - Missile resistance applies primarily to physical missiles, notably boulders,
     but it also applies against the Blades spell.
 
   There is one other kind of resistance, Death resistance.  All characters
@@ -1033,8 +1023,7 @@ SECTION 2F - Other things that rise with level
   for Rocks of Reflection.  Many monsters, including most midgame and all
   endgame bosses, have good Death resistance themselves.
 
-SECTION 2G - Places of note for developing characters
------------------------------------------------------
+## SECTION 2G - Places of note for developing characters
 
 Unless you want to make a class change before reaching level 2 (section 5B has
 an explanation for why), you should at least solve all the early-game puzzles
@@ -1090,8 +1079,7 @@ regenerate if you leave the Temple and return.  This is of use if you want to
 level grind in the late game, particularly if you want to increase everyone's
 level to 20 for transferring to Wizardry VII.
 
-SECTION 2H - Notable NPC's that sell gear
------------------------------------------
+## SECTION 2H - Notable NPC's that sell gear
 
 You can always freely regenerate a NPC's inventory by leaving and returning.
 
@@ -1147,8 +1135,7 @@ You can always freely regenerate a NPC's inventory by leaving and returning.
   Cookies that can restore spell points.  Spend all of your money here, as you
   will soon lose it all anyway.
 
-SECTION 2I - Notable gear that cannot be purchased
---------------------------------------------------
+## SECTION 2I - Notable gear that cannot be purchased
 
 * Tier 2 armor cannot be purchased; this includes most chain and plate armor,
   along with ninja garb, the Round Shield, and the Heater Shield.  All of this
@@ -1169,80 +1156,80 @@ SECTION 2I - Notable gear that cannot be purchased
 
 * A list of tier 4 weapons, their powers, and where they can be found (unless
   specified, all of these can transfer to Wizardry VII):
-  Blades of Aesir - 2-handed axe that can be wielded by Fighters, Valkyries,
+  - Blades of Aesir - 2-handed axe that can be wielded by Fighters, Valkyries,
     and Lords; does 2d12 damage at +2 to hit and +5% Critical chance, has a 5%
     chance of knocking a monster unconscious, and can be Meleed for double
     damage; also provides 50% Cold and 50% Paralysis resistance.  Available
     only as a 1 in 500 drop from Pit Fiends, Greater Demons, and Wraith Lords.
-  Demon's Tooth - dagger that can be used offhand, by Thieves and Bards only;
+  - Demon's Tooth - dagger that can be used offhand, by Thieves and Bards only;
     does 3d4+4 damage at +3 to hit, and has a 15% chance to paralyze a monster.
     Available only as a 1 in 60 drop from Defenders.  Does not transfer to
     later games.
-  Diamond Eyes - mace that can be used offhand, by Fighters, Valkyries, Lords,
+  - Diamond Eyes - mace that can be used offhand, by Fighters, Valkyries, Lords,
     Priests, and Bishops; strongest offhand weapon in the game, does 3d4+4
     damage at +2 to hit, has a 20% chance to paralyze a monster, and also
     provides 25% Magic resistance.  Available only as a 1 in 500 drop from Pit
     Fiends, Greater Demons, and Wraith Lords.
-  Elven Bow - strongest bow in the game, usable only by Elves; provides +4 to
+  - Elven Bow - strongest bow in the game, usable only by Elves; provides +4 to
     hit and +5% Critical chance.  Guaranteed drop from Robin Windmarne; 1 in
     500 drop from Pit Fiends, Greater Demons, and Wraith Lords.
-  Estoc of Olivia - sword only usable by Rangers; does 2d7+4 damage at +3 to
+  - Estoc of Olivia - sword only usable by Rangers; does 2d7+4 damage at +3 to
     hit and +5% Critical chance; also provides 80% Lifeforce resistance.
     Available only as a 1 in 500 drop from Pit Fiends, Greater Demons, and
     Wraith Lords.
-  Excaliber - strongest two-handed weapon, usable by Fighters, Valkyries, and
+  - Excaliber - strongest two-handed weapon, usable by Fighters, Valkyries, and
     Lords; does 4d8+4 damage at +4 to hit and +5% Critical Chance, has a 25%
     chance of turning an enemy to stone, and can be Meleed for double damage;
     also provides +1 regeneration and 75% Light resistance.  Available only as
     a 1 in 500 drop from Pit Fiends, Greater Demons, and Wraith Lords.  (There
     is a decades-old rumor that this can drop from dinosaurs.  It's only a
     rumor.)
-  Fang - sword usable by Fighters, Valkyries, and Lords; does 2d8+8 damage at
+  - Fang - sword usable by Fighters, Valkyries, and Lords; does 2d8+8 damage at
     +2 to hit and +10% critical chance; also provides 50% Hypnosis resistance.
     Available only as a guaranteed drop from Bela.  The only way to get Fang in
     in Wizardry VII is to transfer the one from VI.
-  Faust Halberd - 2-handed polearm that can be wielded by Fighters, Valkyries,
+  - Faust Halberd - 2-handed polearm that can be wielded by Fighters, Valkyries,
     and Lords; does 4d4+2 damage at +2 to hit and +5% Critical chance, and has
     a 5% chance to paralyze a monster; also provides 50% Air resistance.
     Available only as a 1 in 500 drop from Pit Fiends. Greater Demons, and
     Wraith Lords.  Transfers to Wizardry VII, but gets -3 regeneration there.
-  Maenad's Lance - powerful Valkyrie-only Extended weapon, does 2d12 damage at
+  - Maenad's Lance - powerful Valkyrie-only Extended weapon, does 2d12 damage at
     +3 to hit and +10% Critical chance; also provides +1 regeneration, and 50%
     Hypnosis and 50% Psionic resistance.  Guaranteed drop from Brigerd Woltan;
     1 in 500 drop from Pit Fiends, Greater Demons, and Wraith Lords.
-  Muramasa Blade - potent weapon usable only by Samurai; does 3d7+4 damage at
+  - Muramasa Blade - potent weapon usable only by Samurai; does 3d7+4 damage at
     +4 to hit and +15% Critical chance, and can be Meleed for double damage.
     Also provides 25% Fire, 25% Cold, 25% Air, and 25% Missile resistance.
     Guaranteed drop from Haiyato Daikuta; 1 in 500 drop from Pit Fiends,
     Greater Demons, and Wraith Lords.
-  Peacemaker - potent arrows that do 6d6+6 damage at a +20% Critical chance.
+  - Peacemaker - potent arrows that do 6d6+6 damage at a +20% Critical chance.
     Guaranteed drop from Brigerd Woltan; 1 in 20 drop from Drow Elves and
     Highlanders.
-  Rammbus Staff - 2-handed Extended staff usable only by Priests and Bishops;
+  - Rammbus Staff - 2-handed Extended staff usable only by Priests and Bishops;
     somewhat better than the Tier 3 Holy Basher; does 2d4+4 damage at +2 to hit
     and has a 15% chance of knocking a monster unconscious; also provides 50%
     Magic resistance.  Available only as a 3 in 20 drop from Priests of Ramm.
     Transfers to Wizardry VII, but gets -1 regeneration there.
-  Saint Bastard - sword usable only by Fighters, Valkyries, and Lords; does
+  - Saint Bastard - sword usable only by Fighters, Valkyries, and Lords; does
     2d4+5 damage at +2 to hit, and has a 5% chance of knocking a monster
     unconscious.  Available only as a 1 in 60 drop from Defenders.
-  Spear of Death - 1-handed Extended spear usable by Fighters, Rangers,
+  - Spear of Death - 1-handed Extended spear usable by Fighters, Rangers,
     Valkyries, Lords, Samurai, Monks, and Ninja; does 1d5+4 damage at +1 to hit
     and +2% Critical chance, and also has a 15% chance of poisoning a monster.
     Available only as a guaranteed drop from the Amazulu Queen.  The only way
     to get a Spear of Death in Wizardry VII is to transfer the one from VI.
-  Sword of Hearts - sword usable only by Thieves, Rangers, and Bards; does
+  - Sword of Hearts - sword usable only by Thieves, Rangers, and Bards; does
     1d7+4 damage at +2 to hit and +2% Critical chance.  Available only as a 1
     in 60 drop from Defenders.
-  The Avenger - powerful sword usable only by Fighters, Valkyries, and Lords
+  - The Avenger - powerful sword usable only by Fighters, Valkyries, and Lords
     that does 3d8+4 damage at +3 to hit and +10% Critical chance; also provides
     50% Fire and 50% Light resistance.  Guaranteed drop from the Black Knight;
     1 in 500 drop from Pit Fiends, Greater Demons, and Wraith Lords.
-  Wakizashi +1 - strongest offhand weapon usable by Samurai or Ninja; does
+  - Wakizashi +1 - strongest offhand weapon usable by Samurai or Ninja; does
     1d9+1 damage at +1 to hit and +2% Critical chance.  Available only as a
     guaranteed drop from Haiyato Daikuta.  Does not transfer to later games,
     even though it exists there.
-  Zatoichi Bo - potent Extended staff only usable by Samurai and Monks; does
+  - Zatoichi Bo - potent Extended staff only usable by Samurai and Monks; does
     3d6+6 damage at +4 to hit and +5% Critical chance, with a separate 15%
     chance of causing paralysis and a 15% chance of knocking a monster
     unconscious; also provides 50% Hypnosis and 50% Psionic resistance.
@@ -1251,99 +1238,99 @@ SECTION 2I - Notable gear that cannot be purchased
 
 * A list of the good tier 4 armor, their powers, and where they can be found:
   (unless specified, all of these can transfer to Wizardry VII)
-  Ebony Heaume - strongest helmet in the game, usable only by Fighters,
+  - Ebony Heaume - strongest helmet in the game, usable only by Fighters,
     Valkyries, and Lords; provides -14 AC, and 25% Fire, 25% Cold, 25% Air, 25%
     Missile, and 35% Acid resistance.  Available only as a guaranteed drop from
     the Black Knight.
-  Ebony Plate (U) - strongest torso armor in the game, usable only by Fighters,
+  - Ebony Plate (U) - strongest torso armor in the game, usable only by Fighters,
     Valkyries, and Lords; provides -14 AC, and 25% Fire, 25% Cold, 25% Air, 25%
     Missile, and 35% Acid resistance.  Available only as a guaranteed drop from
     the Black Knight.
-  Ebony Plate (L) - strongest leg armor in the game, usable only by Fighters,
+  - Ebony Plate (L) - strongest leg armor in the game, usable only by Fighters,
     Valkyries, and Lords; provides -14 AC, and 25% Fire, 25% Cold, 25% Air, 25%
     Missile, and 35% Acid resistance.  Available only as a guaranteed drop from
     the Black Knight.
-  Glass Slippers - footwear usable by all females; provides -8 AC, and 100%
+  - Glass Slippers - footwear usable by all females; provides -8 AC, and 100%
     Hypnosis and Psionic resistance; permanently increases Karma by 1 when
     invoked.  Available only as a 1 in 60 drop from Pit Fiends, Greater Demons,
     and Wraith Lords.  Does not transfer to later games.
-  Hi-Kane-Do (U) - strongest torso armor for Samurai only; provides -12 AC, and
+  - Hi-Kane-Do (U) - strongest torso armor for Samurai only; provides -12 AC, and
     30% Fire, 30% Missile, and 30% Acid resistance.  Available only as a
     guaranteed drop from Haiyato Daikuta.
-  Hi-Kane-Do (L) - strongest leg armor for Samurai only; provides -12 AC, and
+  - Hi-Kane-Do (L) - strongest leg armor for Samurai only; provides -12 AC, and
     30% Fire, 30% Missile, and 30% Acid resistance.  Available only as a
     guaranteed drop from Haiyato Daikuta.
-  Mantis Boots - strongest footwear in the game, usable only by Fighters,
+  - Mantis Boots - strongest footwear in the game, usable only by Fighters,
     Valkyries, and Lords; provides -14 to AC, and 50% Paralysis, 25% Acid, and
     25% Psionic resistance.  Available only as a guaranteed drop from Brigerd
     Woltan.
-  Mantis Gloves - strongest gloves in the game, usable only by Fighters,
+  - Mantis Gloves - strongest gloves in the game, usable only by Fighters,
     Valkyries, and Lords; provides -14 to AC, and 50% Light, 75% Poison, and
     50% Hypnosis resistance.  Available only as a guaranteed drop from Brigerd
     Woltan.
-  Mordecai's Cone - strongest helmet usable by Mages, Alchemists, and Psionics;
+  - Mordecai's Cone - strongest helmet usable by Mages, Alchemists, and Psionics;
     provides -7 AC, and 50% Hypnosis, 50% Psionic, 50% Lifeforce, and 50% Magic
     resistance.  Available only as a 1 in 60 drop from Priests of Ramm.  Does
     not transfer to later games.
-  Robe of Enchant (U) - strongest torso robe in the game; provides -6 AC and
+  - Robe of Enchant (U) - strongest torso robe in the game; provides -6 AC and
     50% Magic resistance.  Available only as a guaranteed drop from Xorphitus.
-  Robe of Enchant (L) - strongest leg robe in the game; provides -6 AC and 50%
+  - Robe of Enchant (L) - strongest leg robe in the game; provides -6 AC and 50%
     Lifeforce resistance.  Available only as a guaranteed drop from Xorphitus.
-  Rock of Reflection - offhand item that provides 125% Death resistance, and is
+  - Rock of Reflection - offhand item that provides 125% Death resistance, and is
     one of only two ways for your characters to get Death resistance at all.
     Available only at a specific location in the Enchanted Forest.  Does not
     transfer to later games.
-  Sacred Slippers - strongest footwear usable by Priests and Bishops; provides
+  - Sacred Slippers - strongest footwear usable by Priests and Bishops; provides
     -6 AC, and 35% Lifeforce resistance.  Available only as a 1 in 60 drop from
     Priests of Ramm.  Does not transfer to later games.
 
 * A list of powerful miscellaneous equipment, their powers, and where they can
   be found (unless specified, all of these can transfer to Wizardry VII):
-  Bone Necklace - usable only by Fighters, Priests, Valkyries, and Bishops;
+  - Bone Necklace - usable only by Fighters, Priests, Valkyries, and Bishops;
     provides -2 to base AC and 35% Lifeforce and 35% Magic resistance.
     Available only as a guaranteed drop from the Amazulu Queen.  Does not
     transfer to later games.
-  Cameo Locket - usable by males of any class; provides -4 to base AC, +1
+  - Cameo Locket - usable by males of any class; provides -4 to base AC, +1
     regeneration, and 100% Lifeforce resistance.  Available only as a
     guaranteed drop from Bela.
-  Cape of Hi-Zen - usable only by Monks; provides -3 to base AC, +1
+  - Cape of Hi-Zen - usable only by Monks; provides -3 to base AC, +1
     regeneration, and 70% Hypnosis, 70% Psionic, 70% Lifeforce, and 70% Magic
     resistance.  Available only as a 1 in 60 drop from Pit Fiends, Greater
     Demons, and Wraith Lords.  Does not transfer to later games.
-  Diamond Ring - usable by females of any class; provides -5 to base AC, +3
+  - Diamond Ring - usable by females of any class; provides -5 to base AC, +3
     regeneration, and 100% Lifeforce resistance.  Available only from the final
     confrontation with Rebecca if you have performed a certain specific action
     hinted at by the game long before.
-  Displacer Cloak - can be equipped by everyone; provides -4 to base AC, and
+  - Displacer Cloak - can be equipped by everyone; provides -4 to base AC, and
     can cast Blink without ever running out of charges.  Available only as a
     guaranteed drop following the final confrontation with Dracula and Rebecca.
-  Forest Cape - usable only by Rangers; provides -3 to base AC, and 30% Cold,
+  - Forest Cape - usable only by Rangers; provides -3 to base AC, and 30% Cold,
     30% Air, and 30% Acid resistance.  Available only as a guaranteed drop from
     Brigerd Woltan.
-  Jade Figurine - usable only by Monks; provides -2 to base AC, and 20%
+  - Jade Figurine - usable only by Monks; provides -2 to base AC, and 20%
     Hypnosis and 20% Psionic resistance.  Available only as a set treasure in
     the Enchanted Forest.  Does not transfer to later games.
-  Medicine Bag - usable only by Alchemists; provides -2 to base AC and +1
+  - Medicine Bag - usable only by Alchemists; provides -2 to base AC and +1
     regeneration.  Available only as a 1 in 40 drop from Grandfathers.
-  Mempo of Death - usable only by Samurai; provides -3 to base AC, and 50%
+  - Mempo of Death - usable only by Samurai; provides -3 to base AC, and 50%
     Lifeforce and 35% Magic Resistance; permanently increases Karma by 1 when
     invoked.  Available only as a 1 in 20 drop from Lord Daimyo.  Does not
     transfer to later games.
-  Midnight Cloak - usable only by Thieves, Bards, and Ninja; provides -2 to
+  - Midnight Cloak - usable only by Thieves, Bards, and Ninja; provides -2 to
     base AC.  Available only as a 1 in 40 drop from Grandfathers.
-  PK Crystal - usable only by Psionics; provides -4 to base AC, +2
+  - PK Crystal - usable only by Psionics; provides -4 to base AC, +2
     regeneration, and 90% Hypnosis and 90% Psionic resistance.  Available only
     as a 1 in 20 drop from Keepers of Crystal.
-  Ring of Stars - can be equipped by everyone; provides -4 to base AC, +1
+  - Ring of Stars - can be equipped by everyone; provides -4 to base AC, +1
     regeneration, and 50% Hypnosis and 50% Psionic resistance.  Available only
     as a guaranteed drop following the final confrontation with Dracula and
     Rebecca.
-  Scarab Necklace - usable only by Priests and Bishops; provides -2 to base AC,
+  - Scarab Necklace - usable only by Priests and Bishops; provides -2 to base AC,
     and 35% Fire, 35% Light, 25% Air, 25% Poison, 25% Hypnosis, 25% Psionic,
     25% Lifeforce, and 25% Magic resistance.  Available only as a 1 in 20 drop
     from Radames.  Does not transfer to later games; there is a Scarab Necklace
     in Wizardry VII, but it is a completely different item there.
-  Tora Maedate - usable only by Samurai; provides -2 to base AC and 35%
+  - Tora Maedate - usable only by Samurai; provides -2 to base AC and 35%
     Lifeforce resistance.  Available only as a 1 in 20 drop from Daisho
     Masters.  Does not transfer to later games.
 
@@ -1360,16 +1347,19 @@ SECTION 2I - Notable gear that cannot be purchased
   treasure, some of these are hard to find; the better spells are still worth
   considering using a spell pick on.
 
-SECTION 3A - Character race: Human
-----------------------------------
+## SECTION 3A - Character race: Human
 
 Statistics:
+```
 Wizardry VI/VII STR  9, INT  8, PIE  8, VIT  9, DEX  9, SPD  8, PER  8 ( 59)
 Wizardry VIII   STR 45, INT 45, PIE 45, VIT 45, DEX 45, SPD 45, SEN 45 (315)
+```
 
 Resistances:
+```
 Wizardry VI/VII +20% Lifeforce
 Wizardry VIII   None
+```
 
 Humans aren't saddled with the abysmal Piety scores they had in earlier
 Wizardry games, but they still aren't a very exciting choice for your party,
@@ -1380,21 +1370,26 @@ have much less control over where bonus stat points go during the transfer
 process, which is the sole but significant liability transferred characters
 have in Wizardry VIII.
 
-SECTION 3B - Character race: Elf
---------------------------------
+## SECTION 3B - Character race: Elf
 
 Statistics:
+```
 Wizardry VI/VII STR  7, INT 10, PIE 10, VIT  7, DEX  9, SPD  9, PER  8 ( 60)
 Wizardry VIII   STR 35, INT 50, PIE 50, VIT 35, DEX 50, SPD 45, SEN 40 (305)
+```
 
 Resistances:
+```
 Wizardry VI/VII +20% Hypnosis
 Wizardry VIII   +10 Air, +20 Mental
+```
 
 Other:
+```
 Wizardry VI     can equip Elven Bow; may not equip very large weapons
 Wizardry VII    can equip Elven Bow; may not equip very large weapons
 Wizardry VIII   can equip Elven Bow; may not equip very large weapons
+```
 
 The Elf's strong magical aptitudes and unique ability to use the Elven Bow make
 the Elf a reasonable addition to any party.  Note that the Elven Bow isn't that
@@ -1402,78 +1397,97 @@ good in Wizardry VI, but gets considerably better with each successive sequel.
 The only very large weapon in Wizardry VI is the Giant Sledge, which isn't a
 noteworthy weapon.
 
-SECTION 3C - Character race: Dwarf
-----------------------------------
+## SECTION 3C - Character race: Dwarf
 
 Statistics:
+```
 Wizardry VI/VII STR 11, INT  6, PIE 10, VIT 12, DEX  7, SPD  7, PER  7 ( 60)
 Wizardry VIII   STR 55, INT 30, PIE 50, VIT 60, DEX 35, SPD 35, SEN 35 (300)
+```
 
 Resistances:
+```
 Wizardry VI/VII +20% Poison, +15% Magic
 Wizardry VIII   +VIT/5 Fire
+```
 
 Other:
+```
 Wizardry VI     None
 Wizardry VII    None
 Wizardry VIII   Physical damage resistance
+```
 
 Dwarves have good stats and resistances in all three games, and are the ideal
 choice for a frontline melee tank.
 
-SECTION 3D - Character race: Gnome
-----------------------------------
+## SECTION 3D - Character race: Gnome
 
 Statistics:
+```
 Wizardry VI/VII STR 10, INT  7, PIE 13, VIT 10, DEX  8, SPD  6, PER  6 ( 60)
 Wizardry VIII   STR 35, INT 50, PIE 40, VIT 50, DEX 50, SPD 35, SEN 45 (305)
+```
 
 Resistances:
+```
 Wizardry VI/VII +15% Magic
 Wizardry VIII   +10 Earth, +VIT/5 Mental
+```
 
 Other:
+```
 Wizardry VI     may not equip very large weapons
 Wizardry VII    may not equip very large weapons
 Wizardry VIII   may not equip very large weapons
+```
 
 Gnomes in Wizardry VIII have a very different stat distribution compared to the
 earlier games.  They still have good enough resistances and stats overall to
 make them good spellcasters in any of the three games, and reasonable hybrids.
 
-SECTION 3E - Character race: Hobbit
------------------------------------
+## SECTION 3E - Character race: Hobbit
 
 Statistics:
+```
 Wizardry VI/VII STR  8, INT  7, PIE  6, VIT  9, DEX 10, SPD  7, PER 13 ( 60)
 Wizardry VIII   STR 40, INT 40, PIE 30, VIT 45, DEX 55, SPD 50, SEN 50 (310)
+```
 
 Resistances:
+```
 Wizardry VI/VII +10% Poison, +10% Magic
 Wizardry VIII   +VIT/5 Earth
+```
 
 Other:
+```
 Wizardry VI     may not equip very large weapons
 Wizardry VII    may not equip very large weapons
 Wizardry VIII   may not equip very large weapons
+```
 
 The weighting of stats towards Personality makes Hobbits less than optimal in
 Wizardry VI and VII, though their relatively high stat total and good
 resistances make them a solid choice if Wizardry VIII enters the picture.
 
-SECTION 3F - Character race: Faerie
------------------------------------
+## SECTION 3F - Character race: Faerie
 
 Statistics:
+```
 Wizardry VI/VII STR  5, INT 11, PIE  6, VIT  6, DEX 10, SPD 14, PER 12 ( 64)
 Wizardry VIII   STR 25, INT 55, PIE 35, VIT 30, DEX 50, SPD 60, SEN 45 (300)
+```
 
 Resistances:
+```
 Wizardry VI/VII +25% Paralysis, +25% Missile, +25% Psionic, +25% Lifeforce,
                 +25% Magic
 Wizardry VIII   +15 Air, +15 Earth, +15 Mental, +15 Divine
+```
 
 Other:
+```
 Wizardry VI     may not equip most weapons and armor; may equip special Faerie
                 equipment; -2 bonus to base AC; 1/3 penalty to CC; +1 bonus to
                 mana regeneration
@@ -1483,6 +1497,7 @@ Wizardry VII    may not equip most weapons and armor; may equip special Faerie
 Wizardry VIII   may not equip most weapons and armor; may equip special Faerie
                 equipment; begins with special Faerie equipment; +2 bonus to
                 base AC; 1/3 penalty to CC; faster mana regeneration
+```
 
 Faeries come with excellent resistances and the ability to use special Faerie
 equipment, making one an excellent addition to the party in any of the games.
@@ -1496,42 +1511,52 @@ reloads upon gaining a level.  There is no other race or pair of classes
 capable of this.  However, their inability to equip most equipment available to
 those classes make this best as a step in transitioning to another class.
 
-SECTION 3G - Character race: Lizardman
---------------------------------------
+## SECTION 3G - Character race: Lizardman
 
 Statistics:
+```
 Wizardry VI/VII STR 12, INT  5, PIE  5, VIT 14, DEX  8, SPD 10, PER  3 ( 57)
 Wizardry VIII   STR 60, INT 25, PIE 25, VIT 70, DEX 40, SPD 50, SEN 30 (300)
+```
 
 Resistances:
+```
 Wizardry VI/VII -20% Cold, +10% Acid, +25% Psionic
 Wizardry VIII   +15 Fire, +10 Water, +10 Earth, -10 Mental, -10 Divine
+```
 
 Other:
+```
 Wizardry VI     -1 penalty to mana regeneration
 Wizardry VII    -1 penalty to mana regeneration
 Wizardry VIII   slower mana regeneration
+```
 
 The abysmal mental stats and penalty to mana regeneration make the Lizardman
 unsuitable as anything other than a pure fighter, which is only reasonable in
 Wizardry VIII.  Even there, his newfound vulnerability to mental conditions
 makes him a dubious choice for a frontline tank.
 
-SECTION 3H - Character race: Dracon
------------------------------------
+## SECTION 3H - Character race: Dracon
 
 Statistics:
+```
 Wizardry VI/VII STR 10, INT  7, PIE  6, VIT 12, DEX 10, SPD  8, PER  6 ( 59)
 Wizardry VIII   STR 55, INT 35, PIE 30, VIT 60, DEX 50, SPD 40, SEN 30 (300)
+```
 
 Resistances:
+```
 Wizardry VI/VII -20% Cold, +10% Acid, +25% Psionic
 Wizardry VIII   +15 Water, +5 Air, -5 Mental, -5 Divine
+```
 
 Other:
+```
 Wizardry VI     may breathe acid at a stamina cost
 Wizardry VII    may breathe acid at a stamina cost
 Wizardry VIII   may breathe acid at a stamina cost
+```
 
 The ability of Dracons to breathe acid isn't particularly useful, only being of
 real use at the very beginning of the game.  The ability of Bards to cast
@@ -1540,16 +1565,19 @@ lackluster stats and resistances make them not very useful overall, and once
 you reach Wizardry VIII there is a spell that grants the ability to breathe
 like a dracon anyway.
 
-SECTION 3I - Character race: Felpurr
-------------------------------------
+## SECTION 3I - Character race: Felpurr
 
 Statistics:
+```
 Wizardry VI/VII STR  7, INT 10, PIE  7, VIT  7, DEX 10, SPD 12, PER 10 ( 63)
 Wizardry VIII   STR 40, INT 40, PIE 30, VIT 35, DEX 50, SPD 60, SEN 50 (305)
+```
 
 Resistances:
+```
 Wizardry VI/VII +20% Cold, +20% Paralysis, +15% Missile
 Wizardry VIII   -15 Water, +10 Air, +10 Earth, +10 Mental
+```
 
 Felpurrs come with excellent stats and resistances by Wizardry VI and VII
 standards.  Their sudden vulnerability to Water magic in Wizardry VIII makes
@@ -1558,44 +1586,52 @@ highest number of status inflicting spells in that game), but if you are
 starting a party in one of the earlier games it isn't so bad that it can't be
 overcome.
 
-SECTION 3J - Character race: Rawulf
------------------------------------
+## SECTION 3J - Character race: Rawulf
 
 Statistics:
+```
 Wizardry VI/VII STR  8, INT  6, PIE 12, VIT 10, DEX  8, SPD  8, PER 10 ( 62)
 Wizardry VIII   STR 40, INT 30, PIE 55, VIT 50, DEX 40, SPD 40, SEN 50 (305)
+```
 
 Resistances:
+```
 Wizardry VI/VII +20% Cold
 Wizardry VIII   +10 Water, +5 Earth, +15 Divine
+```
 
 The Rawulf is a strong choice for a hybrid fighter-priest in all three games,
 with good stats and resistances for the role.
 
-SECTION 3K - Character race: Mook
----------------------------------
+## SECTION 3K - Character race: Mook
 
 Statistics:
+```
 Wizardry VI/VII STR 10, INT 10, PIE  6, VIT 10, DEX  7, SPD  7, PER  9 ( 59)
 Wizardry VIII   STR 50, INT 50, PIE 25, VIT 50, DEX 35, SPD 35, SEN 55 (300)
+```
 
 Resistances:
+```
 Wizardry VI/VII +15% Cold, +25% Magic
 Wizardry VIII   +15 Water, +15 Mental, +10 Divine
+```
 
 Other:
+```
 Wizardry VI     None
 Wizardry VII    None
 Wizardry VIII   can equip Giant's Sword; gets special reaction from NPC Mooks
+```
 
 The Mook has mediocre statistics, but it does come with excellent resistances
 and some unique abilities down the road in Wizardry VIII.  Mooks are
 particularly suitable for being Rangers or Psionics in all three games, but are
 good in any hybrid fighter-caster role.
 
-SECTION 4A - Character class: Fighter
--------------------------------------
+## SECTION 4A - Character class: Fighter
 
+```
 Starting Equipment : Longsword, Buckler Shield, Leather Cuirass, Fur Legging,
                      Sandals
 Attributes Required: STR 12
@@ -1618,6 +1654,7 @@ Experience Needed  : Level 2    1,000    Level 8     64,000
                      Level 5    8,000    Level 11   512,000
                      Level 6   16,000    Level 12+ +256,000 per level
                      Level 7   32,000
+```
 
 The Fighter at least fights well and can use most weapons and armor, but in
 Wizardry VI and especially VII is no better than a Valkyrie or a Lord in this
@@ -1628,9 +1665,9 @@ cheap late-game experience requirements, which isn't enough to offset the lack
 of spellcasting growth; the Fighter doesn't even advance all that much faster
 than the Valkyrie.
 
-SECTION 4B - Character class: Mage
-----------------------------------
+## SECTION 4B - Character class: Mage
 
+```
 Starting Equipment : Staff, Robes (U), Robes (L), Sandals, Scroll of Magic
                      Missile
 Attributes Required: INT 12
@@ -1653,6 +1690,7 @@ Experience Needed  : Level 2    1,250    Level 8     80,000
                      Level 5   10,000    Level 11   640,000
                      Level 6   20,000    Level 12+ +375,000 per level
                      Level 7   40,000
+```
 
 The Mage has the most useful spellbook in general, and superb mana regeneration
 rates, making them an excellent choice to start the game with.  However, the
@@ -1667,9 +1705,9 @@ Thaumaturgy and thus almost catch up to the Mage in spellcasting ability.
 These together argue for not including a Mage in your party after the early
 game.
 
-SECTION 4C - Character class: Priest
-------------------------------------
+## SECTION 4C - Character class: Priest
 
+```
 Starting Equipment : Quarterstaff, Robes (U), Robes (L), Sandals, Potion of Lt.
                      Heal
 Attributes Required: PIE 12, PER 8
@@ -1692,6 +1730,7 @@ Experience Needed  : Level 2    1,250    Level 8     80,000
                      Level 5   10,000    Level 11   640,000
                      Level 6   20,000    Level 12+ +375,000 per level
                      Level 7   40,000
+```
 
 The Priest has the second most useful spellbook and excellent mana regeneration
 rates at game start, and unlike the Mage isn't so blatantly terrible later in
@@ -1700,9 +1739,9 @@ caster, and their resistances are also pretty good.  This is a good class to
 have on hand in the early game.  The Priest also can use all the items that a
 Bishop can; there are many items only usable by a Priest or a Bishop.
 
-SECTION 4D - Character class: Thief
------------------------------------
+## SECTION 4D - Character class: Thief
 
+```
 Starting Equipment : Cutlass, Cloth Shirt, Cloth Pants, Buskins, Dirk
 Attributes Required: DEX 12, SPD 8
 Starting Hit Points: 1d4+2 (3 to 6)
@@ -1724,6 +1763,7 @@ Experience Needed  : Level 2      900    Level 8     57,600
                      Level 5    7,200    Level 11   460,800
                      Level 6   14,400    Level 12+ +225,000 per level
                      Level 7   28,800
+```
 
 The Thief advances in levels quickly and gets a little boost to Skulduggery at
 the start, making building up this skill less tedious.  After the very early
@@ -1736,9 +1776,9 @@ superior to the Thief; the Thief's other advantage is the marginally higher hit
 point total.  Of special note is the Faerie's ability to switch freely between
 Thief and Bard, described in section 3F.
 
-SECTION 4E - Character class: Ranger
-------------------------------------
+## SECTION 4E - Character class: Ranger
 
+```
 Starting Equipment : Short Bow, Elm Arrow, Suede Doublet, Suede Pants, Buskins
 Attributes Required: STR 10, INT 8, PIE 8, VIT 11, DEX 10, SPD 8, PER 8
 Starting Hit Points: 2d4+5 (7 to 13)
@@ -1760,6 +1800,7 @@ Experience Needed  : Level 2    1,400    Level 8     89,600
                      Level 5   11,200    Level 11   716,800
                      Level 6   22,400    Level 12+ +415,000 per level
                      Level 7   44,800
+```
 
 The Ranger's strong points include good hit point growth and miss chance
 reduction, broad stat requirements that are both easy to meet and make future
@@ -1778,9 +1819,9 @@ by then to prevent diversion of skill points there.  Rangers do not have the
 special ability to critically hit often with Bows that they have in Wizardry
 VII and VIII.
 
-SECTION 4F - Character class: Alchemist
----------------------------------------
+## SECTION 4F - Character class: Alchemist
 
+```
 Starting Equipment : Staff, Robes (U), Robes (L), Sandals, Stink Bomb
 Attributes Required: INT 13, DEX 13
 Starting Hit Points: 1d4+2 (3 to 6)
@@ -1802,6 +1843,7 @@ Experience Needed  : Level 2    1,100    Level 8     70,400
                      Level 5    8,800    Level 11   563,200
                      Level 6   17,600    Level 12+ +312,000 per level
                      Level 7   35,200
+```
 
 The Alchemist has many of the same problems as the Mage, with identical poor
 resistances and miss chance reduction.  The Alchemist does get some special
@@ -1813,16 +1855,15 @@ class that can equip the Medicine Bag, should you find one in the late game.
 Alchemists are still not good enough to be optimal in the endgame compared to a
 hybrid fighter-caster.
 
-SECTION 4G - Character class: Bard
-----------------------------------
+## SECTION 4G - Character class: Bard
 
+```
 Starting Equipment : Sling, Bullet Stone, Cloth Shirt, Cloth Pants, Lute
 Attributes Required: INT 10, DEX 12, SPD 8, PER 12
 Starting Hit Points: 1d4+1 (2 to 5)
 Level-up Hit Points: 1d3+2 (3 to 5)
 Miss Chance Per Lev: 1d4 (1 to 4)
 Spellbook          : Mage (starting at level 3)
-
 Mana Regeneration  : Fire 1, Water 1, Air 1, Earth 1, Mental 1, Magic 1
 Primary Skills     : Music
 Additional Skills  : Music, Oratory, Legerdemain, Skulduggery, Ninjutsu,
@@ -1840,6 +1881,7 @@ Experience Needed  : Level 2    1,250    Level 8     80,000
                      Level 5   10,000    Level 11   640,000
                      Level 6   20,000    Level 12+ +375,000 per level
                      Level 7   40,000
+```
 
 The Bard's ability to cast spells using instruments without spell points is
 incredibly powerful in the early game and the midgame.  This mostly revolves
@@ -1865,9 +1907,9 @@ While this isn't too restricting since you can freely change class before
 Wizardry VIII, if you are building characters thematically this is still good
 to keep in mind.
 
-SECTION 4H - Character class: Psionic
--------------------------------------
+## SECTION 4H - Character class: Psionic
 
+```
 Starting Equipment : Dagger, Robes (U), Robes (L), Sandals, Shadow Cloak
 Attributes Required: STR 10, INT 14, VIT 14, PER 10
 Starting Hit Points: 1d3+2 (3 to 5)
@@ -1889,6 +1931,7 @@ Experience Needed  : Level 2    1,250    Level 8     80,000
                      Level 5   10,000    Level 11   640,000
                      Level 6   20,000    Level 12+ +375,000 per level
                      Level 7   40,000
+```
 
 The Psionic spellbook is the least useful of the four spellbooks in Wizardry
 VI.  Psionics have decent resistances, and the unique ability to equip the PK
@@ -1896,9 +1939,9 @@ Crystal, which is a reasonably likely random drop in the late game.  They make
 a good mid-game temporary class as well.  They otherwise have many of the same
 weaknesses as Mages, and thus are a poor choice for the late game.
 
-SECTION 4I - Character class: Valkyrie
---------------------------------------
+## SECTION 4I - Character class: Valkyrie
 
+```
 Starting Equipment : Spear, Fur Halter, Chamois Skirt, Leather Helm, Sandals
 Attributes Required: STR 10, PIE 11, VIT 11, DEX 10, SPD 11, PER 8, Female
 Starting Hit Points: 1d5+4 (5 to 9)
@@ -1920,6 +1963,7 @@ Experience Needed  : Level 2    1,100    Level 8     70,400
                      Level 5    8,800    Level 11   563,200
                      Level 6   17,600    Level 12+ +312,000 per level
                      Level 7   35,200
+```
 
 The Valkyrie is a hybrid fighter-caster that can equip essentially all of the
 heavy weapons and armor that a Fighter can, and advances in level rapidly for a
@@ -1933,9 +1977,9 @@ potent fighter in the late game.  One or more Valkyries are an excellent
 addition to the party in all stages in the game.  The only way in which
 Valkyries are inferior to Lords is the lower hit point growth.
 
-SECTION 4J - Character class: Bishop
-------------------------------------
+## SECTION 4J - Character class: Bishop
 
+```
 Starting Equipment : Quarterstaff, Robes (U), Robes (L), Mitre, Sandals
 Attributes Required: INT 15, PIE 15, PER 8
 Starting Hit Points: 1d4+2 (3 to 6)
@@ -1957,6 +2001,7 @@ Experience Needed  : Level 2    1,500    Level 8     96,000
                      Level 5   12,000    Level 11   768,000
                      Level 6   24,000    Level 12+ +445,000 per level
                      Level 7   48,000
+```
 
 Bishops are pure casters that learn from both the Mage and Priest spellbooks.
 They do have access to the equipment usable only by Priests or Bishops, and
@@ -1971,9 +2016,9 @@ with the same amount of experience.  All of this adds up to Bishops only being
 useful as an intermediate step in class changing; a Bishop is a poor choice for
 both the early game and the late game.
 
-SECTION 4K - Character class: Lord
-----------------------------------
+## SECTION 4K - Character class: Lord
 
+```
 Starting Equipment : Broadsword, Quilt Tunic, Quilt Legging, Steel Helm,
                      Buskins
 Attributes Required: STR 12, INT 9, PIE 12, VIT 12, DEX 9, SPD 9, PER 14
@@ -1996,6 +2041,7 @@ Experience Needed  : Level 2    1,400    Level 8     89,600
                      Level 5   11,200    Level 11   716,800
                      Level 6   22,400    Level 12+ +415,000 per level
                      Level 7   44,800
+```
 
 The Lord is for most purposes a Valkyrie that is allowed to be male and has
 higher stat requirements.  It can equip most of the equipment that a Fighter or
@@ -2014,9 +2060,9 @@ millions of experience, which you won't get unless you level grind in the late
 game.  There is also a lot of equipment usable only by Fighters, Valkyries, and
 Lords.
 
-SECTION 4L - Character class: Samurai
--------------------------------------
+## SECTION 4L - Character class: Samurai
 
+```
 Starting Equipment : Katana, Wakizashi, Robes (U), Robes (L), Sandals
 Attributes Required: STR 12, INT 11, VIT 9, DEX 12, SPD 14, PER 8
 Starting Hit Points: 2d4+5 (7 to 13)
@@ -2038,6 +2084,7 @@ Experience Needed  : Level 2    1,400    Level 8     89,600
                      Level 5   11,200    Level 11   716,800
                      Level 6   22,400    Level 12+ +415,000 per level
                      Level 7   44,800
+```
 
 The Samurai is a fighter-caster hybrid who specializes in inflicting damage,
 doing so by learning from the Mage spellbook that has the best damage spells,
@@ -2059,9 +2106,9 @@ to put most skill points into Thaumaturgy; this makes the Samurai a strong
 spellcaster by the late game.  The Samurai advances rather slowly, but is
 powerful enough to be worth the trouble.
 
-SECTION 4M - Character class: Monk
-----------------------------------
+## SECTION 4M - Character class: Monk
 
+```
 Starting Equipment : Bo, Robes (U), Robes (L), Sandals, Shuriken
 Attributes Required: STR 13, INT 8, PIE 13, DEX 10, SPD 13, PER 8
 Starting Hit Points: 1d4+3 (4 to 7)
@@ -2084,6 +2131,7 @@ Experience Needed  : Level 2    1,400    Level 8     89,600
                      Level 5   11,200    Level 11   716,800
                      Level 6   22,400    Level 12+ +415,000 per level
                      Level 7   44,800
+```
 
 The Monk is a hybrid fighter-caster that casts from the inferior but still
 useful Psionic spellbook, and can learn Ninjutsu and Kirijutsu.  Monks are very
@@ -2101,9 +2149,9 @@ good hit point growth, but is still a good choice as a transition class while
 class changing to pick up Psionics, Ninjutsu, and Kirijutsu, and is also a
 strong candidate for a late-game hybrid in the back ranks.
 
-SECTION 4N - Character class: Ninja
------------------------------------
+## SECTION 4N - Character class: Ninja
 
+```
 Starting Equipment : Ninja Garb (U), Ninja Garb (L), Ninja Cowl, Tabi Boots,
                      Shuriken
 Attributes Required: STR 12, INT 10, PIE 10, VIT 12, DEX 12, SPD 12
@@ -2128,6 +2176,7 @@ Experience Needed  : Level 2    1,500    Level 8     96,000
                      Level 5   12,000    Level 11   768,000
                      Level 6   24,000    Level 12+ +475,000 per level
                      Level 7   48,000
+```
 
 The Ninja is the ultimate hybrid, capable of fighting on the front ranks,
 learning Alchemist spells starting at level 5, and can learn all of
@@ -2144,8 +2193,7 @@ Ninja has poor Lifeforce resistance and will want to look for a way to cover
 that.  The extra resistances Faeries receive thus make them particularly good
 Ninja, even without the Cane of Corpus available.
 
-SECTION 5A - Preplanned party for the entire game
--------------------------------------------------
+## SECTION 5A - Preplanned party for the entire game
 
 If you don't want to bother with a ton of class changes, or spend much time
 planning party development, the following canned plan will help you get a lot
@@ -2165,17 +2213,17 @@ latest).
 
 * Start with the following party (starting points required are indicated in
   parentheses):
-  Male Dwarf Ninja (15): put 1 skill point into Kirijutsu, 1 skill point into
+  - Male Dwarf Ninja (15): put 1 skill point into Kirijutsu, 1 skill point into
     Legerdemain, and split the rest between Skulduggery and Alchemy.
-  Female Felpurr Valkyrie (5): put all skill points into Theology.
-  Female Rawulf Monk (16): put 1 skill point into Kirijutsu, the rest into
+  - Female Felpurr Valkyrie (5): put all skill points into Theology.
+  - Female Rawulf Monk (16): put 1 skill point into Kirijutsu, the rest into
     Theosophy.
-  Female Faerie Bard (2): put some stat points into Piety for the first class
+  - Female Faerie Bard (2): put some stat points into Piety for the first class
     change; put 1 skill point into Legerdemain, the rest into Thaumaturgy.
-  Male Mook Mage (2): put some stat points into Piety and Personality for the
+  - Male Mook Mage (2): put some stat points into Piety and Personality for the
     first class change; put all skill points into Thaumaturgy; choose Energy
     Blast and Armor Shield for starting spells.
-  Female Elf Priest (2): put some stat points into Dexterity and Personality
+  - Female Elf Priest (2): put some stat points into Dexterity and Personality
     for the first class change; put all skill points into Theology; choose Heal
     Wounds and Bless for starting spells.
 
@@ -2193,7 +2241,7 @@ latest).
   for that long.
 
   How to develop each character:
-  Dwarf Ninja: he will be your primary lockpicker early in the game, so to
+  - Dwarf Ninja: he will be your primary lockpicker early in the game, so to
     avoid some boring grinding it helps to directly apply skill points to
     Skulduggery.  Use bare hands exclusively to attack until he reaches 51
     Hands & Feet skill.  Hide in combat all the time to train Ninjutsu.  It
@@ -2201,18 +2249,18 @@ latest).
     start becoming expensive, so you only need to raise Alchemy to 18.
     Priority spell picks are Heal Wounds, Acid Splash, Poison, Blinding Flash,
     and Cure Lesser Condition.
-  Felpurr Valkyrie: she should use a polearm (the starting Spear, then a better
+  - Felpurr Valkyrie: she should use a polearm (the starting Spear, then a better
     one from Queequeg) to start out; once she reaches 51 Pole & Staff she can
     start developing other weapon skills.  Put as many skill points as possible
     into Theology, at least up to 36 for level 3 spells.  Priority spell picks
     are Heal Wounds, Dispel Undead, Silence, Cure Paralysis, Sane Mind, and
     Blades.
-  Rawulf Monk: like the Ninja, she should also rely entirely on bare hands to
+  - Rawulf Monk: like the Ninja, she should also rely entirely on bare hands to
     attack when starting out, and hide all the time in combat to train
     Ninjutsu.  Put all skill points into Theosophy, at least up to 36 for level
     3 spells.  Priority spell picks are Heal Wounds, Mental Attack, Silence,
     Mindread, Cure Paralysis, Sane Mind, and Psionic Blast.
-  Faerie Bard: use the Lute in every combat round early on, for its powerful
+  - Faerie Bard: use the Lute in every combat round early on, for its powerful
     effect and to train Music quickly.  Try to have her disarm a chest or pick
     a lock at least once just for the first Skulduggery point; do this for
     everyone with Skulduggery available but at 0 skill.  Get in some Hiding
@@ -2224,30 +2272,30 @@ latest).
     to get Magic spell point growth going) and Fireball.  If you do the
     Thief/Bard trick a few times, you should be able to learn the level 5 spell
     Anti-Magic for the late game.
-  Mook Mage: pour all skill points into Thaumaturgy, bringing it up to 72 so
+  - Mook Mage: pour all skill points into Thaumaturgy, bringing it up to 72 so
     you can learn the level 5 spell Anti-Magic.  Pick up Magic Screen as soon
     as you can as well, since it's very useful to have starting in the Amazulu
     Pyramid.  Other spells to get along the way include Fireball, Stink Bomb,
     Iceball, and Deep Freeze.
-  Elf Priest: pour all skill points into Theology, and prioritize learning
+  - Elf Priest: pour all skill points into Theology, and prioritize learning
     Dispel Undead, Enchanted Blade, Silence, Cure Paralysis, Blades, and Cure
     Poison.
 
 * Once you are content with the spells you have learned, transition to the
   intermediate party as follows:
-  Dwarf: change to Samurai; practice Sword skill to at least 51 (ideally before
+  - Dwarf: change to Samurai; practice Sword skill to at least 51 (ideally before
     switching); devote all skill points to Thaumaturgy, aiming for 72 skill
     points to learn Anti-Magic.
-  Felpurr: change to Ranger; practice Bow skill to at least 51 (ideally before
+  - Felpurr: change to Ranger; practice Bow skill to at least 51 (ideally before
     switching), and also Ninjutsu; put 1 skill point into Legerdemain, then put
     all skill points into Alchemy.  With a little luck and dedication, you can
     reach 54 skill points for some 4th-level Alchemist spells.
-  Rawulf: change to Samurai; develop similarly to the Dwarf Samurai.
-  Faerie: change to Priest (see below for caveat); make a point of learning
+  - Rawulf: change to Samurai; develop similarly to the Dwarf Samurai.
+  - Faerie: change to Priest (see below for caveat); make a point of learning
     Dispel Undead.
-  Mook: change to Lord; learn to fight some in the front ranks; be sure to
+  - Mook: change to Lord; learn to fight some in the front ranks; be sure to
     learn Dispel Undead.
-  Elf: change to Bard; practice Music and Ninjutsu; put 1 skill point into
+  - Elf: change to Bard; practice Music and Ninjutsu; put 1 skill point into
     Legerdemain, then all into Thaumaturgy, aiming for 72 skill points to learn
     Anti-Magic.
 
@@ -2275,12 +2323,12 @@ latest).
   spell, but I can't emphasize enough how strong it is in the late game.
   
 * Then start the transition to the final party:
-  Dwarf: change to Lord
-  Felpurr: change to Samurai
-  Rawulf: change to Valkyrie
-  Faerie: change to Ninja
-  Mook: change to Monk
-  Elf: change to Ranger
+  - Dwarf: change to Lord
+  - Felpurr: change to Samurai
+  - Rawulf: change to Valkyrie
+  - Faerie: change to Ninja
+  - Mook: change to Monk
+  - Elf: change to Ranger
 
   Don't progress beyond the Hall of the Dead until all class changes are done.
 
@@ -2288,8 +2336,7 @@ latest).
   from this point is much the same.
 
 
-SECTION 5B - General optimal party construction
------------------------------------------------
+## SECTION 5B - General optimal party construction
 
 This section describes in general what to do if you don't mind spending more
 time developing your characters.
@@ -2303,12 +2350,12 @@ For reasons listed in previous sections, an optimal starting party will have:
   Mook if you plan to play a party all the way to Wizardry VIII.
 
 A suggested optimized initial party therefore goes along the lines of:
-  Male Dwarf Priest
-  Female Rawulf Priest
-  Female Elf Priest or Mage
-  Female Felpurr Mage
-  Male Mook Mage
-  Female Faerie Bard
+- Male Dwarf Priest
+- Female Rawulf Priest
+- Female Elf Priest or Mage
+- Female Felpurr Mage
+- Male Mook Mage
+- Female Faerie Bard
 
 You should consider replacing the Felpurr with a Hobbit if you plan to play the
 party all the way to Wizardry VIII.
@@ -2345,15 +2392,15 @@ information in section 6.
 
 Once you are approaching the end of the Hall of the Dead, I recommend
 transitioning to a final party of:
-  Lord (wielding The Avenger)
-  Samurai (wielding Muramasa Blade)
-  Faerie Ninja (wielding Bushido Blade; don't make your Faerie one of the other
+- Lord (wielding The Avenger)
+- Samurai (wielding Muramasa Blade)
+- Faerie Ninja (wielding Bushido Blade; don't make your Faerie one of the other
     classes here other than maybe Monk, since she won't be able to equip the
     weapons and armor any other class uses)
-  Valkyrie (wielding Maenad's Lance; put her in the back ranks)
-  Monk (wielding one of Cat'O Nine Tail, Spear of Death, Elven Bow, or Hayai
+- Valkyrie (wielding Maenad's Lance; put her in the back ranks)
+- Monk (wielding one of Cat'O Nine Tail, Spear of Death, Elven Bow, or Hayai
     Bo; if you are really lucky you can get a Zatoichi Bo in the endgame)
-  Ranger (wielding one of Cat'O Nine Tail, Spear of Death, or Elven Bow; a
+- Ranger (wielding one of Cat'O Nine Tail, Spear of Death, or Elven Bow; a
     Thief, Ranger, or Bard on the front lines is a bad idea in the endgame)
 
 For the Monk and Ranger, the Cat'O Nine Tail and Spear of Death are preferable
@@ -2368,8 +2415,7 @@ Advance everyone to at least level 10 before triggering the end of the midgame
 (the second meeting with the Vampire King); this shouldn't take too long
 spinning in place near the magic restoration fountain in the Hall of the Dead.
 
-SECTION 6A - Statistics and skills that transfer to Wizardry VII
-----------------------------------------------------------------
+## SECTION 6A - Statistics and skills that transfer to Wizardry VII
 
 Race, class, and sex all remain the same.
 
@@ -2416,8 +2462,7 @@ class changes and adjust to statistics when you level up, so while your current
 class does affect mana regeneration upon transfer, it is not a major long-term
 consideration.
 
-SECTION 6B - Items that transfer to Wizardry VII
-------------------------------------------------
+## SECTION 6B - Items that transfer to Wizardry VII
 
 There are two classes of items that transfer to Wizardry VII: those that
 transfer freely, and those that transfer in a special way.
@@ -2533,8 +2578,7 @@ Even after you do this, the transfer is random enough that you may want to run
 the routine several times to get a better start.  Mad God's utility will allow
 you to disable the Wizardry VII introduction to greatly speed up this process.
 
-SECTION 6C - Acquiring extra Diamond Rings and a bonus Cameo Locket
--------------------------------------------------------------------
+## SECTION 6C - Acquiring extra Diamond Rings and a bonus Cameo Locket
 
 This trick comes from the FAQs at: http://www.softwarespecialties.com/
 
@@ -2566,8 +2610,7 @@ middle of combat to free at least three inventory slots so they can pick up the
 three items dropped at the end of the combat.  This obviously also precludes
 you from getting the special ending where you journey with Bela to Guardia.
 
-SECTION 6D - Using my party in Wizardry VII
--------------------------------------------
+## SECTION 6D - Using my party in Wizardry VII
 
 I have made available my own Wizardry VI endgame save at the following URL:
 http://www.rawbw.com/~ssjlee/games/WIZ6-D35.RAR
@@ -2590,8 +2633,7 @@ including a rather awkward Faerie Samurai; once you get your feet wet and gain
 a few levels you will want to switch everyone's classes to something more
 suitable to your tastes.
 
-SECTION 7 - Combat tips for certain monsters
---------------------------------------------
+## SECTION 7 - Combat tips for certain monsters
 
 This is a list of notable monsters, sorted primarily by when in the game they
 can appear.
@@ -2604,7 +2646,7 @@ opposing attacks.  You can avoid all physical attacks if you are fast enough,
 and hiding also means you will evade most spells.  Some spells are nasty enough
 that you don't want to give the monsters even this chance, though.
 
-Castle and Hazard Area:
+### Castle and Hazard Area:
 
 * Fat Rat (boss): has 75% Paralysis and 75% Hypnosis resistance, so things like
   Sleep spells won't work all that well.  Stink Bomb and poison work much
@@ -2630,7 +2672,7 @@ Castle and Hazard Area:
   Hypnosis, and Psionic resistance.  Other damage spells and physical attacks
   should work well enough.
 
-Giant Mountain, Dwarf Mines:
+### Giant Mountain, Dwarf Mines:
 
 * Monstrous Bat: obnoxious to fight, as they have 8d5+60 hit points but give
   very little experience for how difficult they are.  Unfortunately, trying to
@@ -2679,7 +2721,7 @@ Giant Mountain, Dwarf Mines:
   resistance, so Acid Splash and Acid Bomb work reliably.  Cast Missile Shield
   to thwart its boulder attacks.
 
-Amazulu Pyramid:
+### Amazulu Pyramid:
 
 * Shamaness: spellcasting Amazuli that are much more dangerous than non-
   spellcasters.  Shamanesses cast from the Mage spellbook, and have 50%
@@ -2711,7 +2753,7 @@ Amazulu Pyramid:
   spells, but has 0% Cold resistance; Deep Freeze is particularly effective.
   Has 6d6+120 hit points.
 
-River Styx, Tomb of the Damned, Swamplands, Hall of the Dead:
+### River Styx, Tomb of the Damned, Swamplands, Hall of the Dead:
 
 * Nightgaunt: If you have Astral Gate, you can use it on these spellcasting
   demons.  If you don't, they've got good but not high resistances across the
