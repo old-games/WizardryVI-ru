@@ -10,10 +10,10 @@ import controller
 import definition
 import maze
 
-experience_by_time = []
+experience_by_index_by_time = [[], [], [], [], [], []]
 
 
-def review(pictures_dir="pictures", precision=0.95):
+def review(character_index=0, pictures_dir="pictures", precision=0.95):
     characters = maze.get_number_of_characters(pictures_dir=pictures_dir, precision=precision)
     print(f"Number of characters: {characters}")
 
@@ -24,11 +24,21 @@ def review(pictures_dir="pictures", precision=0.95):
         print("reviewwho.png not found")
         return
 
-    img = Image.open(reviewwho_path)
-    w, h = img.size
-    click_x = pos[0] + w // 2
-    review_who_lines = 2
-    click_y = pos[1] + h + h // review_who_lines // 2
+    review_who_lines = 1
+    reviewwho_img = Image.open(reviewwho_path)
+    w, h = reviewwho_img.size
+    click_x = sum((
+        pos[0],
+        w // 4,
+        w // 2 * (character_index % 2),
+    ))
+    click_y = sum((
+        pos[1],
+        h,
+        h // review_who_lines * (2 - review_who_lines),
+        h // review_who_lines // 2,
+        (character_index // 2) * (h // review_who_lines),
+    ))
     pyautogui.moveTo(click_x, click_y, duration=0.05)
     time.sleep(0.05)
     pyautogui.click(click_x, click_y)
@@ -117,10 +127,10 @@ def review(pictures_dir="pictures", precision=0.95):
     print("Scanned EXP number:", exp_number)
     try:
         exp_number = int(exp_number)
-        experience_by_time.append((time.monotonic(), exp_number))
-        if len(experience_by_time) >= 2:
-            t0, exp0 = experience_by_time[0]
-            t1, exp1 = experience_by_time[-1]
+        experience_by_index_by_time[character_index].append((time.monotonic(), exp_number))
+        if len(experience_by_index_by_time[character_index]) >= 2:
+            t0, exp0 = experience_by_index_by_time[character_index][0]
+            t1, exp1 = experience_by_index_by_time[character_index][-1]
             dt = t1 - t0
             dexp = exp1 - exp0
             if dt > 0:
@@ -128,7 +138,7 @@ def review(pictures_dir="pictures", precision=0.95):
         else:
             avg_speed = 0.0
         print(f"Average EXP gain speed: {avg_speed*3600:.2f} EXP/hour")
-        for cls in [definition.Class.PRIEST, definition.Class.THIEF, definition.Class.PSIONIC]:
+        for cls in [definition.Class.PRIEST, definition.Class.THIEF, definition.Class.PSIONIC, definition.Class.MAGE]:
             current_level = definition.get_level_by_experience(cls, exp_number)
             next_level_exp = definition.get_level_experience(cls, current_level + 1)
             exp_to_next = next_level_exp - exp_number
@@ -148,7 +158,7 @@ def review(pictures_dir="pictures", precision=0.95):
                 if minutes or not eta_parts:
                     eta_parts.append(f"{minutes}m")
                 eta_str = " ".join(eta_parts)
-            print(f"{cls.name.title()}: {exp_to_next} EXP to next level ({current_level+1}), ETA: {eta_str}")
+            print(f"{cls.name.title()}: {exp_to_next} EXP to next level ({current_level+1}: {next_level_exp}), ETA: {eta_str}")
 
     except ValueError:
         print("Failed to parse EXP number:", exp_number)

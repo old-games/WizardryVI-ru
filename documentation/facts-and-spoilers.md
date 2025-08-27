@@ -1894,8 +1894,8 @@ incredibly powerful in the early game and the midgame.  This mostly revolves
 around the Sleep spell cast by the Lute, with a nod to the Bless spell cast by
 the Angel's Tongue.  Always having a Bard in the early game and midgame makes
 those phases of the game much easier.  Bards also have good resistances
-(identical to a Thief's), access to the Mage spellbook, and can equip many mid-
-level weapons and armor (similar to a Thief).  Bards also gain experience
+(identical to a Thief's), access to the Mage spellbook, and can equip many mid-level
+weapons and armor (similar to a Thief).  Bards also gain experience
 relatively fast for a fighter-caster hybrid.  On the other hand, Bards don't
 have many hit points; they actually have fewer than Priests or Alchemists.
 Monsters become quite resistant to Sleep by the late game, and you should have

@@ -7,6 +7,7 @@ import python_imagesearch.imagesearch
 
 import controller
 import fight
+import maze
 import review
 
 
@@ -165,6 +166,9 @@ def main():
     # Move mouse to safe spot before starting automation
     move_mouse_to_safe(pictures_dir, safe_img)
 
+    fails = 0
+    successes = 0
+
     print("Resting until enemy appears...")
     try:
         for outer in range(10000):  # Outer loop, adjust as needed
@@ -265,6 +269,8 @@ def main():
                     # Wait for options menu to reappear for up to 300s, then continue outer loop
                     print("Waiting for options menu to reappear (up to 300s)...")
                     wait_for_options_menu(pictures_dir, options_img, safe_img, timeout=300)
+                    successes += 1
+                    print(f"Successes: {successes}, Fails: {fails}, Success rate: {successes / (successes + fails) * 100:.2f}%")
                     break  # Break inner loop, continue outer
                 time.sleep(0.1)
             else:
@@ -278,6 +284,8 @@ def main():
                 print("RIP or poisoned detected, going to main menu and resuming...")
                 try:
                     handle_rip_or_poisoned(pictures_dir, options_img, disk_img, safe_img)
+                    fails += 1
+                    print(f"Successes: {successes}, Fails: {fails}, Success rate: {successes / (successes + fails) * 100:.2f}%")
                 except Exception as e:
                     print(f"Error handling RIP or poisoned: {e}")
                 continue  # Continue main outer loop
@@ -286,6 +294,8 @@ def main():
             if game_over_pos[0] != -1:
                 print("Game over image found, handling game over...")
                 handle_game_over(pictures_dir, safe_img)
+                fails += 1
+                print(f"Successes: {successes}, Fails: {fails}, Success rate: {successes / (successes + fails) * 100:.2f}%")
                 continue  # Continue main outer loop
 
             # Save after each attempt
@@ -296,12 +306,13 @@ def main():
 
             # Open options and click review
             try:
-                # Open options and click review, then run review.review
-                find_and_click_in_window(os.path.join(pictures_dir, options_img), safe_img_path=os.path.join(pictures_dir, safe_img))
-                time.sleep(0.1)
-                find_and_click_in_window(os.path.join(pictures_dir, "review.png"), safe_img_path=os.path.join(pictures_dir, safe_img))
-                time.sleep(0.2)
-                review.review(pictures_dir=pictures_dir)
+                for i in range(maze.get_number_of_characters(pictures_dir=pictures_dir)):
+                    # Open options and click review, then run review.review
+                    find_and_click_in_window(os.path.join(pictures_dir, options_img), safe_img_path=os.path.join(pictures_dir, safe_img))
+                    time.sleep(0.1)
+                    find_and_click_in_window(os.path.join(pictures_dir, "review.png"), safe_img_path=os.path.join(pictures_dir, safe_img))
+                    time.sleep(0.2)
+                    review.review(character_index=i, pictures_dir=pictures_dir)
             except Exception as e:
                 print(f"Open options and click review failed: {e}; falling back to Ctrl+S")
 

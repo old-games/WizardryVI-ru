@@ -8,6 +8,11 @@ PALETTE = [
     (0x39, 0x9d, 0xa0, 0xff), # 15: Teal
 ]
 
+ONE_BIT_PALETTE = [
+    tools.picture.ALPHA_PALETTE[-1], # 1: Transparent
+    tools.picture.ALPHA_PALETTE[0],  # 0: Black
+]
+
 MAD_DOG_COSMIC_FORGE_PALETTE = [
     PALETTE[0], # 0: Black
     (0xfc, 0xfc, 0xfc, 0xff), # 1: White
@@ -54,4 +59,17 @@ def decode(data: bytes, width: int, height: int) -> PIL.Image.Image:
             for i in reversed(range(8)):
                 flat_img.extend(PALETTE[_bits_to_int([ww[0][i], ww[1][i], ww[2][i], ww[3][i]])][:3])
     pil_img = PIL.Image.frombytes('RGB', (width, height), flat_img)
+    return pil_img
+
+def decode_one_bit(data: bytes, width: int, height: int) -> PIL.Image.Image:
+    assert len(data) >= width*height//8, f'Not enough data: {len(data)} for {width}x{height}'
+    flat_img = bytearray()
+    its = iter(data)
+    for _ in range(height):
+        for _ in range(0, width, 8):
+            w = next(its)
+            bits = _byte_to_bits(w)
+            for b in reversed(bits):
+                flat_img.extend(ONE_BIT_PALETTE[b])
+    pil_img = PIL.Image.frombytes('RGBA', (width, height), flat_img)
     return pil_img

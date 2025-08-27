@@ -44,13 +44,108 @@ class Class(enum.Enum):
 
 
 class Spellbook(enum.Enum):
-    NONE = enum.auto()
     PSIONIC = enum.auto()
     PRIEST = enum.auto()
     MAGE = enum.auto()
     ALCHEMIST = enum.auto()
-    BISHOP = enum.auto() # == PRIEST + MAGE
-    # NINJA ?
+
+
+class Spell(enum.Enum):
+    # Fire:
+    ENERGY_BLAST = enum.auto()
+    BLINDING_FLASH = enum.auto()
+    FIREBALL = enum.auto()
+    FIRE_SHIELD = enum.auto()
+    FIRE_BOMB = enum.auto()
+    LIGHTNING = enum.auto()
+    PRISMIC_MISSILE = enum.auto()
+    FIRESTORM = enum.auto()
+    NUCLEAR_BLAST = enum.auto()
+
+    # Water:
+    CHILLING_TOUCH = enum.auto()
+    STAMINA = enum.auto()
+    TERROR = enum.auto()
+    WEAKEN = enum.auto()
+    SLOW = enum.auto()
+    HASTE = enum.auto()
+    CURE_PARALYSIS = enum.auto()
+    ICE_SHIELD = enum.auto()
+    ICEBALL = enum.auto()
+    PARALYZE = enum.auto()
+    DEEP_FREEZE = enum.auto()
+
+    # Air:
+    POISON = enum.auto()
+    MISSILE_SHIELD = enum.auto()
+    STINK_BOMB = enum.auto()
+    AIR_POCKET = enum.auto()
+    SILENCE = enum.auto()
+    POISON_GAS = enum.auto()
+    CURE_POISON = enum.auto()
+    WHIRLWIND = enum.auto()
+    PURIFY_AIR = enum.auto()
+    DEADLY_POISON = enum.auto()
+    LEVITATE = enum.auto()
+    TOXIC_VAPORS = enum.auto()
+    NOXIOUS_FUMES = enum.auto()
+    ASPHYXIATION = enum.auto()
+    DEADLY_AIR = enum.auto()
+
+    # Earth:
+    ACID_SPLASH = enum.auto()
+    ITCHING_SKIN = enum.auto()
+    ARMOR_SHIELD = enum.auto()
+    DIRECTION = enum.auto()
+    KNOCKKNOCK = enum.auto()
+    BLADES = enum.auto()
+    ARMORPLATE = enum.auto()
+    WEB = enum.auto()
+    ACID_BOMB = enum.auto()
+    ARMORMELT = enum.auto()
+    CREATE_LIFE = enum.auto()
+    CURE_STONE = enum.auto()
+
+    # Mental:
+    MENTAL_ATTACK = enum.auto()
+    SLEEP = enum.auto()
+    BLESS = enum.auto()
+    CHARM = enum.auto()
+    CURE_LESSER_CND = enum.auto()
+    DIVINE_TRAP = enum.auto()
+    DETECT_SECRET = enum.auto()
+    IDENTIFY = enum.auto()
+    HOLD_MONSTERS = enum.auto()
+    MINDREAD = enum.auto()
+    SANE_MIND = enum.auto()
+    PSIONIC_BLAST = enum.auto()
+    ILLUSION = enum.auto()
+    WIZARD_EYE = enum.auto()
+    DEATH = enum.auto()
+    LOCATE_OBJECT = enum.auto()
+    MIND_FLAY = enum.auto()
+
+    # Magic:
+    HEAL_WOUNDS = enum.auto()
+    MAKE_WOUNDS = enum.auto()
+    MAGIC_MISSILE = enum.auto()
+    DISPEL_UNDEAD = enum.auto()
+    ENCHANTED_BLADE = enum.auto()
+    BLINK = enum.auto()
+    MAGIC_SCREEN = enum.auto()
+    CONJURATION = enum.auto()
+    ANTIMAGIC = enum.auto()
+    REMOVE_CURSE = enum.auto()
+    LIFESTEAL = enum.auto()
+    ASTRAL_GATE = enum.auto()
+    WORD_OF_DEATH = enum.auto()
+    RESURRECTION = enum.auto()
+    DEATH_WISH = enum.auto()
+
+    # Special:
+    HOLY_WATER = enum.auto()
+    HELPFOOD = enum.auto()
+    MAGICFOOD = enum.auto()
 
 
 class SkillType(enum.Enum):
@@ -603,3 +698,181 @@ def get_class_skills(character_class: Class, skill_types: set[SkillType] | None 
         raise RuntimeError(f'Unknown class: {character_class}.')
 
     return result
+
+
+def get_class_spellbooks(character_class: Class) -> list[Spellbook]:
+    if character_class in (Class.MAGE, Class.BARD, Class.SAMURAI):
+        return [Spellbook.MAGE]
+    elif character_class in (Class.PRIEST, Class.VALKYRIE, Class.LORD):
+        return [Spellbook.PRIEST]
+    elif character_class in (Class.ALCHEMIST, Class.RANGER, Class.NINJA):
+        return [Spellbook.ALCHEMIST]
+    elif character_class in (Class.PSIONIC, Class.MONK):
+        return [Spellbook.PSIONIC]
+    elif character_class == Class.BISHOP:
+        return [Spellbook.MAGE, Spellbook.PRIEST]
+    else:
+        return []
+
+
+def get_spellbook_spells(spellbook: Spellbook) -> list[Spell]:
+    if spellbook == Spellbook.MAGE:
+        return [
+            Spell.ENERGY_BLAST,
+            Spell.FIREBALL,
+            Spell.FIRE_SHIELD,
+            Spell.PRISMIC_MISSILE,
+            Spell.FIRESTORM,
+            Spell.NUCLEAR_BLAST,
+
+            Spell.CHILLING_TOUCH,
+            Spell.TERROR,
+            Spell.WEAKEN,
+            Spell.ICE_SHIELD,
+            Spell.ICEBALL,
+            Spell.DEEP_FREEZE,
+
+            Spell.MISSILE_SHIELD,
+            Spell.STINK_BOMB,
+            Spell.AIR_POCKET,
+            Spell.LEVITATE,
+            Spell.NOXIOUS_FUMES,
+            Spell.ASPHYXIATION,
+
+            Spell.ARMOR_SHIELD,
+            Spell.DIRECTION,
+            Spell.KNOCKKNOCK,
+            Spell.WEB,
+            Spell.ARMORMELT,
+
+            Spell.SLEEP,
+            Spell.DETECT_SECRET,
+            Spell.WIZARD_EYE,
+
+            Spell.MAGIC_MISSILE,
+            Spell.BLINK,
+            Spell.MAGIC_SCREEN,
+            Spell.CONJURATION,
+            Spell.ANTIMAGIC,
+            Spell.ASTRAL_GATE,
+            Spell.RESURRECTION,
+        ]
+
+    elif spellbook == Spellbook.PRIEST:
+        return [
+            Spell.LIGHTNING,
+
+            Spell.STAMINA,
+            Spell.SLOW,
+            Spell.HASTE,
+            Spell.CURE_PARALYSIS,
+            Spell.PARALYZE,
+
+            Spell.SILENCE,
+            Spell.CURE_POISON,
+            Spell.WHIRLWIND,
+            Spell.PURIFY_AIR,
+
+            Spell.ARMORPLATE,
+            Spell.BLADES,
+            Spell.CURE_STONE,
+
+            Spell.BLESS,
+            Spell.CHARM,
+            Spell.CURE_LESSER_CND,
+            Spell.DIVINE_TRAP,
+            Spell.IDENTIFY,
+            Spell.HOLD_MONSTERS,
+            Spell.SANE_MIND,
+            Spell.DEATH,
+            Spell.LOCATE_OBJECT,
+
+            Spell.HEAL_WOUNDS,
+            Spell.MAKE_WOUNDS,
+            Spell.DISPEL_UNDEAD,
+            Spell.ENCHANTED_BLADE,
+            Spell.CONJURATION,
+            Spell.REMOVE_CURSE,
+            Spell.LIFESTEAL,
+            Spell.ASTRAL_GATE,
+            Spell.WORD_OF_DEATH,
+            Spell.RESURRECTION,
+            Spell.DEATH_WISH,
+        ]
+
+    elif spellbook == Spellbook.ALCHEMIST:
+        return [
+            Spell.BLINDING_FLASH,
+            Spell.FIRE_BOMB,
+
+            Spell.STAMINA,
+            Spell.CURE_PARALYSIS,
+
+            Spell.POISON,
+            Spell.STINK_BOMB,
+            Spell.AIR_POCKET,
+            Spell.POISON_GAS,
+            Spell.CURE_POISON,
+            Spell.DEADLY_POISON,
+            Spell.PURIFY_AIR,
+            Spell.TOXIC_VAPORS,
+            Spell.NOXIOUS_FUMES,
+            Spell.ASPHYXIATION,
+            Spell.DEADLY_AIR,
+
+            Spell.ACID_SPLASH,
+            Spell.ITCHING_SKIN,
+            Spell.WEB,
+            Spell.ACID_BOMB,
+            Spell.CREATE_LIFE,
+            Spell.CURE_STONE,
+
+            Spell.SLEEP,
+            Spell.CHARM,
+            Spell.CURE_LESSER_CND,
+
+            Spell.HEAL_WOUNDS,
+        ]
+
+    elif spellbook == Spellbook.PSIONIC:
+        return [
+            Spell.STAMINA,
+            Spell.TERROR,
+            Spell.WEAKEN,
+            Spell.SLOW,
+            Spell.HASTE,
+            Spell.CURE_PARALYSIS,
+            Spell.PARALYZE,
+
+            Spell.SILENCE,
+
+            Spell.KNOCKKNOCK,
+            Spell.BLADES,
+            Spell.ARMORMELT,
+
+            Spell.MENTAL_ATTACK,
+            Spell.SLEEP,
+            Spell.BLESS,
+            Spell.CHARM,
+            Spell.CURE_LESSER_CND,
+            Spell.DIVINE_TRAP,
+            Spell.DETECT_SECRET,
+            Spell.IDENTIFY,
+            Spell.HOLD_MONSTERS,
+            Spell.MINDREAD,
+            Spell.SANE_MIND,
+            Spell.PSIONIC_BLAST,
+            Spell.ILLUSION,
+            Spell.WIZARD_EYE,
+            Spell.DEATH,
+            Spell.LOCATE_OBJECT,
+            Spell.MIND_FLAY,
+
+            Spell.HEAL_WOUNDS,
+            Spell.BLINK,
+            Spell.LIFESTEAL,
+            Spell.RESURRECTION,
+        ]
+
+    else:
+        raise RuntimeError(f'Unknown spellbook: {spellbook}.')
