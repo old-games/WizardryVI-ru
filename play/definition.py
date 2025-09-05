@@ -168,6 +168,7 @@ class Skill(enum.Enum):
     HANDS_AND_FEET = enum.auto()
 
     # Physical:
+    SWIMMING = enum.auto() # Hidden.
     SCOUTING = enum.auto()
     MUSIC = enum.auto()
     ORATORY = enum.auto()
@@ -175,13 +176,20 @@ class Skill(enum.Enum):
     SKULDUGGERY = enum.auto()
     NINJUTSU = enum.auto()
 
+    # Personal:
+    DEFENSE = enum.auto()
+    SPEED = enum.auto()
+    MOVEMENT = enum.auto()
+    AIM = enum.auto()
+    POWER = enum.auto()
+
     # Academia:
     ARTIFACTS = enum.auto()
     MYTHOLOGY = enum.auto()
     SCRIBE = enum.auto()
-    THEOSOPHY = enum.auto()
-    THEOLOGY = enum.auto()
     ALCHEMY = enum.auto()
+    THEOLOGY = enum.auto()
+    THEOSOPHY = enum.auto()
     THAUMATURGY = enum.auto()
     KIRIJUTSU = enum.auto()
 
@@ -192,77 +200,35 @@ POINTS_PROBABILITIES = {
 }
 
 
+__LEVEL_EXPERIENCES = { #   1     2     3     4      5      6      7      8       9      10      11       12       13       14       15
+    Class.FIGHTER:   [None, 0, 1000, 2000, 4000,  8000, 16000, 32000, 64000, 128000, 256000, 512000,  768000, 1024000, 1280000, 1536000],
+    Class.MAGE:      [None, 0, 1250, 2500, 5000, 10000, 20000, 40000, 80000, 160000, 320000, 640000, 1015000, 1390000, 1760000, 2130000],
+    Class.PRIEST:    [None, 0, 1250, 2500, 5000, 10000, 20000, 40000, 80000, 160000, 320000, 640000, 1015000, 1390000, 1760000, 2130000],
+    Class.THIEF:     [None, 0,  900, 1800, 3600,  7200, 14400, 28800, 57600, 115200, 230400, 460800,  685800,  910800, 1138800, 1366800],
+    Class.RANGER:    [None, 0, 1400, 2800, 5600, 11200, 22400, 44800, 89600, 179200, 358400, 716800, 1131800, 1546800, 1961800, 2376800],
+    Class.ALCHEMIST: [None, 0, 1100, 2200, 4400,  8800, 17600, 35200, 70400, 140800, 281600, 563200,  875200, 1187200, 1499200, 1811200],
+    Class.BARD:      [None, 0, 1250, 2500, 5000, 10000, 20000, 40000, 80000, 160000, 320000, 640000, 1015000, 1390000, 1760000, 2130000],
+    Class.PSIONIC:   [None, 0, 1250, 2500, 5000, 10000, 20000, 40000, 80000, 160000, 320000, 640000, 1015000, 1390000, 1760000, 2130000],
+    Class.VALKYRIE:  [None, 0, 1100, 2200, 4400,  8800, 17600, 35200, 70400, 140800, 281600, 563200,  875200, 1187200, 1499200, 1811200],
+    Class.BISHOP:    [None, 0, 1500, 3000, 6000, 12000, 24000, 48000, 96000, 192000, 384000, 768000, 1213000, 1658000, 2103000, 2548000],
+    Class.SAMURAI:   [None, 0, 1400, 2800, 5600, 11200, 22400, 44800, 89600, 179200, 358400, 716800, 1131800, 1546800, 1961800, 2376800],
+    Class.MONK:      [None, 0, 1400, 2800, 5600, 11200, 22400, 44800, 89600, 179200, 358400, 716800, 1131800, 1546800, 1961800, 2376800],
+    Class.NINJA:     [None, 0, 1500, 3000, 6000, 12000, 24000, 48000, 96000, 192000, 384000, 768000, 1243000, 1718000, 2193000, 2668000],
+    Class.LORD:      [None, 0, 1400, 2800, 5600, 11200, 22400, 44800, 89600, 179200, 358400, 716800, 1131800, 1546800, 1961800, 2376800],
+}
+
+
 def get_level_experience(character_class: Class, level: int):
     if level < 1 or not isinstance(level, int):
         raise RuntimeError(f'Invalid level: {level}.')
 
-    elif level <= 11:
-        match character_class:
-            case Class.FIGHTER:
-                return [None, 0, 1000, 2000, 4000, 8000, 16000, 32000, 64000, 128000, 256000, 512000][level]
-            case Class.MAGE:
-                return [None, 0, 1250, 2500, 5000, 10000, 20000, 40000, 80000, 160000, 320000, 640000][level]
-            case Class.PRIEST:
-                return [None, 0, 1250, 2500, 5000, 10000, 20000, 40000, 80000, 160000, 320000, 640000][level]
-            case Class.THIEF:
-                return [None, 0, 900, 1800, 3600, 7200, 14400, 28800, 57600, 115200, 230400, 460800][level]
-            case Class.RANGER:
-                return [None, 0, 1400, 2800, 5600, 11200, 22400, 44800, 89600, 179200, 358400, 716800][level]
-            case Class.ALCHEMIST:
-                return [None, 0, 1100, 2200, 4400, 8800, 17600, 35200, 70400, 140800, 281600, 563200][level]
-            case Class.BARD:
-                return [None, 0, 1250, 2500, 5000, 10000, 20000, 40000, 80000, 160000, 320000, 640000][level]
-            case Class.PSIONIC:
-                return [None, 0, 1250, 2500, 5000, 10000, 20000, 40000, 80000, 160000, 320000, 640000][level]
-            case Class.VALKYRIE:
-                return [None, 0, 1100, 2200, 4400, 8800, 17600, 35200, 70400, 140800, 281600, 563200][level]
-            case Class.BISHOP:
-                return [None, 0, 1500, 3000, 6000, 12000, 24000, 48000, 96000, 192000, 384000, 768000][level]
-            case Class.SAMURAI:
-                return [None, 0, 1400, 2800, 5600, 11200, 22400, 44800, 89600, 179200, 358400, 716800][level]
-            case Class.MONK:
-                return [None, 0, 1400, 2800, 5600, 11200, 22400, 44800, 89600, 179200, 358400, 716800][level]
-            case Class.NINJA:
-                return [None, 0, 1500, 3000, 6000, 12000, 24000, 48000, 96000, 192000, 384000, 768000][level]
-            case Class.LORD:
-                return [None, 0, 1400, 2800, 5600, 11200, 22400, 44800, 89600, 179200, 358400, 716800][level]
-            case _:
-                raise RuntimeError(f'Unknown class: {character_class}.')
-
     else:
-        match character_class:
-            case Class.FIGHTER:
-                after_eleven = 256000
-            case Class.MAGE:
-                after_eleven = 375000
-            case Class.PRIEST:
-                after_eleven = 375000
-            case Class.THIEF:
-                after_eleven = 225000
-            case Class.RANGER:
-                after_eleven = 415000
-            case Class.ALCHEMIST:
-                after_eleven = 312000
-            case Class.BARD:
-                after_eleven = 375000
-            case Class.PSIONIC:
-                after_eleven = 375000
-            case Class.VALKYRIE:
-                after_eleven = 312000
-            case Class.BISHOP:
-                after_eleven = 445000
-            case Class.SAMURAI:
-                after_eleven = 415000
-            case Class.MONK:
-                after_eleven = 415000
-            case Class.NINJA:
-                after_eleven = 475000
-            case Class.LORD:
-                after_eleven = 415000
-            case _:
-                raise RuntimeError(f'Unknown class: {character_class}.')
+        class_experiences = __LEVEL_EXPERIENCES[character_class]
+        if level < len(class_experiences):
+            return class_experiences[level]
 
-        return get_level_experience(character_class, 11) + (level-11) * after_eleven
+        else:
+            return class_experiences[-1] + (level - (len(class_experiences) - 1)) * (class_experiences[-1] - class_experiences[-2])
 
 
 def get_level_by_experience(character_class: Class, experience: int) -> int:
@@ -310,33 +276,48 @@ def get_class_requirements(character_class: Class) -> dict[Parameter, int]:
     if character_class == Class.FIGHTER:
         return {Parameter.STRENGTH: 12}
     elif character_class == Class.MAGE:
-        return {Parameter.INTELLIGENCE: 12}
+        return {                        Parameter.INTELLIGENCE: 12}
     elif character_class == Class.PRIEST:
-        return {Parameter.PIETY: 12, Parameter.PERSONALITY: 8}
+        return {                                                    Parameter.PIETY: 12,                                                                       Parameter.PERSONALITY:  8}
     elif character_class == Class.THIEF:
-        return {Parameter.DEXTERITY: 12, Parameter.SPEED: 8}
+        return {                                                                                                 Parameter.DEXTERITY: 12, Parameter.SPEED:  8}
     elif character_class == Class.RANGER:
-        return {Parameter.STRENGTH: 10, Parameter.INTELLIGENCE: 8, Parameter.PIETY: 8, Parameter.VITALITY: 11, Parameter.DEXTERITY: 10, Parameter.SPEED: 8, Parameter.PERSONALITY: 8}
+        return {Parameter.STRENGTH: 10, Parameter.INTELLIGENCE:  8, Parameter.PIETY:  8, Parameter.VITALITY: 11, Parameter.DEXTERITY: 10, Parameter.SPEED:  8, Parameter.PERSONALITY:  8}
     elif character_class == Class.ALCHEMIST:
-        return {Parameter.INTELLIGENCE: 13, Parameter.DEXTERITY: 13}
+        return {                        Parameter.INTELLIGENCE: 13,                                              Parameter.DEXTERITY: 13}
     elif character_class == Class.BARD:
-        return {Parameter.INTELLIGENCE: 10, Parameter.DEXTERITY: 12, Parameter.SPEED: 8, Parameter.PERSONALITY: 12}
+        return {                        Parameter.INTELLIGENCE: 10,                                              Parameter.DEXTERITY: 12, Parameter.SPEED:  8, Parameter.PERSONALITY: 12}
     elif character_class == Class.PSIONIC:
-        return {Parameter.STRENGTH: 10, Parameter.INTELLIGENCE: 14, Parameter.VITALITY: 14, Parameter.PERSONALITY: 10}
+        return {Parameter.STRENGTH: 10, Parameter.INTELLIGENCE: 14,                      Parameter.VITALITY: 14,                                               Parameter.PERSONALITY: 10}
     elif character_class == Class.VALKYRIE:
-        return {Parameter.STRENGTH: 10, Parameter.PIETY: 11, Parameter.VITALITY: 11, Parameter.DEXTERITY: 10, Parameter.SPEED: 11, Parameter.PERSONALITY: 8}
+        return {Parameter.STRENGTH: 10,                             Parameter.PIETY: 11, Parameter.VITALITY: 11, Parameter.DEXTERITY: 10, Parameter.SPEED: 11, Parameter.PERSONALITY:  8}
     elif character_class == Class.BISHOP:
-        return {Parameter.INTELLIGENCE: 15, Parameter.PIETY: 15, Parameter.PERSONALITY: 8}
+        return {                        Parameter.INTELLIGENCE: 15, Parameter.PIETY: 15,                                                                       Parameter.PERSONALITY:  8}
     elif character_class == Class.LORD:
-        return {Parameter.STRENGTH: 12, Parameter.INTELLIGENCE: 9, Parameter.PIETY: 12, Parameter.VITALITY: 12, Parameter.DEXTERITY: 9, Parameter.SPEED: 9, Parameter.PERSONALITY: 14}
+        return {Parameter.STRENGTH: 12, Parameter.INTELLIGENCE:  9, Parameter.PIETY: 12, Parameter.VITALITY: 12, Parameter.DEXTERITY:  9, Parameter.SPEED:  9, Parameter.PERSONALITY: 14}
     elif character_class == Class.SAMURAI:
-        return {Parameter.STRENGTH: 12, Parameter.INTELLIGENCE: 11, Parameter.VITALITY: 9, Parameter.DEXTERITY: 12, Parameter.SPEED: 14, Parameter.PERSONALITY: 8}
+        return {Parameter.STRENGTH: 12, Parameter.INTELLIGENCE: 11,                      Parameter.VITALITY:  9, Parameter.DEXTERITY: 12, Parameter.SPEED: 14, Parameter.PERSONALITY:  8}
     elif character_class == Class.MONK:
-        return {Parameter.STRENGTH: 13, Parameter.INTELLIGENCE: 8, Parameter.PIETY: 13, Parameter.DEXTERITY: 10, Parameter.SPEED: 13, Parameter.PERSONALITY: 8}
+        return {Parameter.STRENGTH: 13, Parameter.INTELLIGENCE:  8, Parameter.PIETY: 13,                         Parameter.DEXTERITY: 10, Parameter.SPEED: 13, Parameter.PERSONALITY:  8}
     elif character_class == Class.NINJA:
         return {Parameter.STRENGTH: 12, Parameter.INTELLIGENCE: 10, Parameter.PIETY: 10, Parameter.VITALITY: 12, Parameter.DEXTERITY: 12, Parameter.SPEED: 12}
     else:
         raise RuntimeError(f'Unknown class: {character_class}.')
+
+
+def get_class_spellbooks(character_class: Class) -> list[Spellbook]:
+    if character_class in (Class.MAGE, Class.BARD, Class.SAMURAI):
+        return [Spellbook.MAGE]
+    elif character_class in (Class.PRIEST, Class.VALKYRIE, Class.LORD):
+        return [Spellbook.PRIEST]
+    elif character_class in (Class.ALCHEMIST, Class.RANGER, Class.NINJA):
+        return [Spellbook.ALCHEMIST]
+    elif character_class in (Class.PSIONIC, Class.MONK):
+        return [Spellbook.PSIONIC]
+    elif character_class == Class.BISHOP:
+        return [Spellbook.MAGE, Spellbook.PRIEST]
+    else:
+        return []
 
 
 def get_class_skills(character_class: Class, skill_types: set[SkillType] | None = None) -> list[Skill]:
@@ -698,21 +679,6 @@ def get_class_skills(character_class: Class, skill_types: set[SkillType] | None 
         raise RuntimeError(f'Unknown class: {character_class}.')
 
     return result
-
-
-def get_class_spellbooks(character_class: Class) -> list[Spellbook]:
-    if character_class in (Class.MAGE, Class.BARD, Class.SAMURAI):
-        return [Spellbook.MAGE]
-    elif character_class in (Class.PRIEST, Class.VALKYRIE, Class.LORD):
-        return [Spellbook.PRIEST]
-    elif character_class in (Class.ALCHEMIST, Class.RANGER, Class.NINJA):
-        return [Spellbook.ALCHEMIST]
-    elif character_class in (Class.PSIONIC, Class.MONK):
-        return [Spellbook.PSIONIC]
-    elif character_class == Class.BISHOP:
-        return [Spellbook.MAGE, Spellbook.PRIEST]
-    else:
-        return []
 
 
 def get_spellbook_spells(spellbook: Spellbook) -> list[Spell]:

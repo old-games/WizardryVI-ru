@@ -138,7 +138,7 @@ def review(character_index=0, pictures_dir="pictures", precision=0.95):
         else:
             avg_speed = 0.0
         print(f"Average EXP gain speed: {avg_speed*3600:.2f} EXP/hour")
-        for cls in [definition.Class.PRIEST, definition.Class.THIEF, definition.Class.PSIONIC, definition.Class.MAGE]:
+        for cls in [definition.Class.PRIEST, definition.Class.THIEF, definition.Class.PSIONIC, definition.Class.MAGE, definition.Class.MONK, definition.Class.RANGER]:
             current_level = definition.get_level_by_experience(cls, exp_number)
             next_level_exp = definition.get_level_experience(cls, current_level + 1)
             exp_to_next = next_level_exp - exp_number

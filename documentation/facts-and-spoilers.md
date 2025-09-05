@@ -134,7 +134,7 @@ http://www.the-spoiler.com/RPG/Sir-Tech/wizardry.6.1/FIXCC.ZIP
 The Level 7 Spell Bug will haphazardly render monsters immune to the four level
 7 spells which damage all monsters: Nuclear Blast, Word of Death, Mind Flay,
 and Deadly Air.  A patch for this bug may be downloaded here:
-http://www.zimlab.com/wizardry/zip/w6wmexe.zip
+http://www.zimlab.com/wizardry/zip/w6wmexe.zip ([patches/mass-attack-spells.xck](../patches/mass-attack-spells.xck)).
 
 Warning: this patch will cause Mad God's editor to not be able to properly read
 the spell list or edit spells.
@@ -942,20 +942,23 @@ Priests (another strike against the Bishop).
   that realm has the fewest spells available.
 
 * Statistics: the game will randomly pick a statistic other than Karma and
-  increase it by 1.  If the chosen statistic is already 18 or higher, nothing
-  happens.  The game will then flip a coin and stop half the time; otherwise it
-  repeats for a different statistic.  You cannot gain more than 1 point per
-  statistic per level-up.  The upshot is that the chance of stat gains are:
+  check: a) if it was not already increased at the same level up; b) if it is less
+  than 18. Otherwise, the game makes 2 more attempts to pick a statistic.
+  The game will then flip a coin and stop half the time; otherwise it
+  repeats for a possibly different statistic. According to previous, you cannot
+  gain more than 1 point per statistic per level-up. Approximate upshot is that
+  the chance of stat gains are:
 
   | Stat boosts | Probability |
   | ----------- | ----------- |
-  | 1           | 1 in 2      |
-  | 2           | 1 in 4      |
-  | 3           | 1 in 8      |
-  | 4           | 1 in 16     |
-  | 5           | 1 in 32     |
-  | 6           | 1 in 64     |
+  | 1           | 1 in 1      |
+  | 2           | 1 in 2      |
+  | 3           | 1 in 4      |
+  | 4           | 1 in 8      |
+  | 5           | 1 in 16     |
+  | 6           | 1 in 32     |
   | 7           | 1 in 64     |
+  | 8 or more   | 1 in 64     |
 
   Other than meeting minimum stat requirements for a class change, stats will
   do the following when increased:

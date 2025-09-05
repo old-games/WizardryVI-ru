@@ -202,6 +202,7 @@ def main():
 
             also, make if click does not pass, it would automatically repeated
             """
+            fought = False
 
             for attempt in range(3):
                 # Open options menu and click rest
@@ -269,8 +270,7 @@ def main():
                     # Wait for options menu to reappear for up to 300s, then continue outer loop
                     print("Waiting for options menu to reappear (up to 300s)...")
                     wait_for_options_menu(pictures_dir, options_img, safe_img, timeout=300)
-                    successes += 1
-                    print(f"Successes: {successes}, Fails: {fails}, Success rate: {successes / (successes + fails) * 100:.2f}%")
+                    fought = True
                     break  # Break inner loop, continue outer
                 time.sleep(0.1)
             else:
@@ -280,7 +280,7 @@ def main():
             left, top, right, bottom = controller.window_region()
             poisoned_pos = python_imagesearch.imagesearch.imagesearcharea(os.path.join(pictures_dir, "poisoned.png"), left, top, right, bottom)
             rip_pos = python_imagesearch.imagesearch.imagesearcharea(os.path.join(pictures_dir, "rip.png"), left, top, right, bottom)
-            if rip_pos[0] != -1 or poisoned_pos[0] != -1:
+            if rip_pos[0] != -1:
                 print("RIP or poisoned detected, going to main menu and resuming...")
                 try:
                     handle_rip_or_poisoned(pictures_dir, options_img, disk_img, safe_img)
@@ -289,6 +289,9 @@ def main():
                 except Exception as e:
                     print(f"Error handling RIP or poisoned: {e}")
                 continue  # Continue main outer loop
+
+            if poisoned_pos[0] != -1:
+                continue
 
             game_over_pos = python_imagesearch.imagesearch.imagesearcharea(os.path.join(pictures_dir, "gameover.png"), left, top, right, bottom)
             if game_over_pos[0] != -1:
@@ -305,16 +308,19 @@ def main():
                 print(f"Save via images failed: {e}; falling back to Ctrl+S")
 
             # Open options and click review
-            try:
-                for i in range(maze.get_number_of_characters(pictures_dir=pictures_dir)):
-                    # Open options and click review, then run review.review
-                    find_and_click_in_window(os.path.join(pictures_dir, options_img), safe_img_path=os.path.join(pictures_dir, safe_img))
-                    time.sleep(0.1)
-                    find_and_click_in_window(os.path.join(pictures_dir, "review.png"), safe_img_path=os.path.join(pictures_dir, safe_img))
-                    time.sleep(0.2)
-                    review.review(character_index=i, pictures_dir=pictures_dir)
-            except Exception as e:
-                print(f"Open options and click review failed: {e}; falling back to Ctrl+S")
+            if fought:
+                successes += 1
+                print(f"Successes: {successes}, Fails: {fails}, Success rate: {successes / (successes + fails) * 100:.2f}%")
+                try:
+                    for i in range(maze.get_number_of_characters(pictures_dir=pictures_dir)):
+                        # Open options and click review, then run review.review
+                        find_and_click_in_window(os.path.join(pictures_dir, options_img), safe_img_path=os.path.join(pictures_dir, safe_img))
+                        time.sleep(0.1)
+                        find_and_click_in_window(os.path.join(pictures_dir, "review.png"), safe_img_path=os.path.join(pictures_dir, safe_img))
+                        time.sleep(0.2)
+                        review.review(character_index=i, pictures_dir=pictures_dir)
+                except Exception as e:
+                    print(f"Open options and click review failed: {e}; falling back to Ctrl+S")
 
     except Exception as e:
         print(f"Error during rest/save loop: {e}")

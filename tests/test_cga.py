@@ -14,7 +14,7 @@ class TestCGA(unittest.TestCase):
         pictures = ['DRAGONSC.CGA', 'GRAVEYRD.CGA', 'TITLEPAG.CGA']
         for fname in pictures:
             with self.subTest(file=fname):
-                with open(os.path.join(path, 'unpacked', fname), 'rb') as f:
+                with open(os.path.join(path, 'original', fname), 'rb') as f:
                     data = f.read()
                 picture = tools.cga.decode(data, 320, 200)
                 expected_path = os.path.join(path, 'cga', fname + '.png')
@@ -36,7 +36,7 @@ class TestCGA(unittest.TestCase):
         ]
         for size, w, h, decode_func, fname in pictures:
             with self.subTest(file=fname):
-                with open(os.path.join(path, 'unpacked', fname), 'rb') as f:
+                with open(os.path.join(path, 'original', fname), 'rb') as f:
                     data = f.read()
                 symbols = tools.font.decode(data, size)
                 for symbol_index, symbol in enumerate(symbols):
@@ -59,7 +59,7 @@ class TestCGA(unittest.TestCase):
         ]
         for size, w, h, block_size, fname in pictures:
             with self.subTest(file=fname):
-                with open(os.path.join(path, 'unpacked', fname), 'rb') as f:
+                with open(os.path.join(path, 'original', fname), 'rb') as f:
                     data = f.read()
                 symbols = tools.font.decode(data, size)
                 for symbol_index in range(len(symbols)//block_size):

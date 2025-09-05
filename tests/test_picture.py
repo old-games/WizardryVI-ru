@@ -20,11 +20,11 @@ class TestPicture(unittest.TestCase):
                 name, idx = base.rsplit('.', 1)
                 idx = int(idx)
                 all_pictures[f'{name}.PIC'].append(fname)
-        for fname in os.listdir(os.path.join(path, 'unpacked')):
+        for fname in os.listdir(os.path.join(path, 'original')):
             if not fname.upper().endswith('.PIC'):
                 continue
             with self.subTest(file=fname):
-                with open(os.path.join(path, 'unpacked', fname), 'rb') as f:
+                with open(os.path.join(path, 'original', fname), 'rb') as f:
                     compressed = f.read()
                 expected_pictures = []
                 uncompressed = tools.rle.decompress(compressed)

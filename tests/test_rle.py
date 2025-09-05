@@ -21,10 +21,10 @@ class TestRLE(unittest.TestCase):
 
     def test_read(self):
         path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-        for fname in os.listdir(os.path.join(path, 'unpacked')):
+        for fname in os.listdir(os.path.join(path, 'original')):
             if not fname.upper().endswith('.PIC'):
                 continue
-            with open(os.path.join(path, 'unpacked', fname), 'rb') as f:
+            with open(os.path.join(path, 'original', fname), 'rb') as f:
                 compressed = f.read()
             with self.subTest(file=fname):
                 uncompressed = tools.rle.decompress(compressed)

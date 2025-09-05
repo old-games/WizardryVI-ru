@@ -11,6 +11,17 @@ class TestDefinition(unittest.TestCase):
                     with self.subTest(level=level):
                         definition.get_level_experience(character_class, level)
 
+    def test_classes_experience_late(self):
+        for character_class in definition.Class._member_map_.values():
+            with self.subTest(character_class=character_class):
+                for level in (11, 30):
+                    with self.subTest(level=level):
+                        e2 = definition.get_level_experience(character_class, level+2)
+                        e1 = definition.get_level_experience(character_class, level+1)
+                        e0 = definition.get_level_experience(character_class, level)
+                        self.assertEqual(e2 - e1, e1 - e0)
+
+
     def test_classes_skills(self):
         for character_class in definition.Class._member_map_.values():
             with self.subTest(character_class=character_class):

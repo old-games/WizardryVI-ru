@@ -18,7 +18,7 @@ class TestEGA(unittest.TestCase):
         ]
         for w, h, fname in pictures:
             with self.subTest(file=fname):
-                with open(os.path.join(path, 'unpacked', fname), 'rb') as f:
+                with open(os.path.join(path, 'original', fname), 'rb') as f:
                     data = f.read()
                 picture = tools.ega.decode(data, w, h)
                 expected_path = os.path.join(path, 'ega', fname + '.png')
@@ -40,7 +40,7 @@ class TestEGA(unittest.TestCase):
         ]
         for size, w, h, decode_func, fname in pictures:
             with self.subTest(file=fname):
-                with open(os.path.join(path, 'unpacked', fname), 'rb') as f:
+                with open(os.path.join(path, 'original', fname), 'rb') as f:
                     data = f.read()
                 symbols = tools.font.decode(data, size)
                 for symbol_index, symbol in enumerate(symbols):
@@ -63,7 +63,7 @@ class TestEGA(unittest.TestCase):
         ]
         for size, w, h, block_size, fname in pictures:
             with self.subTest(file=fname):
-                with open(os.path.join(path, 'unpacked', fname), 'rb') as f:
+                with open(os.path.join(path, 'original', fname), 'rb') as f:
                     data = f.read()
                 symbols = tools.font.decode(data, size)
                 for symbol_index in range(len(symbols)//block_size):

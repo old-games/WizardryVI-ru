@@ -8,11 +8,11 @@ class TestHuffman(unittest.TestCase):
     def test_read_messages(self):
         path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-        with open(os.path.join(path, 'unpacked', 'MISC.HDR'), 'rb') as f:
+        with open(os.path.join(path, 'original', 'MISC.HDR'), 'rb') as f:
             huffman_table = f.read()
         self.assertEqual(len(huffman_table), 1024)
 
-        with open(os.path.join(path, 'unpacked', 'MSG.DBS'), 'rb') as f:
+        with open(os.path.join(path, 'original', 'MSG.DBS'), 'rb') as f:
             compressed = f.read()
 
         messages = tools.database.decode(compressed, huffman_table)
