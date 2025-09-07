@@ -13,10 +13,10 @@ img = ImageEnhance.Contrast(img).enhance(1.5)
 # Apply saturation
 img = ImageEnhance.Color(img).enhance(1.5)
 
-for palette_name, palette, encode_func, ext, decode_func in [
-    ('cga', tools.cga.PALETTE, tools.cga.encode, 'cga', tools.cga.decode),
-    ('ega', tools.ega.PALETTE, tools.ega.encode, 'ega', tools.ega.decode),
-    ('tandy', tools.tandy.PALETTE, tools.tandy.encode, 't16', tools.tandy.decode),
+for palette_name, palette, encode_func, pad_size, ext, decode_func in [
+    ('cga', tools.cga.PALETTE, tools.cga.encode, 256, 'cga', tools.cga.decode),
+    ('ega', tools.ega.PALETTE, tools.ega.encode, 256, 'ega', tools.ega.decode),
+    ('tandy', tools.tandy.PALETTE, tools.tandy.encode, 1024, 't16', tools.tandy.decode),
 ]:
     flat_palette = []
     for color in palette:
@@ -29,7 +29,7 @@ for palette_name, palette, encode_func, ext, decode_func in [
     dithered.resize((dithered.size[0]*10, dithered.size[1]*10)).save(f'tools/vnd-{palette_name}.png')
 
     # Save encoded binary format
-    encoded = encode_func(dithered)
+    encoded = encode_func(dithered, pad_size=pad_size)
     with open(f'tools/vnd-{palette_name}.{ext}', 'wb') as f:
         f.write(encoded)
 

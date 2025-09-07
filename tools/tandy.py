@@ -5,10 +5,12 @@ import tools.picture
 
 
 PALETTE = tools.ega.PALETTE
+
 ONE_BIT_PALETTE = [
     tools.picture.ALPHA_PALETTE[-1], # 1: Transparent
     tools.picture.ALPHA_PALETTE[0],  # 0: Black
 ]
+
 
 def decode(data: bytes, width: int, height: int) -> PIL.Image.Image:
     assert width & 1 == 0
@@ -22,6 +24,7 @@ def decode(data: bytes, width: int, height: int) -> PIL.Image.Image:
             flat_img.extend(PALETTE[w & 0x0f][:3])
     pil_img = PIL.Image.frombytes('RGB', (width, height), flat_img)
     return pil_img
+
 
 def decode_one_bit(data: bytes, width: int, height: int) -> PIL.Image.Image:
     assert width & 1 == 0
@@ -38,12 +41,13 @@ def decode_one_bit(data: bytes, width: int, height: int) -> PIL.Image.Image:
     pil_img = PIL.Image.frombytes('RGBA', (width, height), flat_img)
     return pil_img
 
-def encode(img: PIL.Image.Image) -> bytes:
-    """
+
+def encode(img: PIL.Image.Image, pad_size: int = 0) -> bytes:
+    '''
     Encode a PIL.Image.Image (mode 'RGB', width even) to Tandy packed bytes.
     Each byte encodes two pixels: high nibble is left pixel, low nibble is right pixel.
     Uses PALETTE (first 16 colors).
-    """
+    '''
     width, height = img.size
     assert width % 2 == 0, "Width must be even"
     img = img.convert('RGB')
@@ -59,8 +63,35 @@ def encode(img: PIL.Image.Image) -> bytes:
             nibble1 = palette_map.get(rgb1, 0)
             nibble2 = palette_map.get(rgb2, 0)
             encoded.append((nibble1 << 4) | (nibble2 & 0x0F))
-    # Pad to 1024 bytes with zeros
-    pad_len = (-len(encoded)) % 1024
-    if pad_len:
-        encoded.extend(b'\x00' * pad_len)
+    if pad_size:
+        pad_len = (-len(encoded)) % pad_size
+        if pad_len:
+            encoded.extend(b'\x00' * pad_len)
+    return bytes(encoded)
+
+
+def encode_one_bit(img: PIL.Image.Image) -> bytes:
+    """
+    Encode a PIL.Image.Image (mode 'RGBA', width even) to Tandy one-bit bytes.
+    Each byte encodes two pixels: high nibble and low nibble, only 0x0 or 0xF.
+    Uses ONE_BIT_PALETTE (transparent/black).
+    """
+    width, height = img.size
+    assert width % 2 == 0, 'Width must be even.'
+    img = img.convert('RGBA')
+    data = img.tobytes()
+    # Map RGBA tuples to 0 (transparent) or 1 (black).
+    palette_map = {tuple(ONE_BIT_PALETTE[0]): 0, tuple(ONE_BIT_PALETTE[1]): 1}
+    encoded = bytearray()
+    for y in range(height):
+        for x in range(0, width, 2):
+            idx1 = (y * width + x) * 4
+            idx2 = (y * width + x + 1) * 4
+            rgba1 = tuple(data[idx1:idx1+4])
+            rgba2 = tuple(data[idx2:idx2+4])
+            val1 = palette_map.get(rgba1, 0) & 1
+            val2 = palette_map.get(rgba2, 0) & 1
+            # Encode: 0x0 for black, 0xF for transparent.
+            b = (0xf0 if val1 else 0x0) | (0x0f if val2 else 0x0)
+            encoded.append(b)
     return bytes(encoded)

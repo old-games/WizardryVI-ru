@@ -32,11 +32,13 @@ MAD_DOG_COSMIC_FORGE_PALETTE = [
     (0x38, 0x9b, 0x9d, 0xff), # 15: Teal
 ]
 
+
 def _byte_to_bits(x: int) -> list[int]:
     result = []
     for i in range(8):
         result.append(int(bool(x & (1 << i))))
     return result
+
 
 def _bits_to_int(bits: list[int]) -> int:
     result = 0
@@ -44,6 +46,7 @@ def _bits_to_int(bits: list[int]) -> int:
         if x:
             result |= 1 << i
     return result
+
 
 def decode(data: bytes, width: int, height: int) -> PIL.Image.Image:
     assert len(data) & 3 == 0
@@ -61,8 +64,9 @@ def decode(data: bytes, width: int, height: int) -> PIL.Image.Image:
     pil_img = PIL.Image.frombytes('RGB', (width, height), flat_img)
     return pil_img
 
+
 def decode_one_bit(data: bytes, width: int, height: int) -> PIL.Image.Image:
-    assert len(data) >= width*height//8, f'Not enough data: {len(data)} for {width}x{height}'
+    assert len(data) >= width*height//8, f'Not enough data: {len(data)} for {width}x{height}.'
     flat_img = bytearray()
     its = iter(data)
     for _ in range(height):
@@ -74,9 +78,10 @@ def decode_one_bit(data: bytes, width: int, height: int) -> PIL.Image.Image:
     pil_img = PIL.Image.frombytes('RGBA', (width, height), flat_img)
     return pil_img
 
-def encode(img: PIL.Image.Image) -> bytes:
+
+def encode(img: PIL.Image.Image, pad_size: int = 0) -> bytes:
     width, height = img.size
-    assert width % 8 == 0, "Width must be a multiple of 8"
+    assert width % 8 == 0, 'Width must be a multiple of 8.'
     img = img.convert('RGB')
     data = img.tobytes()
     planes = [bytearray() for _ in range(4)]
@@ -96,9 +101,30 @@ def encode(img: PIL.Image.Image) -> bytes:
                 for i in range(8):
                     b |= bits[p][i] << (7 - i)
                 planes[p].append(b)
-    # Pad each plane to 256 bytes with zeros
-    for p in range(4):
-        pad_len = (-len(planes[p])) % 256
-        if pad_len:
-            planes[p].extend([0] * pad_len)
+    if pad_size:
+        for p in range(4):
+            pad_len = (-len(planes[p])) % pad_size
+            if pad_len:
+                planes[p].extend([0] * pad_len)
     return b''.join(planes)
+
+def encode_one_bit(img: PIL.Image.Image) -> bytes:
+    width, height = img.size
+    assert width % 8 == 0, 'Width must be a multiple of 8.'
+    img = img.convert('RGBA')
+    data = img.tobytes()
+    palette_map = {
+        tuple(ONE_BIT_PALETTE[0]): 0, # Black
+        tuple(ONE_BIT_PALETTE[1]): 1, # Transparent
+    }
+    result = bytearray()
+    for y in range(height):
+        for x in range(0, width, 8):
+            b = 0
+            for i in range(8):
+                idx = (y * width + x + i) * 4
+                rgba = tuple(data[idx:idx+4])
+                bit = palette_map.get(rgba, 0)
+                b |= (bit << (7 - i))
+            result.append(b)
+    return bytes(result)

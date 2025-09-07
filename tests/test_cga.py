@@ -18,12 +18,12 @@ class TestCGA(unittest.TestCase):
                     data = f.read()
                 picture = tools.cga.decode(data, 320, 200)
                 expected_path = os.path.join(path, 'cga', fname + '.png')
-                self.assertTrue(os.path.exists(expected_path), f"Expected image {expected_path} does not exist")
+                self.assertTrue(os.path.exists(expected_path), f'Expected image `{expected_path}` does not exist.')
                 expected = Image.open(expected_path)
                 expected = expected.resize((expected.width//10, expected.height//10), resample=0)
                 diff = ImageChops.difference(picture, expected)
                 bbox = diff.getbbox()
-                self.assertIsNone(bbox, f"Decoded image for {fname} does not match expected image.")
+                self.assertIsNone(bbox, f'Decoded image for `{fname}` does not match expected image.')
 
     def test_read_fonts(self):
         path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -43,12 +43,35 @@ class TestCGA(unittest.TestCase):
                     with self.subTest(symbol=symbol_index):
                         picture = decode_func(symbol, w, h)
                         expected_path = os.path.join(path, 'cga', 'fonts', f'{fname}.{symbol_index:03d}.png')
-                        self.assertTrue(os.path.exists(expected_path), f"Expected image {expected_path} does not exist")
+                        self.assertTrue(os.path.exists(expected_path), f'Expected image `{expected_path}` does not exist.')
                         expected = Image.open(expected_path)
                         expected = expected.resize((expected.width//10, expected.height//10), resample=0)
                         diff = ImageChops.difference(picture, expected)
                         bbox = diff.getbbox()
-                        self.assertIsNone(bbox, f"Decoded image for {fname} does not match expected image")
+                        self.assertIsNone(bbox, f'Decoded image for `{fname}` does not match expected image.')
+
+    def test_write_fonts(self):
+        path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        pictures = [
+            (16, 8, 8, tools.cga.decode_one_bit, tools.cga.encode_one_bit, 'WFONT0.CGA'),
+            (16, 8, 8, tools.cga.decode_without_interleaving, tools.cga.encode_without_interleaving, 'WFONT1.CGA'),
+            (16, 8, 8, tools.cga.decode_without_interleaving, tools.cga.encode_without_interleaving, 'WFONT2.CGA'),
+            (16, 8, 8, tools.cga.decode_without_interleaving, tools.cga.encode_without_interleaving, 'WFONT3.CGA'),
+            (16, 8, 8, tools.cga.decode_without_interleaving, tools.cga.encode_without_interleaving, 'WFONT4.CGA'),
+        ]
+        for size, w, h, decode_func, encode_func, fname in pictures:
+            with self.subTest(file=fname):
+                with open(os.path.join(path, 'original', fname), 'rb') as f:
+                    original_data = f.read()
+                symbols = tools.font.decode(original_data, size)
+                for symbol_index, symbol in enumerate(symbols):
+                    with self.subTest(symbol=symbol_index):
+                        encoded_symbol = encode_func(decode_func(symbol, w, h))
+                        self.assertEqual(encoded_symbol, symbol, f'Encoded symbol {symbol_index} for `{fname}` does not match original.')
+                encoded_data = b''.join([encode_func(decode_func(symbol, w, h)) for symbol in symbols])
+                self.assertEqual(encoded_data, original_data, f'Encoded data for `{fname}` does not match original.')
+                reassembled = tools.font.encode(symbols)
+                self.assertEqual(reassembled, original_data, f'Encoded font data for `{fname}` does not match original file.')
 
     def test_read_portraits(self):
         path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))

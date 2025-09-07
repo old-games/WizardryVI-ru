@@ -38,6 +38,7 @@ def reindex(data: dict[int, bytes], indices: bytes) -> dict[int, bytes]:
 
     return result
 
+
 def decode(data: bytes, huffman_table: bytes) -> dict[int, bytes]:
     if len(huffman_table) != 1024:
         raise ValueError('Table must be exactly 1024 bytes')
@@ -78,3 +79,41 @@ def decode(data: bytes, huffman_table: bytes) -> dict[int, bytes]:
         raise errors[0]
 
     return results
+
+
+def decode_plain(data: bytes, indices: bytes) -> dict[int, bytes]:
+    if len(indices) < 2 or (len(indices) - 2) % 6 != 0:
+        raise ValueError('Indices must be 2 + N*6 bytes')
+
+    size = int.from_bytes(indices[:2], 'little')
+    assert len(indices) >= size * 6 + 2, 'Indices length does not match expected size'
+    assert set(indices[size*6+2:]) in ({0}, set()), 'Indices can end with zero padding bytes'
+
+    def next_offset_iter(offset: int, data: dict[int, bytes]) -> int:
+        # FIXME
+        it = iter(data)
+        while next(it) != offset:
+            pass
+        return it
+
+    result = {}
+    offset = None
+    for i in range(size):
+        entry = indices[2 + i*6 : 2 + (i+1)*6]
+        start_id = int.from_bytes(entry[0:2], 'little')
+        start_offset = int.from_bytes(entry[2:4], 'little')
+        assert start_offset & 0xfc00 == 0
+        extra_size = int.from_bytes(entry[4:5], 'little')
+        high_offset = int.from_bytes(entry[5:6], 'little')
+        start_offset |= high_offset << 10
+        offset_iter = next_offset_iter(start_offset, data)
+        if offset is not None:
+            assert offset == start_offset, f'Offset mismatch: {offset} != {start_offset}'
+        offset = start_offset
+        for j in range(extra_size + 1):
+            if offset not in data:
+                raise KeyError(f'ID {start_id + j}, offset {offset} not found in data, index {len(result)} of {len(data)}')
+            result[start_id + j] = data[offset]
+            offset = next(offset_iter)
+
+    return result
