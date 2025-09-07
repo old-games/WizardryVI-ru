@@ -1,3 +1,4 @@
+import os
 import unittest
 
 import definition
@@ -21,6 +22,20 @@ class TestDefinition(unittest.TestCase):
                         e0 = definition.get_level_experience(character_class, level)
                         self.assertEqual(e2 - e1, e1 - e0)
 
+    def test_classes_experience_scenario(self):
+        path = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+        experiences = []
+        with open(os.path.join(path, 'original', 'SCENARIO.DBS'), 'rb') as f:
+            for _ in range(224):
+                experiences.append(int.from_bytes(f.read(4), 'little'))
+        experiences_it = iter(experiences)
+        for character_class in definition.Class._member_map_.values():
+            with self.subTest(character_class=character_class):
+                for level in range(2, 18):
+                    with self.subTest(level=level):
+                        e = definition.get_level_experience(character_class, level)
+                        expected_e = next(experiences_it)
+                        self.assertEqual(e, expected_e)
 
     def test_classes_skills(self):
         for character_class in definition.Class._member_map_.values():

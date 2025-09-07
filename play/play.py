@@ -158,6 +158,8 @@ def main():
     pyautogui.DARWIN_CATCH_UP_TIME = 0.001
     pyautogui.PAUSE = 0
 
+    max_experiences = [4451800, 4451800]
+
     win_title = controller.find_dosbox_window()
     print(f"Found window: {win_title} at {controller.window_region()}")
 
@@ -318,7 +320,10 @@ def main():
                         time.sleep(0.1)
                         find_and_click_in_window(os.path.join(pictures_dir, "review.png"), safe_img_path=os.path.join(pictures_dir, safe_img))
                         time.sleep(0.2)
-                        review.review(character_index=i, pictures_dir=pictures_dir)
+                        exp = review.review(character_index=i, pictures_dir=pictures_dir)
+                        if max_experiences and i < len(max_experiences) and max_experiences[i] is not None and exp >= max_experiences[i]:
+                            print(f"Character {i} reached max experience {max_experiences[i]}, exiting.")
+                            sys.exit(0)
                 except Exception as e:
                     print(f"Open options and click review failed: {e}; falling back to Ctrl+S")
 

@@ -13,7 +13,7 @@ import maze
 experience_by_index_by_time = [[], [], [], [], [], []]
 
 
-def review(character_index=0, pictures_dir="pictures", precision=0.95):
+def review(character_index=0, pictures_dir="pictures", precision=0.95) -> int:
     characters = maze.get_number_of_characters(pictures_dir=pictures_dir, precision=precision)
     print(f"Number of characters: {characters}")
 
@@ -177,3 +177,5 @@ def review(character_index=0, pictures_dir="pictures", precision=0.95):
         print("Clicked exit.png")
     else:
         print("exit.png not found")
+
+    return exp_number
