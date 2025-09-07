@@ -73,3 +73,32 @@ def decode_one_bit(data: bytes, width: int, height: int) -> PIL.Image.Image:
                 flat_img.extend(ONE_BIT_PALETTE[b])
     pil_img = PIL.Image.frombytes('RGBA', (width, height), flat_img)
     return pil_img
+
+def encode(img: PIL.Image.Image) -> bytes:
+    width, height = img.size
+    assert width % 8 == 0, "Width must be a multiple of 8"
+    img = img.convert('RGB')
+    data = img.tobytes()
+    planes = [bytearray() for _ in range(4)]
+    palette_map = {tuple(PALETTE[i][:3]): i for i in range(16)}
+    for y in range(height):
+        for x in range(0, width, 8):
+            bits = [[0]*8 for _ in range(4)]
+            for i in range(8):
+                idx = (y * width + x + i) * 3
+                rgb = tuple(data[idx:idx+3])
+                pal_idx = palette_map.get(rgb, 0)
+                for p in range(4):
+                    bits[p][i] = (pal_idx >> p) & 1
+            for p in range(4):
+                b = 0
+                # Reverse order: leftmost pixel is bit 7
+                for i in range(8):
+                    b |= bits[p][i] << (7 - i)
+                planes[p].append(b)
+    # Pad each plane to 256 bytes with zeros
+    for p in range(4):
+        pad_len = (-len(planes[p])) % 256
+        if pad_len:
+            planes[p].extend([0] * pad_len)
+    return b''.join(planes)
