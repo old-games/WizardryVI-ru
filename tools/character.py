@@ -1,0 +1,99 @@
+def decode(data: bytes) -> dict[str, str | int]:
+    if len(data) != 432:
+        raise ValueError('Character data must be exactly 432 bytes.')
+
+    result = {}
+    result['name'] = data[0:7].split(b'\x00', 1)[0].decode('ascii')
+    result['age'] = int.from_bytes(data[8:0x0a], 'little') # FIXME ??? or :0x0c?  # 0x43f0
+    result['experience'] = int.from_bytes(data[0x0c:0x10], 'little')
+    result['monsters-killed'] = int.from_bytes(data[0x10:0x12], 'little') # FIXME??? :0x12?
+    # ??? 12-14?
+    result['money'] = int.from_bytes(data[0x14:0x18], 'little')
+
+    # ??? max order?
+    result['health'] = int.from_bytes(data[0x18:0x1a], 'little')
+    result['max-health'] = int.from_bytes(data[0x1a:0x1c], 'little')
+    result['stamina'] = int.from_bytes(data[0x1c:0x1e], 'little')
+    result['max-stamina'] = int.from_bytes(data[0x1e:0x20], 'little')
+
+    result['rebirths'] = int.from_bytes(data[0x26:0x27], 'little') # FIXME ??? or 0x28?
+
+    # ??? max and sphere order?
+    result['mana-fire'] = int.from_bytes(data[0x28:0x2a], 'little')
+    result['max-mana-fire'] = int.from_bytes(data[0x2a:0x2c], 'little')
+    result['mana-water'] = int.from_bytes(data[0x2c:0x2e], 'little')
+    result['max-mana-water'] = int.from_bytes(data[0x2e:0x30], 'little')
+    result['mana-air'] = int.from_bytes(data[0x30:0x32], 'little')
+    result['max-mana-air'] = int.from_bytes(data[0x32:0x34], 'little')
+    result['mana-earth'] = int.from_bytes(data[0x34:0x36], 'little')
+    result['max-mana-earth'] = int.from_bytes(data[0x36:0x38], 'little')
+    result['mana-mental'] = int.from_bytes(data[0x38:0x3a], 'little')
+    result['max-mana-mental'] = int.from_bytes(data[0x3a:0x3c], 'little')
+    result['mana-magic'] = int.from_bytes(data[0x3c:0x3e], 'little')
+    result['max-mana-magic'] = int.from_bytes(data[0x3e:0x40], 'little')
+
+    result['level'] = int.from_bytes(data[0x24:0x26], 'little')            # 0x440c
+    result['race'] = data[0x19d]
+    result['sex'] = data[0x19e] # FIXME ??
+    result['class'] = data[0x19f]
+    result['miss-chance'] = data[0x1ae]
+    result['last-max-level'] = data[0x1af]
+    """1a
+0000c2c0: 4c59 5341 4e44 5200 611c 0000 855b 4000  LYSANDR.a....[@.
+0000c2d0: 277b 0000 53e8 0300 b202 b202 1903 1903  '{..S...........
+0000c2e0: 430e 6504 1300 0100 1a03 1a03 8603 8603  C.e.............
+0000c2f0: 5604 5604 c903 c903 9804 9804 6b04 6b04  V.V.........k.k.
+0000c300: 7b00 2800 083d 0001 8200 0f00 0a2e 0001  {.(..=..........
+0000c310: 1800 2d00 010a 0008 0600 2d00 000f 0000  ..-.......-.....
+0000c320: 8d00 2800 0b26 0000 8800 b400 072a 0000  ..(..&.......*..
+0000c330: 8900 6e00 082c 0000 8c00 3200 0a30 0000  ..n..,....2..0..
+0000c340: 1b00 0a00 0200 fa04 1c00 5000 0077 0008  ..........P..w..
+0000c350: 7c01 0200 0e23 0140 7e01 0200 0f23 3600  |....#.@~....#6.
+0000c360: 8001 0200 0f23 0240 1f00 1900 030b 0000  .....#.@........
+0000c370: 7d01 0200 0f23 2e00 9201 0500 0c65 0240  }....#.......e.@
+0000c380: 8000 0500 0640 0000 7a00 1e00 073c 0000  .....@..z....<..
+0000c390: 6601 0500 1022 0a04 6801 0500 1022 0704  f...."..h...."..
+0000c3a0: 8a00 2300 0628 0000 0f00 9600 0004 0000  ..#..(..........
+0000c3b0: 0000 0208 0000 0000 0000 1900 0000 0060  ...............`
+0000c3c0: 0000 0202 0000 0000 0000 0000 0000 0020  ...............
+0000c3d0: ffff ffff ff00 ff01 0000 0000 0101 0101  ................
+0000c3e0: 0101 0000 0000 0000 0000 0000 100f 120b  ................
+0000c3f0: 1012 110f 6464 6464 6464 6464 6464 0064  ....dddddddddd.d
+0000c400: 6464 6464 6400 0000 0000 6464 6464 6464  ddddd.....dddddd
+0000c410: 6464 0016 3d2a 3f1a 232a 0f1b 3635 1a00  dd..=*?.#*..65..
+0000c420: f500 00f5 f5f3 f5f4 1010 1010 1010 1010  ................
+0000c430: 1010 1010 1010 1010 1010 1010 1010 1010  ................
+0000c440: 1010 1010 1010 1010 ffff ffff ffff ffff  ................
+0000c450: ff7f 0000 0000 0000 0000 0000 1408 000c  ................
+0000c460: 0600 0000 001f 010a 0804 0425 0a0c 0000  ...........%....
+
+0000c470: 4e4f 4241 4c00 0000 911b 0000 b721 3c00  NOBAL........!<.
+0000c480: ae86 0000 f9c3 0300 c502 cd02 d702 d702  ................
+0000c490: cf06 0b04 1200 0300 9e05 9e05 d006 d006  ................
+0000c4a0: a308 a308 5a07 5a07 b309 b309 1909 1909  ....Z.Z.........
+0000c4b0: 8000 0500 0640 0001 7b00 2800 083d 0001  .....@..{.(..=..
+0000c4c0: 1800 2d00 010a 0008 8500 6400 072a 0000  ..-.......d..*..
+0000c4d0: 8300 1e00 0a2f 0000 1400 2800 0006 0004  ...../....(.....
+0000c4e0: 0100 0a00 0000 0004 1300 7800 0005 0000  ..........x.....
+0000c4f0: 1000 3c00 0005 0004 db01 0200 0f77 3900  ..<..........w9.
+0000c500: 8401 1400 0e31 0040 8901 0400 0e77 0040  .....1.@.....w.@
+0000c510: 9201 0500 0c65 0140 1200 2800 0007 0000  .....e.@..(.....
+0000c520: 1d00 0a00 030d 0000 8b00 2300 092d 0000  ..........#..-..
+0000c530: 7a00 1e00 073c 0000 2300 0200 0453 fa04  z....<..#....S..
+0000c540: 2200 4b00 030c 0000 1300 7800 0005 0000  ".K.......x.....
+0000c550: 2100 0200 0416 6404 1b00 0a00 0200 0e04  !.....d.........
+0000c560: 0000 0208 0000 0000 0000 1900 0000 0060  ...............`
+0000c570: 0000 0202 0000 0000 0000 0000 0000 0020  ...............
+0000c580: ffff ff00 ff01 ffff 0000 0000 0202 0303  ................
+0000c590: 0203 0000 0000 0000 0000 0000 120e 120c  ................
+0000c5a0: 1012 0d04 6464 6464 6464 6464 6464 0064  ....dddddddddd.d
+0000c5b0: 6464 6464 6400 0000 0000 6464 6464 6464  ddddd.....dddddd
+0000c5c0: 6464 0010 3410 2014 2010 0c2c 302c 1400  dd..4. . ..,0,..
+0000c5d0: f500 00f4 f5f3 f5f5 1414 1414 1414 1414  ................
+0000c5e0: 1414 1414 1414 1414 1414 1414 1414 1414  ................
+0000c5f0: 1414 1414 1414 1414 ffff ffff ffff ffff  ................
+0000c600: ff7f 0000 0000 0000 0000 0000 0301 000c  ................
+0000c610: 0600 0000 001d 010a 0a03 0424 0a0c 0000  ...........$....
+    """
+
+    return result
