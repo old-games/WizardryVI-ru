@@ -1,4 +1,4 @@
-OG001 = {
+OGR001 = {
       1: 229,
       2: 166,
       3: 237,
@@ -29,7 +29,7 @@ OG001 = {
      78: 146,
      79: 153,
      80: 135,
-     81: 136,
+     81: 137,
      82: 138,
      83: 155,
      84: 133,
@@ -68,19 +68,19 @@ OG001 = {
     122: 239,
 }
 
-OG001_REVERSED = {v: k for k, v in sorted(OG001.items())}
+OGR001_REVERSED = {v: k for k, v in sorted(OGR001.items())}
 
 
 def encode_one_all_alternatives(symbol: str, encoding: str) -> list[bytes]:
     '''
     Encode a string into a list of bytes using the specified encoding.
     Each character is encoded separately, resulting in a list of bytes.
-    Supported encodings: 'ascii', 'cp866', 'og001'.
+    Supported encodings: 'ascii', 'cp866', 'ogr001'.
     '''
     if encoding in ('ascii', 'cp866'):
         return [symbol.encode(encoding)]
-    elif encoding == 'og001':
-        table = OG001
+    elif encoding == 'ogr001':
+        table = OGR001
     else:
         raise ValueError(f'Unsupported encoding: {encoding}.')
 
@@ -94,12 +94,12 @@ def encode_one_all_alternatives(symbol: str, encoding: str) -> list[bytes]:
 def encode(data: str, encoding: str) -> bytes:
     '''
     Encode a string into bytes using the specified encoding.
-    Supported encodings: 'ascii', 'cp866', 'og001'.
+    Supported encodings: 'ascii', 'cp866', 'ogr001'.
     '''
     if encoding in ('ascii', 'cp866'):
         return data.encode(encoding)
-    elif encoding == 'og001':
-        table = OG001_REVERSED
+    elif encoding == 'ogr001':
+        table = OGR001_REVERSED
     else:
         raise ValueError(f'Unsupported encoding: {encoding}.')
 
@@ -116,12 +116,12 @@ def encode(data: str, encoding: str) -> bytes:
 def decode(data: bytes, encoding: str) -> str:
     '''
     Decode a bytes object (data) into a string using the specified encoding.
-    Supported encodings: 'ascii', 'cp866', 'og001'.
+    Supported encodings: 'ascii', 'cp866', 'ogr001'.
     '''
     if encoding in ('ascii', 'cp866'):
         return data.decode(encoding)
-    elif encoding == 'og001':
-        table = OG001
+    elif encoding == 'ogr001':
+        table = OGR001
     else:
         raise ValueError(f'Unsupported encoding: {encoding}.')
 
