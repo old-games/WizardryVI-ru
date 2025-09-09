@@ -18,6 +18,7 @@ def reindex(data: dict[int, bytes], indices: bytes) -> dict[int, bytes]:
 
     result = {}
     offset = None
+    last_start_offset = 0
     for i in range(size):
         entry = indices[2 + i*6 : 2 + (i+1)*6]
         start_id = int.from_bytes(entry[0:2], 'little')
@@ -26,6 +27,9 @@ def reindex(data: dict[int, bytes], indices: bytes) -> dict[int, bytes]:
         extra_size = int.from_bytes(entry[4:5], 'little')
         high_offset = int.from_bytes(entry[5:6], 'little')
         start_offset |= high_offset << 10
+        print(i, start_id, extra_size)
+        assert start_offset >= last_start_offset, f'Offsets must be non-decreasing: {start_offset} < {last_start_offset}.'
+        last_start_offset = start_offset
         offset_iter = next_offset_iter(start_offset, data)
         if offset is not None:
             assert offset == start_offset, f'Offset mismatch: {offset} != {start_offset}'
@@ -34,6 +38,8 @@ def reindex(data: dict[int, bytes], indices: bytes) -> dict[int, bytes]:
             if offset not in data:
                 raise KeyError(f'ID {start_id + j}, offset {offset} not found in data, index {len(result)} of {len(data)}')
             result[start_id + j] = data[offset]
+            if j == extra_size and i == size - 1:
+                break
             offset = next(offset_iter)
 
     return result

@@ -49,7 +49,7 @@ def encode(img: PIL.Image.Image, pad_size: int = 0) -> bytes:
     Uses PALETTE (first 16 colors).
     '''
     width, height = img.size
-    assert width % 2 == 0, "Width must be even"
+    assert width % 2 == 0, 'Width must be even.'
     img = img.convert('RGB')
     data = img.tobytes()
     palette_map = {tuple(PALETTE[i][:3]): i for i in range(16)}
@@ -71,11 +71,11 @@ def encode(img: PIL.Image.Image, pad_size: int = 0) -> bytes:
 
 
 def encode_one_bit(img: PIL.Image.Image) -> bytes:
-    """
+    '''
     Encode a PIL.Image.Image (mode 'RGBA', width even) to Tandy one-bit bytes.
     Each byte encodes two pixels: high nibble and low nibble, only 0x0 or 0xF.
     Uses ONE_BIT_PALETTE (transparent/black).
-    """
+    '''
     width, height = img.size
     assert width % 2 == 0, 'Width must be even.'
     img = img.convert('RGBA')

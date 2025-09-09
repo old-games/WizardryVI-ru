@@ -1,3 +1,5 @@
+import itertools
+
 import tools.huffman
 
 
@@ -6,7 +8,6 @@ def encode(messages: dict[int, bytes]) -> tuple[bytes, bytes, bytes]:
     Encode messages using the database format (indexed).
     Returns (data, indices, huffman_table).
     '''
-    import itertools
 
     # Build Huffman table from all message bytes
     all_bytes = b''.join(messages.values())
@@ -51,7 +52,6 @@ def encode(messages: dict[int, bytes]) -> tuple[bytes, bytes, bytes]:
 
 
 if __name__ == '__main__':
-    import os
     import json
     import sys
 
