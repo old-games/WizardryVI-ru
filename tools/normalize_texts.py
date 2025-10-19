@@ -318,6 +318,8 @@ def normalize_messages(input_file, output_file=None):
                         result.append('\\t')
                     elif code == 10:  # newline
                         result.append('\\n')
+                    elif code == 12:  # form feed
+                        result.append('\\f')
                     elif code == 13:  # carriage return
                         result.append('\\r')
                     elif code < 32 or code == 127:
