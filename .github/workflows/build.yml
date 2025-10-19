@@ -1,0 +1,65 @@
+name: Build Game Archives
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up Python 3.11
+      uses: actions/setup-python@v5
+      with:
+        python-version: 3.11
+
+    - name: Install dependencies
+      run: |
+        python3 -m pip install --upgrade pip
+        pip install pillow
+
+    - name: Run build tests
+      run: python3 -m unittest tests.test_build
+
+    - name: Build EN version
+      run: python3 tools/build.py --language en
+
+    - name: Build RU version
+      run: python3 tools/build.py --language ru
+
+    - name: Get commit hash
+      id: commit
+      run: echo "hash=$(git rev-parse --short=7 HEAD)" >> $GITHUB_OUTPUT
+
+    - name: List generated files
+      run: |
+        echo "EN build:"
+        ls -lh build/en/ | head -20
+        echo ""
+        echo "RU build:"
+        ls -lh build/ru/ | head -20
+        echo ""
+        echo "Archives:"
+        ls -lh archives/
+
+    - name: Upload EN archive
+      uses: actions/upload-artifact@v4
+      with:
+        name: 'WizardryVI-ru-${{ steps.commit.outputs.hash }}[data=english]'
+        path: archives/*english*.zip
+
+    - name: Upload RU archive
+      uses: actions/upload-artifact@v4
+      with:
+        name: WizardryVI-ru-${{ steps.commit.outputs.hash }}
+        path: archives/WizardryVI-ru-${{ steps.commit.outputs.hash }}.zip
