@@ -91,10 +91,20 @@ The OGR001 encoding is a custom encoding used by the game that maps certain ASCI
 - `^` (ASCII 94) → CP866 129 → Cyrillic `Б`
 - Various control characters → Cyrillic letters
 
+This encoding is defined in `tools/text.py` and is used for displaying Russian text in the game. Some letters have two corresponding codes in the OGR001 table - the duplicates are likely used for editable Cyrillic texts (e.g., character names that players can input).
+
+**Note on Future Encodings:**
+
+The project may need a second encoding (OGR002) in the future to properly support all use cases:
+- OGR001 for display text (Russian translation)
+- OGR002 for editable text (player-entered text like character names)
+
+This separation would allow proper handling of both display and input scenarios with Cyrillic characters.
+
 ### Format Characters
 
 The following characters are considered format/markup characters:
-- **Control characters**: ASCII < 32 (e.g., `\x01`, `\x16`, `\x17`)
+- **Control characters**: ASCII < 32 (e.g., `\x01` through `\x1F`)
 - **DEL character**: ASCII 127 (`\u007f`) - Used as a special markup character in the game
 - **Special symbols**: `^`, `%`, `@`, `]`, `!`, `~`
 
@@ -102,12 +112,35 @@ These characters have special meaning in the game engine and must be preserved e
 
 #### Character Meanings
 
-- `^` - Character name placeholder (replaced with character's name during gameplay)
-- `%` - Event/special formatting prefix (often appears as `%%`, `%%%`)
-- `]` - Part of event markup (appears after `%` sequences like `%%]`)
-- `!` - Part of event markup (appears after `%` sequences like `%%!`)
-- `@` - Alternative formatting character (sometimes mistranslated from `%%]` or other sequences)
-- `\u007f` (DEL) - Special markup character used to denote special text sections
-- Control characters (< 32) - Various formatting and control purposes in the game engine
+**Primary Markup Characters:**
+- `^` (ASCII 94) - Character name placeholder (replaced with character's name during gameplay)
+- `%` (ASCII 37) - Event/special formatting prefix (often appears as `%%`, `%%%`)
+- `]` (ASCII 93) - Part of event markup (appears after `%` sequences like `%%]`)
+- `!` (ASCII 33) - Part of event markup (appears after `%` sequences like `%%!`)
+- `@` (ASCII 64) - Alternative formatting character (sometimes mistranslated from `%%]` or other sequences)
+- `~` (ASCII 126) - Special formatting character
+- `\u007f` (DEL, ASCII 127) - Special markup character used to denote special text sections
 
-The game outputs text using 8x8 pixel blocks, and all UI elements are constructed from these character blocks. Some characters have special rendering (underscores, overscores) for the status line which appears at the top and bottom of the screen.
+**Control Characters (ASCII 0-31):**
+
+The game uses various control characters for formatting, special symbols, and game mechanics. These are displayed as 8x8 pixel character blocks in the game. All control characters are preserved as escape sequences (e.g., `\x01`, `\x15`) rather than Unicode equivalents for easier editing.
+
+Common control characters include:
+- `\x01` through `\x05` - Special game symbols and formatting
+- `\x06` through `\x08` - Various UI elements
+- `\t` (ASCII 9), `\n` (ASCII 10), `\r` (ASCII 13) - Standard whitespace/control
+- `\x0B` through `\x0E` - Additional formatting characters
+- `\x15` (ASCII 21) - Special symbol (originally considered for ⏎ replacement, kept as-is for editability)
+- `\x16` (ASCII 22) - Often appears in mistranslations, replaced with proper format chars
+- `\x1E`, `\x1F` (ASCII 30-31) - Common formatting characters
+
+**Game Display System:**
+
+The game outputs text using 8x8 pixel blocks, and all UI elements are constructed from these character blocks. The game only outputs uppercase characters. Some characters have special rendering:
+- Characters with underscores (underline) and overscores (overline) for the status line
+- Status line appears at the top and bottom of the screen with decorative lines
+- "Lowercase" characters in the encoding are used for status line rendering (with decorative lines)
+
+**Font Files:**
+
+Font files are located in `cga/fonts/`, `ega/fonts/`, and `tandy/fonts/` directories. Each character is stored as a separate PNG file named after its code point (e.g., `WFONT0.CGA.127.png` for character 127). There are 5 different fonts used throughout the game for different purposes.
