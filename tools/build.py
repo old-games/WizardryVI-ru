@@ -13,10 +13,9 @@ import subprocess
 import sys
 import zipfile
 import shutil
-from pathlib import Path
 
 # Add parent directory to path for imports
-sys.path.insert(0, str(Path(__file__).parent.parent))
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 import tools.message
 import tools.text
@@ -213,51 +212,71 @@ def encode_scenario(items: list[dict], monsters: list[dict], npcs: list[dict]) -
     return scenario_data, disk_hdr
 
 
-def build_version(output_dir: Path, language: str, messages: dict[int, bytes], 
+def build_version(output_dir: str, language: str, messages: dict[int, bytes], 
                   items: list[dict], monsters: list[dict], npcs: list[dict],
-                  original_dir: Path):
+                  original_dir: str):
     """Build game files for a specific language version."""
     # Create output directory
-    output_dir.mkdir(parents=True, exist_ok=True)
+    os.makedirs(output_dir, exist_ok=True)
     
-    print(f"Building {language.upper()} version...")
+    print(f'Building {language.upper()} version...')
     
     # Build messages
-    print("  Encoding messages...")
+    print('  Encoding messages...')
     msg_data, msg_indices, misc_hdr = tools.message.encode(messages)
     
     # Write message files
-    (output_dir / 'MSG.DBS').write_bytes(msg_data)
-    (output_dir / 'MSG.HDR').write_bytes(msg_indices)
-    (output_dir / 'MISC.HDR').write_bytes(misc_hdr)
+    with open(os.path.join(output_dir, 'MSG.DBS'), 'wb') as f:
+        f.write(msg_data)
+    with open(os.path.join(output_dir, 'MSG.HDR'), 'wb') as f:
+        f.write(msg_indices)
+    with open(os.path.join(output_dir, 'MISC.HDR'), 'wb') as f:
+        f.write(misc_hdr)
     
     # Build scenario
-    print("  Encoding scenario (items, monsters, NPCs)...")
+    print('  Encoding scenario (items, monsters, NPCs)...')
     scenario_data, disk_hdr = encode_scenario(items, monsters, npcs)
     
     # Write scenario files
-    (output_dir / 'SCENARIO.DBS').write_bytes(scenario_data)
-    (output_dir / 'DISK.HDR').write_bytes(disk_hdr)
+    with open(os.path.join(output_dir, 'SCENARIO.DBS'), 'wb') as f:
+        f.write(scenario_data)
+    with open(os.path.join(output_dir, 'DISK.HDR'), 'wb') as f:
+        f.write(disk_hdr)
     
-    # Copy other necessary files from original directory
-    print("  Copying other game files...")
+    # Copy other necessary files from original directory.
+    print('  Copying other game files...')
     files_to_copy = [
-        '*.OVR', '*.EXE', '*.DRV', '*.PIC', '*.SND',
-        'WFONT*.CGA', 'WFONT*.EGA', 'WFONT*.T16',
-        'WPORT*.CGA', 'WPORT*.EGA', 'WPORT*.T16',
-        '*.CGA', '*.EGA', '*.T16', 'SCEN*.DBS', 'SCEN*.HDR',
-        'DISK*.HDR', 'MASTER.HDR', 'SCENARIO.HDR', 'MAZEDATA.*'
+        '*.OVR',
+        '*.EXE',
+        '*.DRV',
+        '*.PIC',
+        '*.SND',
+        'WFONT*.CGA',
+        'WFONT*.EGA',
+        'WFONT*.T16',
+        'WPORT*.CGA',
+        'WPORT*.EGA',
+        'WPORT*.T16',
+        '*.CGA',
+        '*.EGA',
+        '*.T16',
+        'SCEN*.DBS',
+        'SCEN*.HDR',
+        'DISK*.HDR',
+        'MASTER.HDR',
+        'SCENARIO.HDR',
+        'MAZEDATA.*',
     ]
     
     import glob
     for pattern in files_to_copy:
-        for file in glob.glob(str(original_dir / pattern)):
+        for file in glob.glob(os.path.join(original_dir, pattern)):
             filename = os.path.basename(file)
-            # Don't overwrite files we just created
+            # Don't overwrite files we just created.
             if filename not in ['MSG.DBS', 'MSG.HDR', 'MISC.HDR', 'SCENARIO.DBS', 'DISK.HDR']:
-                shutil.copy2(file, output_dir / filename)
+                shutil.copy2(file, os.path.join(output_dir, filename))
     
-    print(f"  {language.upper()} version built successfully in {output_dir}")
+    print(f'  {language.upper()} version built successfully in {output_dir}')
 
 
 def get_git_commit_hash() -> str:
@@ -275,19 +294,20 @@ def get_git_commit_hash() -> str:
         return 'unknown'
 
 
-def create_archive(build_dir: Path, archive_path: Path, language: str, archive_root_name: str):
+def create_archive(build_dir: str, archive_path: str, language: str, archive_root_name: str):
     """Create a ZIP archive from the build directory with a root directory inside."""
-    print(f"Creating {language.upper()} archive...")
+    print(f'Creating {language.upper()} archive...')
     
     with zipfile.ZipFile(archive_path, 'w', zipfile.ZIP_DEFLATED) as zipf:
-        for file in build_dir.glob('*'):
-            if file.is_file():
+        for filename in os.listdir(build_dir):
+            file_path = os.path.join(build_dir, filename)
+            if os.path.isfile(file_path):
                 # Add file with archive_root_name as the root directory
-                arcname = f"{archive_root_name}/{file.name}"
-                zipf.write(file, arcname)
+                arcname = f'{archive_root_name}/{filename}'
+                zipf.write(file_path, arcname)
     
-    print(f"  Archive created: {archive_path}")
-    print(f"  Archive size: {archive_path.stat().st_size / 1024 / 1024:.2f} MB")
+    print(f'  Archive created: {archive_path}')
+    print(f'  Archive size: {os.path.getsize(archive_path) / 1024 / 1024:.2f} MB')
 
 
 def main():
@@ -309,63 +329,74 @@ def main():
         action='store_true',
         help='Skip creating ZIP archives'
     )
+    parser.add_argument(
+        '--language',
+        choices=['en', 'ru', 'both'],
+        default='both',
+        help='Language to build: en, ru, or both (default: both)'
+    )
     
     args = parser.parse_args()
     
     # Get repository root
-    repo_root = Path(__file__).parent.parent
+    repo_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     
     # Define paths
-    messages_path = repo_root / 'messages' / 'messages.json'
-    items_path = repo_root / 'items' / 'items.json'
-    monsters_path = repo_root / 'monsters' / 'monsters.json'
-    npcs_path = repo_root / 'npcs' / 'npcs.json'
-    original_dir = repo_root / 'original'
+    messages_path = os.path.join(repo_root, 'messages', 'messages.json')
+    items_path = os.path.join(repo_root, 'items', 'items.json')
+    monsters_path = os.path.join(repo_root, 'monsters', 'monsters.json')
+    npcs_path = os.path.join(repo_root, 'npcs', 'npcs.json')
+    original_dir = os.path.join(repo_root, 'original')
     
-    build_base = repo_root / args.output_dir
-    archives_base = repo_root / args.archives_dir
+    build_base = os.path.join(repo_root, args.output_dir)
+    archives_base = os.path.join(repo_root, args.archives_dir)
     
     # Check that all required files exist
     for path in [messages_path, items_path, monsters_path, npcs_path, original_dir]:
-        if not path.exists():
-            print(f"Error: Required path not found: {path}", file=sys.stderr)
+        if not os.path.exists(path):
+            print(f'Error: Required path not found: {path}', file=sys.stderr)
             return 1
     
     # Load data
-    print("Loading data...")
+    print('Loading data...')
     messages = load_messages(messages_path)
     items = load_items(items_path)
     monsters = load_monsters(monsters_path)
     npcs = load_npcs(npcs_path)
     
     # Build EN version
-    en_build_dir = build_base / 'en'
-    build_version(en_build_dir, 'en', messages['en'], items['en'], 
-                  monsters['en'], npcs['en'], original_dir)
+    if args.language in ['en', 'both']:
+        en_build_dir = os.path.join(build_base, 'en')
+        build_version(en_build_dir, 'en', messages['en'], items['en'], 
+                      monsters['en'], npcs['en'], original_dir)
     
     # Build RU version
-    ru_build_dir = build_base / 'ru'
-    build_version(ru_build_dir, 'ru', messages['ru'], items['ru'],
-                  monsters['ru'], npcs['ru'], original_dir)
+    if args.language in ['ru', 'both']:
+        ru_build_dir = os.path.join(build_base, 'ru')
+        build_version(ru_build_dir, 'ru', messages['ru'], items['ru'],
+                      monsters['ru'], npcs['ru'], original_dir)
     
     # Create archives if requested
     if not args.no_archives:
-        archives_base.mkdir(parents=True, exist_ok=True)
+        os.makedirs(archives_base, exist_ok=True)
         
         # Get git commit hash for archive naming
         commit_hash = get_git_commit_hash()
         
         # Archive naming: WizardryVI-ru-{hash}[data=english].zip for EN, WizardryVI-ru-{hash}.zip for RU
-        en_archive_name = f'WizardryVI-ru-{commit_hash}[data=english]'
-        ru_archive_name = f'WizardryVI-ru-{commit_hash}'
+        if args.language in ['en', 'both']:
+            en_archive_name = f'WizardryVI-ru-{commit_hash}[data=english]'
+            en_build_dir = os.path.join(build_base, 'en')
+            en_archive = os.path.join(archives_base, f'{en_archive_name}.zip')
+            create_archive(en_build_dir, en_archive, 'en', en_archive_name)
         
-        en_archive = archives_base / f'{en_archive_name}.zip'
-        create_archive(en_build_dir, en_archive, 'en', en_archive_name)
-        
-        ru_archive = archives_base / f'{ru_archive_name}.zip'
-        create_archive(ru_build_dir, ru_archive, 'ru', ru_archive_name)
+        if args.language in ['ru', 'both']:
+            ru_archive_name = f'WizardryVI-ru-{commit_hash}'
+            ru_build_dir = os.path.join(build_base, 'ru')
+            ru_archive = os.path.join(archives_base, f'{ru_archive_name}.zip')
+            create_archive(ru_build_dir, ru_archive, 'ru', ru_archive_name)
     
-    print("\nBuild completed successfully!")
+    print('\nBuild completed successfully!')
     return 0
 
 

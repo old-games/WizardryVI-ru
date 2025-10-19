@@ -34,10 +34,11 @@ Options:
 - `--output-dir DIR` - Output directory for build artifacts (default: `build`)
 - `--archives-dir DIR` - Output directory for archives (default: `archives`)
 - `--no-archives` - Skip creating ZIP archives
+- `--language LANG` - Language to build: `en`, `ru`, or `both` (default: `both`)
 
 ### CI/CD
 
-The project uses GitHub Actions to automatically build game archives on every push to master. The built archives are available as workflow artifacts for 90 days.
+The project uses GitHub Actions to automatically build game archives on every push to master. The built archives are available as workflow artifacts.
 
 ## Useful information
 
