@@ -249,6 +249,32 @@ def normalize_text(en_text, ru_text):
     return ''.join(result)
 
 
+class ControlCharEncoder(json.JSONEncoder):
+    """Custom JSON encoder that escapes control characters as \\uXXXX."""
+    
+    def encode(self, o):
+        if isinstance(o, str):
+            # Escape control characters
+            result = []
+            for ch in o:
+                code = ord(ch)
+                if code < 32 or code == 127:
+                    result.append(f'\\u{code:04x}')
+                elif ch == '\\':
+                    result.append('\\\\')
+                elif ch == '"':
+                    result.append('\\"')
+                else:
+                    result.append(ch)
+            return '"' + ''.join(result) + '"'
+        return super().encode(o)
+    
+    def iterencode(self, o, _one_shot=False):
+        """Encode while escaping control characters in strings."""
+        for chunk in super().iterencode(o, _one_shot):
+            yield chunk
+
+
 def normalize_messages(input_file, output_file=None):
     """
     Normalize all messages in the JSON file.
@@ -270,8 +296,53 @@ def normalize_messages(input_file, output_file=None):
     print(f"Normalized {normalized_count} messages out of {len(data)}")
     
     if output_file:
+        # Write with custom encoding that escapes control characters
+        # We need to manually format to get the exact format we want
+        output = "{\n"
+        items = list(data.items())
+        for i, (key, val) in enumerate(items):
+            en_str = val.get('en') or ''
+            ru_str = val.get('ru') or ''
+            
+            # Escape control characters in strings
+            def escape_str(s):
+                if s is None:
+                    return ''
+                result = []
+                for ch in s:
+                    code = ord(ch)
+                    if code < 32 or code == 127:
+                        result.append(f'\\u{code:04x}')
+                    elif ch == '\\':
+                        result.append('\\\\')
+                    elif ch == '"':
+                        result.append('\\"')
+                    else:
+                        result.append(ch)
+                return ''.join(result)
+            
+            en_escaped = escape_str(en_str)
+            ru_escaped = escape_str(ru_str)
+            
+            output += f'    "{key}": {{\n'
+            if en_str is not None:
+                output += f'        "en": "{en_escaped}"'
+                if ru_str is not None:
+                    output += ',\n'
+                else:
+                    output += '\n'
+            if ru_str is not None:
+                output += f'        "ru": "{ru_escaped}"\n'
+            output += '    }'
+            
+            if i < len(items) - 1:
+                output += ','
+            output += '\n'
+        
+        output += "}\n"
+        
         with open(output_file, 'w', encoding='utf-8') as f:
-            json.dump(data, f, ensure_ascii=False, indent=4)
+            f.write(output)
     else:
         # Print to stdout
         print(json.dumps(data, ensure_ascii=False, indent=4))

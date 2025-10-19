@@ -45,16 +45,13 @@ The project uses GitHub Actions to automatically build game archives on every pu
 
 ## Translation Tools
 
+### Text Markup
+
+The game uses special markup characters to control text display and insert dynamic content. For details about markup characters, encoding, and translation guidelines, see [documentation/text-markup.md](documentation/text-markup.md).
+
 ### Text Normalization
 
-The project includes a text normalization tool that ensures Russian translations preserve the original game markup formatting from English. This fixes issues where special control characters (like `^`, `%`, `@`) were incorrectly translated.
-
-```bash
-# Normalize messages (already applied to messages.json)
-python3 tools/normalize_texts.py messages/messages.json
-```
-
-For more details, see [documentation/text-normalization.md](documentation/text-normalization.md).
+The project includes a one-time normalization tool (`tools/normalize_texts.py`) that ensures Russian translations preserve the original game markup formatting from English. This is used when importing translations from external sources.
 
 ## Useful information
 
