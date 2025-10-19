@@ -311,7 +311,17 @@ def normalize_messages(input_file, output_file=None):
                 result = []
                 for ch in s:
                     code = ord(ch)
-                    if code < 32 or code == 127:
+                    # Use standard escape sequences for common control characters
+                    if code == 8:  # backspace
+                        result.append('\\b')
+                    elif code == 9:  # tab
+                        result.append('\\t')
+                    elif code == 10:  # newline
+                        result.append('\\n')
+                    elif code == 13:  # carriage return
+                        result.append('\\r')
+                    elif code < 32 or code == 127:
+                        # Other control characters use \uXXXX format
                         result.append(f'\\u{code:04x}')
                     elif ch == '\\':
                         result.append('\\\\')
