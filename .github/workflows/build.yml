@@ -31,8 +31,11 @@ jobs:
     - name: Run build tests
       run: python3 -m unittest tests.test_build
 
-    - name: Run build script
-      run: python3 tools/build.py
+    - name: Build EN version
+      run: python3 tools/build.py --language en
+
+    - name: Build RU version
+      run: python3 tools/build.py --language ru
 
     - name: Get commit hash
       id: commit
@@ -53,7 +56,7 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: 'WizardryVI-ru-${{ steps.commit.outputs.hash }}[data=english]'
-        path: archives/WizardryVI-ru-${{ steps.commit.outputs.hash }}[data=english].zip
+        path: 'archives/WizardryVI-ru-${{ steps.commit.outputs.hash }}[data=english].zip'
 
     - name: Upload RU archive
       uses: actions/upload-artifact@v4

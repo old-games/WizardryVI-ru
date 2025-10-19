@@ -11,12 +11,15 @@ The project includes a build system to generate game archives from the parsed re
 To build the game archives locally:
 
 ```bash
-python3 tools/build.py
+# Build English version
+python3 tools/build.py --language en
+
+# Build Russian version
+python3 tools/build.py --language ru
 ```
 
 This will create:
-- `build/en/` - English version game files
-- `build/ru/` - Russian version game files
+- `build/en/` or `build/ru/` - Game files for the specified language
 - `archives/WizardryVI-ru-{hash}[data=english].zip` - English version archive
 - `archives/WizardryVI-ru-{hash}.zip` - Russian version archive
 
@@ -34,7 +37,7 @@ Options:
 - `--output-dir DIR` - Output directory for build artifacts (default: `build`)
 - `--archives-dir DIR` - Output directory for archives (default: `archives`)
 - `--no-archives` - Skip creating ZIP archives
-- `--language LANG` - Language to build: `en`, `ru`, or `both` (default: `both`)
+- `--language LANG` - Language to build: `en` or `ru` (required)
 
 ### CI/CD
 

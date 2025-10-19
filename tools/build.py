@@ -331,9 +331,9 @@ def main():
     )
     parser.add_argument(
         '--language',
-        choices=['en', 'ru', 'both'],
-        default='both',
-        help='Language to build: en, ru, or both (default: both)'
+        required=True,
+        choices=['en', 'ru'],
+        help='Language to build: en or ru'
     )
     
     args = parser.parse_args()
@@ -364,16 +364,14 @@ def main():
     monsters = load_monsters(monsters_path)
     npcs = load_npcs(npcs_path)
     
-    # Build EN version
-    if args.language in ['en', 'both']:
-        en_build_dir = os.path.join(build_base, 'en')
-        build_version(en_build_dir, 'en', messages['en'], items['en'], 
+    # Build the requested version
+    if args.language == 'en':
+        build_dir = os.path.join(build_base, 'en')
+        build_version(build_dir, 'en', messages['en'], items['en'], 
                       monsters['en'], npcs['en'], original_dir)
-    
-    # Build RU version
-    if args.language in ['ru', 'both']:
-        ru_build_dir = os.path.join(build_base, 'ru')
-        build_version(ru_build_dir, 'ru', messages['ru'], items['ru'],
+    else:  # ru
+        build_dir = os.path.join(build_base, 'ru')
+        build_version(build_dir, 'ru', messages['ru'], items['ru'],
                       monsters['ru'], npcs['ru'], original_dir)
     
     # Create archives if requested
@@ -384,17 +382,14 @@ def main():
         commit_hash = get_git_commit_hash()
         
         # Archive naming: WizardryVI-ru-{hash}[data=english].zip for EN, WizardryVI-ru-{hash}.zip for RU
-        if args.language in ['en', 'both']:
-            en_archive_name = f'WizardryVI-ru-{commit_hash}[data=english]'
-            en_build_dir = os.path.join(build_base, 'en')
-            en_archive = os.path.join(archives_base, f'{en_archive_name}.zip')
-            create_archive(en_build_dir, en_archive, 'en', en_archive_name)
-        
-        if args.language in ['ru', 'both']:
-            ru_archive_name = f'WizardryVI-ru-{commit_hash}'
-            ru_build_dir = os.path.join(build_base, 'ru')
-            ru_archive = os.path.join(archives_base, f'{ru_archive_name}.zip')
-            create_archive(ru_build_dir, ru_archive, 'ru', ru_archive_name)
+        if args.language == 'en':
+            archive_name = f'WizardryVI-ru-{commit_hash}[data=english]'
+            archive_path = os.path.join(archives_base, f'{archive_name}.zip')
+            create_archive(build_dir, archive_path, 'en', archive_name)
+        else:  # ru
+            archive_name = f'WizardryVI-ru-{commit_hash}'
+            archive_path = os.path.join(archives_base, f'{archive_name}.zip')
+            create_archive(build_dir, archive_path, 'ru', archive_name)
     
     print('\nBuild completed successfully!')
     return 0
