@@ -51,7 +51,10 @@ The game uses various control characters (ASCII 0-31) for formatting, special sy
 - `\t` (ASCII 9), `\n` (ASCII 10), `\r` (ASCII 13) - Standard whitespace/control characters
 - `\u000b` through `\u000e` - Additional formatting characters
 - `\u0015` (ASCII 21) - Special symbol (could represent ⏎ visually, but stored as escape for editability)
-- `\u0016` (ASCII 22), `\u0017` (ASCII 23) - Formatting characters
+- `\u0016` (ASCII 22) - Status line character (underscored/over-scored version of a character)
+- `\u0017` (ASCII 23) - **Underscored/over-scored dot (`.`)** - Used in status line text instead of regular period
+  - Example: `"полн\u0017"` represents "полн." with the dot having decorative lines for status display
+  - Commonly appears at end of abbreviated words in status line contexts
 - `\u001e`, `\u001f` (ASCII 30-31) - Common formatting characters
 
 ## Game Display System
@@ -73,6 +76,19 @@ The game uses various control characters (ASCII 0-31) for formatting, special sy
   - **Overscores** (overline)
 - "Lowercase" character codes in the encoding map to status line versions with decorative lines
 - Regular text uses uppercase codes, status line text uses lowercase codes
+
+#### Status Line Special Characters
+
+Certain control characters represent special versions of punctuation for use in status line text:
+
+- **`\u0016` (ASCII 22)** - Status line formatted character (details vary by context)
+- **`\u0017` (ASCII 23)** - Underscored/over-scored period/dot (`.`)
+  - Used to replace regular periods in status line text
+  - The dot appears with decorative horizontal lines matching the status line style
+  - Example: `"полн."` (full) becomes `"полн\u0017"` in status line context
+  - Commonly seen in abbreviated text displayed in the status area
+
+These special characters ensure visual consistency when text appears in the status line, where the decorative horizontal lines at top and bottom must extend through all characters.
 
 ## Text Encoding
 
