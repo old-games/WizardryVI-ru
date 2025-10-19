@@ -94,7 +94,20 @@ The OGR001 encoding is a custom encoding used by the game that maps certain ASCI
 ### Format Characters
 
 The following characters are considered format/markup characters:
-- Control characters: ASCII < 32 (e.g., `\x01`, `\x16`, `\x17`)
-- Special symbols: `^`, `%`, `@`, `]`, `!`, `~`
+- **Control characters**: ASCII < 32 (e.g., `\x01`, `\x16`, `\x17`)
+- **DEL character**: ASCII 127 (`\u007f`) - Used as a special markup character in the game
+- **Special symbols**: `^`, `%`, `@`, `]`, `!`, `~`
 
 These characters have special meaning in the game engine and must be preserved exactly as they appear in the English version.
+
+#### Character Meanings
+
+- `^` - Character name placeholder (replaced with character's name during gameplay)
+- `%` - Event/special formatting prefix (often appears as `%%`, `%%%`)
+- `]` - Part of event markup (appears after `%` sequences like `%%]`)
+- `!` - Part of event markup (appears after `%` sequences like `%%!`)
+- `@` - Alternative formatting character (sometimes mistranslated from `%%]` or other sequences)
+- `\u007f` (DEL) - Special markup character used to denote special text sections
+- Control characters (< 32) - Various formatting and control purposes in the game engine
+
+The game outputs text using 8x8 pixel blocks, and all UI elements are constructed from these character blocks. Some characters have special rendering (underscores, overscores) for the status line which appears at the top and bottom of the screen.

@@ -39,9 +39,10 @@ def get_format_positions(text):
 def is_format_char(char):
     """Check if a character is a formatting/control character."""
     byte_val = ord(char)
-    # Control chars (< 32) or special markup: %, @, ^, ~, ], !
+    # Control chars (< 32 or 127=DEL) or special markup: %, @, ^, ~, ], !
     # ] and ! are part of game markup when they appear after % sequences
-    return byte_val < 32 or byte_val in [33, 37, 64, 93, 94, 126]
+    # 127 (DEL, \u007f) is used as a special markup character in the game
+    return byte_val < 32 or byte_val == 127 or byte_val in [33, 37, 64, 93, 94, 126]
 
 
 def could_be_mistranslated_format(char):

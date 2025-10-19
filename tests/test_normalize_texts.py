@@ -56,6 +56,13 @@ class TestNormalizeTexts(unittest.TestCase):
         result = normalize_text(en, ru)
         self.assertEqual(result, ru)
     
+    def test_del_character_preserved(self):
+        """Test that \\u007f (DEL) character is preserved"""
+        en = "\u007f__master_options__\u007f"
+        ru = "\u007f__главное_меню__\u007f"
+        result = normalize_text(en, ru)
+        self.assertEqual(result, ru)
+    
     def test_messages_json_consistency(self):
         """Test that all messages in messages.json have consistent formatting"""
         path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
