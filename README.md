@@ -43,6 +43,19 @@ Options:
 
 The project uses GitHub Actions to automatically build game archives on every push to master. The built archives are available as workflow artifacts.
 
+## Translation Tools
+
+### Text Normalization
+
+The project includes a text normalization tool that ensures Russian translations preserve the original game markup formatting from English. This fixes issues where special control characters (like `^`, `%`, `@`) were incorrectly translated.
+
+```bash
+# Normalize messages (already applied to messages.json)
+python3 tools/normalize_texts.py messages/messages.json
+```
+
+For more details, see [documentation/text-normalization.md](documentation/text-normalization.md).
+
 ## Useful information
 
 ### Overlays
