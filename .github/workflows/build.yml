@@ -28,6 +28,9 @@ jobs:
         python3 -m pip install --upgrade pip
         pip install pillow
 
+    - name: Run build tests
+      run: python3 -m unittest tests.test_build
+
     - name: Run build script
       run: python3 tools/build.py
 
