@@ -56,7 +56,7 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: 'WizardryVI-ru-${{ steps.commit.outputs.hash }}[data=english]'
-        path: 'archives/WizardryVI-ru-${{ steps.commit.outputs.hash }}[data=english].zip'
+        path: archives/*english*.zip
 
     - name: Upload RU archive
       uses: actions/upload-artifact@v4
