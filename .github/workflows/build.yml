@@ -1,0 +1,54 @@
+name: Build Game Archives
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up Python 3.11
+      uses: actions/setup-python@v5
+      with:
+        python-version: 3.11
+
+    - name: Install dependencies
+      run: |
+        python3 -m pip install --upgrade pip
+        pip install pillow
+
+    - name: Run build script
+      run: python3 tools/build.py
+
+    - name: List generated files
+      run: |
+        echo "EN build:"
+        ls -lh build/en/ | head -20
+        echo ""
+        echo "RU build:"
+        ls -lh build/ru/ | head -20
+        echo ""
+        echo "Archives:"
+        ls -lh archives/
+
+    - name: Upload EN archive
+      uses: actions/upload-artifact@v4
+      with:
+        name: wizardry6-en
+        path: archives/wizardry6-en.zip
+        retention-days: 90
+
+    - name: Upload RU archive
+      uses: actions/upload-artifact@v4
+      with:
+        name: wizardry6-ru
+        path: archives/wizardry6-ru.zip
+        retention-days: 90
