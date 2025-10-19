@@ -17,8 +17,12 @@ python3 tools/build.py
 This will create:
 - `build/en/` - English version game files
 - `build/ru/` - Russian version game files
-- `archives/wizardry6-en.zip` - English version archive
-- `archives/wizardry6-ru.zip` - Russian version archive
+- `archives/WizardryVI-ru-{hash}[data=english].zip` - English version archive
+- `archives/WizardryVI-ru-{hash}.zip` - Russian version archive
+
+Where `{hash}` is the short git commit hash (7 characters).
+
+Each archive contains a root directory with the same name as the archive file.
 
 ### Build options
 

@@ -9,6 +9,7 @@ and creates two archives: one for English version and one for Russian version.
 import argparse
 import json
 import os
+import subprocess
 import sys
 import zipfile
 import shutil
@@ -259,14 +260,31 @@ def build_version(output_dir: Path, language: str, messages: dict[int, bytes],
     print(f"  {language.upper()} version built successfully in {output_dir}")
 
 
-def create_archive(build_dir: Path, archive_path: Path, language: str):
-    """Create a ZIP archive from the build directory."""
+def get_git_commit_hash() -> str:
+    """Get the short git commit hash (7 characters)."""
+    try:
+        result = subprocess.run(
+            ['git', 'rev-parse', '--short=7', 'HEAD'],
+            capture_output=True,
+            text=True,
+            check=True
+        )
+        return result.stdout.strip()
+    except (subprocess.CalledProcessError, FileNotFoundError):
+        # If git is not available or not in a git repo, return a placeholder
+        return 'unknown'
+
+
+def create_archive(build_dir: Path, archive_path: Path, language: str, archive_root_name: str):
+    """Create a ZIP archive from the build directory with a root directory inside."""
     print(f"Creating {language.upper()} archive...")
     
     with zipfile.ZipFile(archive_path, 'w', zipfile.ZIP_DEFLATED) as zipf:
         for file in build_dir.glob('*'):
             if file.is_file():
-                zipf.write(file, file.name)
+                # Add file with archive_root_name as the root directory
+                arcname = f"{archive_root_name}/{file.name}"
+                zipf.write(file, arcname)
     
     print(f"  Archive created: {archive_path}")
     print(f"  Archive size: {archive_path.stat().st_size / 1024 / 1024:.2f} MB")
@@ -334,11 +352,18 @@ def main():
     if not args.no_archives:
         archives_base.mkdir(parents=True, exist_ok=True)
         
-        en_archive = archives_base / 'wizardry6-en.zip'
-        create_archive(en_build_dir, en_archive, 'en')
+        # Get git commit hash for archive naming
+        commit_hash = get_git_commit_hash()
         
-        ru_archive = archives_base / 'wizardry6-ru.zip'
-        create_archive(ru_build_dir, ru_archive, 'ru')
+        # Archive naming: WizardryVI-ru-{hash}[data=english].zip for EN, WizardryVI-ru-{hash}.zip for RU
+        en_archive_name = f'WizardryVI-ru-{commit_hash}[data=english]'
+        ru_archive_name = f'WizardryVI-ru-{commit_hash}'
+        
+        en_archive = archives_base / f'{en_archive_name}.zip'
+        create_archive(en_build_dir, en_archive, 'en', en_archive_name)
+        
+        ru_archive = archives_base / f'{ru_archive_name}.zip'
+        create_archive(ru_build_dir, ru_archive, 'ru', ru_archive_name)
     
     print("\nBuild completed successfully!")
     return 0

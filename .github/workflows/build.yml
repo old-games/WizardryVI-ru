@@ -34,6 +34,10 @@ jobs:
     - name: Run build script
       run: python3 tools/build.py
 
+    - name: Get commit hash
+      id: commit
+      run: echo "hash=$(git rev-parse --short=7 HEAD)" >> $GITHUB_OUTPUT
+
     - name: List generated files
       run: |
         echo "EN build:"
@@ -48,13 +52,13 @@ jobs:
     - name: Upload EN archive
       uses: actions/upload-artifact@v4
       with:
-        name: wizardry6-en
-        path: archives/wizardry6-en.zip
+        name: WizardryVI-ru-${{ steps.commit.outputs.hash }}[data=english]
+        path: archives/WizardryVI-ru-${{ steps.commit.outputs.hash }}[data=english].zip
         retention-days: 90
 
     - name: Upload RU archive
       uses: actions/upload-artifact@v4
       with:
-        name: wizardry6-ru
-        path: archives/wizardry6-ru.zip
+        name: WizardryVI-ru-${{ steps.commit.outputs.hash }}
+        path: archives/WizardryVI-ru-${{ steps.commit.outputs.hash }}.zip
         retention-days: 90
