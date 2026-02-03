@@ -90,14 +90,15 @@ class TestTandy(unittest.TestCase):
                         fragments = [tools.tandy.decode(symbols[symbol_index*block_size + i], w, h) for i in range(block_size)]
                         picture = tools.portrait.merge(fragments)
                         expected_path = os.path.join(path, 'tandy', 'portraits', f'{fname}.{symbol_index:02d}.png')
-                        self.assertTrue(os.path.exists(expected_path), f"Expected image {expected_path} does not exist")
+                        self.assertTrue(os.path.exists(expected_path), f'Expected image {expected_path} does not exist.')
                         expected = Image.open(expected_path)
                         expected = expected.resize((expected.width//10, expected.height//10), resample=0)
                         diff = ImageChops.difference(picture, expected)
                         bbox = diff.getbbox()
-                        self.assertIsNone(bbox, f"Decoded image for {fname} does not match expected image")
+                        self.assertIsNone(bbox, f'Decoded image for {fname} does not match expected image.')
                 assert set(b''.join(symbols[len(symbols)//block_size*block_size:])) == {0}
 
+    @unittest.skip('TODO')
     def test_read_maze(self):
-        raise NotImplementedError("No maze images to test")
+        raise NotImplementedError('No maze images to test.')
         (320, 200, 'MAZEDATA.T16'),

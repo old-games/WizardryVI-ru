@@ -19,7 +19,7 @@ def decode(data: bytes, table: bytes, length: int | None) -> bytes:
                 break
             byte_idx = bit_pos // 8
             bit_idx = bit_pos % 8
-            # Read bits MSB-first in each byte
+            # Read bits MSB-first in each byte.
             bit = (data[byte_idx] >> (7 - bit_idx)) & 1
             path.append(str(bit))
 
@@ -90,19 +90,19 @@ def table(data: bytes) -> bytes:
     root_id = heap[0][1]
     assign_indices(root_id)
 
-    # Build table
+    # Build table.
     table = bytearray()
     for node_id in sorted(table_map, key=lambda k: table_map[k]):
         left, right, symbol = nodes[node_id]
         for child in (left, right):
             if child is None:
-                # Should not happen
+                # Should not happen.
                 table += (0).to_bytes(2, 'little', signed=True)
             elif nodes[child][2] is not None:
-                # Leaf: symbol value
+                # Leaf: symbol value.
                 table += (nodes[child][2]).to_bytes(2, 'little', signed=True)
             else:
-                # Internal node: -table index
+                # Internal node: `-table` index.
                 table += (-table_map[child]).to_bytes(2, 'little', signed=True)
 
     return bytes(table)
@@ -113,9 +113,9 @@ def encode(data: bytes, table: bytes) -> bytes:
     Encode data using the provided Huffman table.
     Returns the compressed bitstream as bytes.
     """
-    # Build codebook: symbol -> bitstring
+    # Build codebook: `symbol` -> `bitstring`.
     codebook = {}
-    queue = collections.deque([(0, '')])  # (node_idx, bitstring)
+    queue = collections.deque([(0, '')]) # `(node_idx, bitstring)`.
     while queue:
         node, bits = queue.popleft()
         left = int.from_bytes(table[node * 4:node * 4 + 2], 'little', signed=True)
@@ -125,13 +125,13 @@ def encode(data: bytes, table: bytes) -> bytes:
                 codebook[child] = bits + str(bit)
             else:
                 queue.append(((-child) & 0xff, bits + str(bit)))
-    # Encode message
+    # Encode message.
     bitstring = ''
     for b in data:
         bitstring += codebook[b]
-    # Pad to full bytes
+    # Pad to full bytes.
     while len(bitstring) % 8 != 0:
         bitstring += '0'
-    # Convert to bytes
+    # Convert to bytes.
     encoded = int(bitstring, 2).to_bytes(len(bitstring) // 8, 'big') if bitstring else b''
     return encoded

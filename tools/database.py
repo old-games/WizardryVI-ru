@@ -3,11 +3,11 @@ import tools.huffman
 
 def reindex(data: dict[int, bytes], indices: bytes) -> dict[int, bytes]:
     if len(indices) < 2 or (len(indices) - 2) % 6 != 0:
-        raise ValueError('Indices must be 2 + N*6 bytes')
+        raise ValueError('Indices must be `2 + N*6` bytes.')
 
     size = int.from_bytes(indices[:2], 'little')
-    assert len(indices) >= size * 6 + 2, 'Indices length does not match expected size'
-    assert set(indices[size*6+2:]) in ({0}, set()), 'Indices can end with zero padding bytes'
+    assert len(indices) >= size * 6 + 2, 'Indices length does not match expected size.'
+    assert set(indices[size*6+2:]) in ({0}, set()), 'Indices can end with zero padding bytes.'
 
     def next_offset_iter(offset: int, data: dict[int, bytes]) -> int:
         # FIXME
@@ -27,16 +27,15 @@ def reindex(data: dict[int, bytes], indices: bytes) -> dict[int, bytes]:
         extra_size = int.from_bytes(entry[4:5], 'little')
         high_offset = int.from_bytes(entry[5:6], 'little')
         start_offset |= high_offset << 10
-        print(i, start_id, extra_size)
         assert start_offset >= last_start_offset, f'Offsets must be non-decreasing: {start_offset} < {last_start_offset}.'
         last_start_offset = start_offset
         offset_iter = next_offset_iter(start_offset, data)
         if offset is not None:
-            assert offset == start_offset, f'Offset mismatch: {offset} != {start_offset}'
+            assert offset == start_offset, f'Offset mismatch: {offset} != {start_offset}.'
         offset = start_offset
         for j in range(extra_size + 1):
             if offset not in data:
-                raise KeyError(f'ID {start_id + j}, offset {offset} not found in data, index {len(result)} of {len(data)}')
+                raise KeyError(f'ID {start_id + j}, offset {offset} not found in data, index {len(result)} of {len(data)}.')
             result[start_id + j] = data[offset]
             if j == extra_size and i == size - 1:
                 break
@@ -47,7 +46,7 @@ def reindex(data: dict[int, bytes], indices: bytes) -> dict[int, bytes]:
 
 def decode(data: bytes, huffman_table: bytes) -> dict[int, bytes]:
     if len(huffman_table) != 1024:
-        raise ValueError('Table must be exactly 1024 bytes')
+        raise ValueError('Table must be exactly 1024 bytes.')
 
     results = {}
     offset = 0
@@ -70,16 +69,16 @@ def decode(data: bytes, huffman_table: bytes) -> dict[int, bytes]:
             # This entry is a (stripped) copy of one of the previous entries, we can skip it.
             offset = 0x14000
             continue
-        assert len(huff_data) + 1 == huff_len, f'Expected {huff_len} bytes, got {len(huff_data)+1} at offset {offset}'
+        assert len(huff_data) + 1 == huff_len, f'Expected {huff_len} bytes, got {len(huff_data)+1} at offset {offset}.'
         try:
             decoded = tools.huffman.decode(huff_data, huffman_table, length)
-            assert len(decoded) == length, f'Decoded length {len(decoded)} does not match expected {length} at offset {offset}'
+            assert len(decoded) == length, f'Decoded length {len(decoded)} does not match expected {length} at offset {offset}.'
             results[offset] = decoded
         except Exception as e:
             errors.append(e)
         offset += 1 + huff_len
 
-    assert offset == len(data), f"Offset {offset} does not match data length {len(data)}"
+    assert offset == len(data), f"Offset {offset} does not match data length {len(data)}."
 
     if errors:
         raise errors[0]
@@ -89,11 +88,11 @@ def decode(data: bytes, huffman_table: bytes) -> dict[int, bytes]:
 
 def decode_plain(data: bytes, indices: bytes) -> dict[int, bytes]:
     if len(indices) < 2 or (len(indices) - 2) % 6 != 0:
-        raise ValueError('Indices must be 2 + N*6 bytes')
+        raise ValueError('Indices must be `2 + N*6` bytes.')
 
     size = int.from_bytes(indices[:2], 'little')
-    assert len(indices) >= size * 6 + 2, 'Indices length does not match expected size'
-    assert set(indices[size*6+2:]) in ({0}, set()), 'Indices can end with zero padding bytes'
+    assert len(indices) >= size * 6 + 2, 'Indices length does not match expected size.'
+    assert set(indices[size*6+2:]) in ({0}, set()), 'Indices can end with zero padding bytes.'
 
     def next_offset_iter(offset: int, data: dict[int, bytes]) -> int:
         # FIXME
@@ -114,11 +113,11 @@ def decode_plain(data: bytes, indices: bytes) -> dict[int, bytes]:
         start_offset |= high_offset << 10
         offset_iter = next_offset_iter(start_offset, data)
         if offset is not None:
-            assert offset == start_offset, f'Offset mismatch: {offset} != {start_offset}'
+            assert offset == start_offset, f'Offset mismatch: {offset} != {start_offset}.'
         offset = start_offset
         for j in range(extra_size + 1):
             if offset not in data:
-                raise KeyError(f'ID {start_id + j}, offset {offset} not found in data, index {len(result)} of {len(data)}')
+                raise KeyError(f'ID {start_id + j}, offset {offset} not found in data, index {len(result)} of {len(data)}.')
             result[start_id + j] = data[offset]
             offset = next(offset_iter)
 

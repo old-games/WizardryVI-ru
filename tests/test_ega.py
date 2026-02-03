@@ -22,12 +22,12 @@ class TestEGA(unittest.TestCase):
                     data = f.read()
                 picture = tools.ega.decode(data, w, h)
                 expected_path = os.path.join(path, 'ega', fname + '.png')
-                self.assertTrue(os.path.exists(expected_path), f"Expected image {expected_path} does not exist")
+                self.assertTrue(os.path.exists(expected_path), f'Expected image {expected_path} does not exist.')
                 expected = Image.open(expected_path)
                 expected = expected.resize((expected.width//10, expected.height//10), resample=0)
                 diff = ImageChops.difference(picture, expected)
                 bbox = diff.getbbox()
-                self.assertIsNone(bbox, f"Decoded image for {fname} does not match expected image")
+                self.assertIsNone(bbox, f'Decoded image for {fname} does not match expected image.')
 
     def test_read_fonts(self):
         path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -52,26 +52,7 @@ class TestEGA(unittest.TestCase):
                         expected = expected.resize((expected.width//10, expected.height//10), resample=0)
                         diff = ImageChops.difference(picture, expected)
                         bbox = diff.getbbox()
-                        self.assertIsNone(bbox, f"Decoded image for {fname} does not match expected image")
-
-    def test_read_fonts2(self):
-        path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-        pictures = [
-            (8, 8, 8, tools.ega.decode_one_bit, 'WFONT0.EGA'),
-            (32, 8, 8, tools.ega.decode, 'WFONT1.EGA'),
-            (32, 8, 8, tools.ega.decode, 'WFONT2.EGA'),
-            (32, 8, 8, tools.ega.decode, 'WFONT3.EGA'),
-        ]
-        for size, w, h, decode_func, fname in pictures:
-            with self.subTest(file=fname):
-                with open(os.path.join(path, 'new', fname), 'rb') as f:
-                    data = f.read()
-                symbols = tools.font.decode(data, size)
-                for symbol_index, symbol in enumerate(symbols):
-                    with self.subTest(symbol=symbol_index):
-                        picture = decode_func(symbol, w, h)
-                        expected_path = os.path.join(path, 'new', f'{fname}.{symbol_index:03d}.png')
-                        picture.resize((picture.width*10, picture.height*10), resample=0).save(expected_path)
+                        self.assertIsNone(bbox, f'Decoded image for {fname} does not match expected image.')
 
     def test_write_fonts(self):
         path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -113,14 +94,15 @@ class TestEGA(unittest.TestCase):
                         fragments = [tools.ega.decode(symbols[symbol_index*block_size + i], w, h) for i in range(block_size)]
                         picture = tools.portrait.merge(fragments)
                         expected_path = os.path.join(path, 'ega', 'portraits', f'{fname}.{symbol_index:02d}.png')
-                        self.assertTrue(os.path.exists(expected_path), f"Expected image {expected_path} does not exist")
+                        self.assertTrue(os.path.exists(expected_path), f'Expected image {expected_path} does not exist.')
                         expected = Image.open(expected_path)
                         expected = expected.resize((expected.width//10, expected.height//10), resample=0)
                         diff = ImageChops.difference(picture, expected)
                         bbox = diff.getbbox()
-                        self.assertIsNone(bbox, f"Decoded image for {fname} does not match expected image")
+                        self.assertIsNone(bbox, f'Decoded image for {fname} does not match expected image.')
                 assert set(b''.join(symbols[len(symbols)//block_size*block_size:])) == {0}
 
+    @unittest.skip('TODO')
     def test_read_maze(self):
-        raise NotImplementedError("No maze images to test")
+        raise NotImplementedError('No maze images to test.')
         (320, 200, 'MAZEDATA.EGA'),
