@@ -15,14 +15,14 @@ def encode(messages: dict[int, bytes]) -> tuple[bytes, bytes, bytes]:
     assert len(huffman_table) <= 1024, 'Huffman table must be not greater than 1024 bytes.'
     huffman_table = huffman_table.ljust(1024, b'\x00')
 
-    # Encode each message
+    # Encode each message.
     offsets = []
     data_blocks = []
     offset = 0
     for msg_id in sorted(messages):
         msg = messages[msg_id]
         encoded = tools.huffman.encode(msg, huffman_table)
-        huff_len = len(encoded) + 1  # +1 for length byte
+        huff_len = len(encoded) + 1 # `+1` for length byte.
         length = len(msg)
         block = bytes([huff_len, length]) + encoded
         data_blocks.append(block)
@@ -31,7 +31,7 @@ def encode(messages: dict[int, bytes]) -> tuple[bytes, bytes, bytes]:
 
     data_file = b''.join(data_blocks)
 
-    # Build indices in blocks of consecutive IDs
+    # Build indices in blocks of consecutive IDs.
     count = 0
     indices = b''
     for k, group in itertools.groupby(enumerate(offsets), lambda x: x[1][0] - x[0]):
@@ -57,13 +57,13 @@ if __name__ == '__main__':
 
     language = sys.argv[1] if len(sys.argv) > 1 else 'en'
     encoding = {'en': 'ascii', 'ru': 'cp866'}[language]
-    
+
     def remove_fixme(s):
         if s.startswith('FIXME'):
             return s[5:]
         return s
 
-    # Load messages from JSON
+    # Load messages from JSON.
     with open('messages/messages.json', 'r') as f:
         messages = {int(k): remove_fixme(v[language]).encode(encoding) for k, v in json.load(f).items()}
 

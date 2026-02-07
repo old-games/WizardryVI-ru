@@ -43,3 +43,26 @@ class TestPicture(unittest.TestCase):
                     self.assertEqual(img.size, size)
                     self.assertEqual(img.mode, mode)
                     self.assertEqual(list(img.getdata()), data)
+
+    def test_write_roundtrip_uncompressed(self):
+        path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        originals_dir = os.path.join(path, 'original')
+        candidates = [f for f in os.listdir(originals_dir) if f.upper().endswith('.PIC')]
+        self.assertGreater(len(candidates), 0, 'No .PIC files found under original/.')
+        for fname in candidates:
+            with self.subTest(file=fname):
+                with open(os.path.join(originals_dir, fname), 'rb') as f:
+                    compressed = f.read()
+                uncompressed = tools.rle.decompress(compressed)
+                pictures = tools.picture.decode(uncompressed)
+                reencoded = tools.picture.encode(pictures, warn_on_non_palette=False)
+                if fname == 'CREDITS.PIC':
+                    assert set(uncompressed[-0x5e0:]) == {0}
+                    uncompressed = uncompressed[:-0x5e0]
+                self.assertEqual(reencoded, uncompressed, f'PIC re-encode mismatch for {fname}.')
+
+    def test_write_warns_on_non_palette(self):
+        img = PIL.Image.new('RGBA', (8, 8), (1, 2, 3, 255))
+        with self.assertWarns(RuntimeWarning):
+            data = tools.picture.encode([img], warn_on_non_palette=True)
+        self.assertIsInstance(data, bytes)

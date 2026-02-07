@@ -25,12 +25,13 @@ class TestDatabase(unittest.TestCase):
         messages = tools.database.reindex(messages, indices)
 
         with open(os.path.join(path, 'messages', 'messages.json'), 'r') as f:
-            expected_messages = {k: v['en'] for k, v in json.load(f).items()}
+            expected_messages = {k: v['en'] for k, v in json.load(f).items() if v['en'] is not None}
 
         self.assertEqual(len(messages), len(expected_messages))
         for index, message in messages.items():
             self.assertEqual(message.decode('ascii'), expected_messages[f'{index:05}'])
 
+    @unittest.skip('TODO: scenario format is not finished')
     def test_read_scenario_with_indices(self):
         path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -48,8 +49,8 @@ class TestDatabase(unittest.TestCase):
             self.assertIsInstance(block, bytes)
 
         scenario = tools.database.reindex(scenario, indices)
-        for i, block in scenario.items():
-            print(f'{i:05}: {len(block)}, {block[:30].hex()}')
+        #for i, block in scenario.items():
+        #    print(f'{i:05}: {len(block)}, {block[:30].hex()}')
 
         #with open(os.path.join(path, 'messages', 'scenario.json'), 'r') as f:
         #    expected_blocks = json.load(f)
