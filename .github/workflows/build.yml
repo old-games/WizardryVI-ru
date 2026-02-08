@@ -13,7 +13,7 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
-    
+
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
@@ -32,10 +32,10 @@ jobs:
       run: python3 -m unittest tests.test_build
 
     - name: Build EN version
-      run: python3 tools/build.py --language en
+      run: python3 -m tools.build --language en
 
     - name: Build RU version
-      run: python3 tools/build.py --language ru
+      run: python3 -m tools.build --language ru
 
     - name: Get commit hash
       id: commit
