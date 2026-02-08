@@ -79,10 +79,6 @@ class TestQuantize(unittest.TestCase):
                         image_four = tools.tenfold.decode(PIL.Image.open(paths['cga']))
                         quantized = tools.quantize.ega_to_cga(image_sixteen)
 
-                        with self.subTest():
-                            diff = PIL.ImageChops.difference(quantized, image_four)
-                            bbox = diff.getbbox()
-                            self.assertIsNone(bbox, 'Quantized EGA does not match CGA.')
-
-                        if bbox is not None:
-                            tools.tenfold.encode(quantized).save(f'quantized_{name}_{language or "en"}.png')
+                        diff = PIL.ImageChops.difference(quantized, image_four)
+                        bbox = diff.getbbox()
+                        self.assertIsNone(bbox, 'Quantized EGA does not match CGA.')
