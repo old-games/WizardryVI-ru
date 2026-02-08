@@ -97,8 +97,3 @@ class TestCGA(unittest.TestCase):
                         bbox = diff.getbbox()
                         self.assertIsNone(bbox, f'Decoded image for {fname} does not match expected image.')
                 assert set(b''.join(symbols[len(symbols)//block_size*block_size:])) == {0}
-
-    @unittest.skip('TODO')
-    def test_read_maze(self):
-        raise NotImplementedError('No maze images to test.')
-        (320, 200, 'MAZEDATA.CGA'),

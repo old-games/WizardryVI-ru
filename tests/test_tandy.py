@@ -25,6 +25,16 @@ class TestTandy(unittest.TestCase):
                 bbox = diff.getbbox()
                 self.assertIsNone(bbox, f"Decoded image for {fname} does not match expected image")
 
+    def test_read2(self):
+        path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        pictures = ['DRAGONSC.T16', 'GRAVEYRD.T16', 'TITLEPAG.T16']
+        for fname in pictures:
+            with self.subTest(file=fname):
+                with open(os.path.join(path, 'original', fname), 'rb') as f:
+                    data = f.read()
+                picture = tools.tandy.decode(data, 320, 204)
+                picture.save(f'tandy-{fname}.png')
+
     def test_read_fonts(self):
         path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
         pictures = [
@@ -97,8 +107,3 @@ class TestTandy(unittest.TestCase):
                         bbox = diff.getbbox()
                         self.assertIsNone(bbox, f'Decoded image for {fname} does not match expected image.')
                 assert set(b''.join(symbols[len(symbols)//block_size*block_size:])) == {0}
-
-    @unittest.skip('TODO')
-    def test_read_maze(self):
-        raise NotImplementedError('No maze images to test.')
-        (320, 200, 'MAZEDATA.T16'),

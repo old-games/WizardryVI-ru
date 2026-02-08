@@ -6,16 +6,17 @@ from PIL import Image, ImageChops
 import tools.ega
 import tools.font
 import tools.portrait
+import tools.tenfold
 
 
 class TestEGA(unittest.TestCase):
     def test_read(self):
         path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-        pictures = [
+        pictures = (
             (320, 200, 'DRAGONSC.EGA'),
             (320, 200, 'GRAVEYRD.EGA'),
             (320, 200, 'TITLEPAG.EGA'),
-        ]
+        )
         for w, h, fname in pictures:
             with self.subTest(file=fname):
                 with open(os.path.join(path, 'original', fname), 'rb') as f:
@@ -101,8 +102,3 @@ class TestEGA(unittest.TestCase):
                         bbox = diff.getbbox()
                         self.assertIsNone(bbox, f'Decoded image for {fname} does not match expected image.')
                 assert set(b''.join(symbols[len(symbols)//block_size*block_size:])) == {0}
-
-    @unittest.skip('TODO')
-    def test_read_maze(self):
-        raise NotImplementedError('No maze images to test.')
-        (320, 200, 'MAZEDATA.EGA'),
