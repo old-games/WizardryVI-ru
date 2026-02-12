@@ -43,6 +43,16 @@ Options:
 
 The project uses GitHub Actions to automatically build game archives on every push to master. The built archives are available as workflow artifacts.
 
+## Translation Tools
+
+### Text Markup
+
+The game uses special markup characters to control text display and insert dynamic content. For details about markup characters, encoding, and translation guidelines, see [documentation/text-markup.md](documentation/text-markup.md).
+
+### Text Normalization
+
+The project includes a one-time normalization tool (`tools/normalize_texts.py`) that ensures Russian translations preserve the original game markup formatting from English. This is used when importing translations from external sources.
+
 ## Useful information
 
 ### Overlays
