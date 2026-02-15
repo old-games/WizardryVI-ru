@@ -92,12 +92,12 @@ def encode(img: PIL.Image.Image, pad_size: int = 0) -> bytes:
             for i in range(8):
                 idx = (y * width + x + i) * 3
                 rgb = tuple(data[idx:idx+3])
-                pal_idx = palette_map.get(rgb, 0)
+                pal_idx = palette_map[rgb]
                 for p in range(4):
                     bits[p][i] = (pal_idx >> p) & 1
             for p in range(4):
                 b = 0
-                # Reverse order: leftmost pixel is bit 7
+                # Reverse order: leftmost pixel is bit 7.
                 for i in range(8):
                     b |= bits[p][i] << (7 - i)
                 planes[p].append(b)
@@ -124,7 +124,7 @@ def encode_one_bit(img: PIL.Image.Image) -> bytes:
             for i in range(8):
                 idx = (y * width + x + i) * 4
                 rgba = tuple(data[idx:idx+4])
-                bit = palette_map.get(rgba, 0)
+                bit = palette_map[rgba]
                 b |= (bit << (7 - i))
             result.append(b)
     return bytes(result)

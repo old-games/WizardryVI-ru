@@ -1,19 +1,3 @@
-'''
-     CGA:             EGA/T16:
-0099 0d00 28 00 0e    0d00 28 00 0e
-009a 1001 34 00 08    1001 34 00 08
-009b 1202 3c 00 04    1202 3c 00 04
-009c 0000 08 00 00    0000 08 00 00
-009d 0801 34 01 04    0801 34 01 04
-009e 0e02 3c 00 02    0e02 3c 00 02
-009f ff00 28 0a 04    ff00 28 0a 04
-00a0 0801 34 05 03    0801 34 05 03
-00a1 0e02 3c 02 02    0e02 3c 02 02
-00a2 1b00 28 00 04    1b00 28 00 04
-00a3 1801 34 00 03    1801 34 00 03
-...
-'''
-
 def decode(data: bytes) -> tuple[list[tuple[int, int, bytes]], list[tuple[int, int, int, int, int]]]:
     assert len(data) >= 4
     data_entries = int.from_bytes(data[0:2], 'little')
@@ -57,3 +41,36 @@ def decode(data: bytes) -> tuple[list[tuple[int, int, bytes]], list[tuple[int, i
         assert texture_x + width <= data_payload[texture_id][0]
         object_table.append((texture_id, x, y, texture_x, width))
     return data_payload, object_table
+
+
+def encode(data_table: list[tuple[int, int, bytes]], object_table: list[tuple[int, int, int, int, int]]) -> bytes:
+    data_entries = len(data_table)
+    object_entries = len(object_table)
+    result = bytearray()
+    result.extend(data_entries.to_bytes(2, 'little'))
+    result.extend(object_entries.to_bytes(2, 'little'))
+    data_offset = 0
+    for w, h, data in data_table:
+        assert w % 8 == 0
+        paragraph = data_offset // 0x10
+        offset = data_offset % 0x10
+        assert offset < 0x10
+        result.extend(paragraph.to_bytes(2, 'little'))
+        result.append(offset)
+        result.append(w//8)
+        result.append(h)
+        data_offset += len(data)
+    for texture_id, x, y, texture_x, width in object_table:
+        assert texture_id < data_entries
+        assert width % 8 == 0
+        assert texture_x % 8 == 0
+        assert texture_x + width <= data_table[texture_id][0]
+        result.append(texture_id)
+        result.append(x)
+        result.append(y)
+        result.append(texture_x//8)
+        result.append(width//8)
+    for w, h, data in data_table:
+        assert w % 8 == 0
+        result.extend(data)
+    return bytes(result)

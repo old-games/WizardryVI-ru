@@ -60,8 +60,8 @@ def encode(img: PIL.Image.Image, pad_size: int = 0) -> bytes:
             idx2 = (y * width + x + 1) * 3
             rgb1 = tuple(data[idx1:idx1+3])
             rgb2 = tuple(data[idx2:idx2+3])
-            nibble1 = palette_map.get(rgb1, 0)
-            nibble2 = palette_map.get(rgb2, 0)
+            nibble1 = palette_map[rgb1]
+            nibble2 = palette_map[rgb2]
             encoded.append((nibble1 << 4) | (nibble2 & 0x0F))
     if pad_size:
         pad_len = (-len(encoded)) % pad_size
@@ -89,8 +89,8 @@ def encode_one_bit(img: PIL.Image.Image) -> bytes:
             idx2 = (y * width + x + 1) * 4
             rgba1 = tuple(data[idx1:idx1+4])
             rgba2 = tuple(data[idx2:idx2+4])
-            val1 = palette_map.get(rgba1, 0) & 1
-            val2 = palette_map.get(rgba2, 0) & 1
+            val1 = palette_map[rgba1] & 1
+            val2 = palette_map[rgba2] & 1
             # Encode: 0x0 for black, 0xF for transparent.
             b = (0xf0 if val1 else 0x0) | (0x0f if val2 else 0x0)
             encoded.append(b)

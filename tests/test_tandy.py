@@ -1,11 +1,13 @@
 import os
 import unittest
 
-from PIL import Image, ImageChops
+import PIL.Image
+import PIL.ImageChops
 
 import tools.font
 import tools.portrait
 import tools.tandy
+import tools.tenfold
 
 
 class TestTandy(unittest.TestCase):
@@ -18,12 +20,27 @@ class TestTandy(unittest.TestCase):
                     data = f.read()
                 picture = tools.tandy.decode(data, 320, 200)
                 expected_path = os.path.join(path, 'tandy', fname + '.png')
-                self.assertTrue(os.path.exists(expected_path), f"Expected image {expected_path} does not exist")
-                expected = Image.open(expected_path)
-                expected = expected.resize((expected.width//10, expected.height//10), resample=0)
-                diff = ImageChops.difference(picture, expected)
+                self.assertTrue(os.path.exists(expected_path), f'Expected image {expected_path} does not exist.')
+                expected = tools.tenfold.decode(PIL.Image.open(expected_path))
+                diff = PIL.ImageChops.difference(picture, expected)
                 bbox = diff.getbbox()
-                self.assertIsNone(bbox, f"Decoded image for {fname} does not match expected image")
+                self.assertIsNone(bbox, f'Decoded image for {fname} does not match expected image.')
+
+    def test_write(self):
+        path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        pictures = (
+            'DRAGONSC.T16',
+            'GRAVEYRD.T16',
+            'TITLEPAG.T16',
+        )
+        # TODO also other pictures?
+        for fname in pictures:
+            with self.subTest(file=fname):
+                with open(os.path.join(path, 'original', fname), 'rb') as f:
+                    original_data = f.read()
+                with PIL.Image.open(os.path.join(path, 'tandy', fname + '.png')) as image:
+                    encoded_data = tools.tandy.encode(tools.tenfold.decode(image), pad_size=0x400)
+                self.assertEqual(encoded_data, original_data, f'Encoded data for `{fname}` does not match original data.')
 
     def test_read_fonts(self):
         path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -44,9 +61,8 @@ class TestTandy(unittest.TestCase):
                         picture = decode_func(symbol, w, h)
                         expected_path = os.path.join(path, 'tandy', 'fonts', f'{fname}.{symbol_index:03d}.png')
                         self.assertTrue(os.path.exists(expected_path), f'Expected image `{expected_path}` does not exist.')
-                        expected = Image.open(expected_path)
-                        expected = expected.resize((expected.width//10, expected.height//10), resample=0)
-                        diff = ImageChops.difference(picture, expected)
+                        expected = tools.tenfold.decode(PIL.Image.open(expected_path))
+                        diff = PIL.ImageChops.difference(picture, expected)
                         bbox = diff.getbbox()
                         self.assertIsNone(bbox, f'Decoded image for `{fname}` does not match expected image.')
 
@@ -91,9 +107,8 @@ class TestTandy(unittest.TestCase):
                         picture = tools.portrait.merge(fragments)
                         expected_path = os.path.join(path, 'tandy', 'portraits', f'{fname}.{symbol_index:02d}.png')
                         self.assertTrue(os.path.exists(expected_path), f'Expected image {expected_path} does not exist.')
-                        expected = Image.open(expected_path)
-                        expected = expected.resize((expected.width//10, expected.height//10), resample=0)
-                        diff = ImageChops.difference(picture, expected)
+                        expected = tools.tenfold.decode(PIL.Image.open(expected_path))
+                        diff = PIL.ImageChops.difference(picture, expected)
                         bbox = diff.getbbox()
                         self.assertIsNone(bbox, f'Decoded image for {fname} does not match expected image.')
                 assert set(b''.join(symbols[len(symbols)//block_size*block_size:])) == {0}
