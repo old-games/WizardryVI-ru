@@ -93,7 +93,7 @@ def encode(img: PIL.Image.Image, pad_size: int = 0) -> bytes:
         for x in range(0, width, 4):
             idxs = [(y * width + x + i) * 3 for i in range(4)]
             rgbs = [tuple(data[idx:idx+3]) for idx in idxs]
-            vals = [palette_map.get(rgb, 0) & 3 for rgb in rgbs]
+            vals = [palette_map[rgb] & 3 for rgb in rgbs]
             b = (vals[0] << 6) | (vals[1] << 4) | (vals[2] << 2) | vals[3]
             row_bytes.append(b)
         # Interleave rows: even and odd
@@ -125,7 +125,7 @@ def encode_without_interleaving(img: PIL.Image.Image) -> bytes:
         for x in range(0, width, 4):
             idxs = [(y * width + x + i) * 3 for i in range(4)]
             rgbs = [tuple(data[idx:idx+3]) for idx in idxs]
-            vals = [palette_map.get(rgb, 0) & 3 for rgb in rgbs]
+            vals = [palette_map[rgb] & 3 for rgb in rgbs]
             b = (vals[0] << 6) | (vals[1] << 4) | (vals[2] << 2) | vals[3]
             encoded.append(b)
     return bytes(encoded)
@@ -150,7 +150,7 @@ def encode_one_bit(img: PIL.Image.Image) -> bytes:
             vals = []
             for idx in idxs:
                 rgba = tuple(data[idx:idx+4])
-                val = palette_map.get(rgba, 0) & 3
+                val = palette_map[rgba] & 3
                 vals.append(val)
             b = (vals[0] << 6) | (vals[1] << 4) | (vals[2] << 2) | vals[3]
             encoded.append(b)
